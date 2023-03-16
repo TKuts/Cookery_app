@@ -1,6 +1,19 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@500;600&display=swap");
+body {
+  display: flex;
+  flex-direction: column;
+  //   justify-content: center;
+  align-items: center;
+  background: #e4e6f1;
+}
+
 #root {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+  //   margin: 0 auto;
+
   text-align: center;
 }

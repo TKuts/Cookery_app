@@ -1,25 +1,27 @@
-import { useState } from 'react'
-import './App.scss'
+import React, { useState } from 'react';
+import './App.scss';
+import Gallary from './UI/Gallary/Gallary';
 
 
-const API = import.meta.env.VITE_REACT_API_URL
+const API = import.meta.env.VITE_REACT_API_HOST
 const API_KEY = import.meta.env.VITE_REACT_API_KEY
 
+const ALL_RECIPES = import.meta.env.VITE_REACT_ALL_RECIPES
+const FIND_INGREDIENTS = import.meta.env.VITE_REACT_FIND_INGREDIENTS
+const INGREDIENTS = import.meta.env.VITE_REACT_ALL_INGREDIENTS
+const DESCRIPTION = import.meta.env.VITE_REACT_DESCRIPTION
+const TUTORIAL = import.meta.env.VITE_REACT_TUTORIAL
+const BY_NUTRIENTS = import.meta.env.VITE_REACT_FILTER_BY_NUTRIENTS
+
+
+
 function App() {
-  const [count, setCount] = useState(0)
-
-const fun = fetch(`https://api.spoonacular.com/recipes/324694/analyzedInstructions?apiKey=0aa8e02c95b446af92b9757178b9165d`)
-.then(response => response.json())
-.then(commits => console.log(commits)
-);
-
-// 716429
 
 
   return (
-
-    <div>
-      Hello world
+    <div className='wrapper'>
+      
+      <Gallary />
 		
     </div>
   )

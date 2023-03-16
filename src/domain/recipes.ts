@@ -8,8 +8,8 @@ export type Recipe = {
     title: RecipesTitle;
     id: UniqueId;
     image: string;
-    information: RecipesInformation;
-    dishTypes: DishTypes
+    // information: RecipesInformation;
+    // dishTypes: DishTypes
 }
 
 

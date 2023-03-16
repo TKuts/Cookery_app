@@ -35,3 +35,5 @@ Drawing block schame
 5) https://api.spoonacular.com/recipes/{id}/analyzedInstructions?apiKey=0aa8e02c95b446af92b9757178b9165d - опис, як готувати, крок за кроком.
 
 6) https://api.spoonacular.com/recipes/findByNutrients?minCarbs=10&maxCarbs=50&number=2?apiKey=0aa8e02c95b446af92b9757178b9165d - філтрація за багатьма показниками
+
+7) https://api.spoonacular.com/recipes/complexSearch?type=soup&apiKey=0aa8e02c95b446af92b9757178b9165d - пошук по типу
