@@ -33,7 +33,7 @@ export type Ingredient = {
 }
 
 export type RecipesInformation = {   
-    extendedIngredients: [Ingredient]; // VITE_REACT_ALL_INGREDIENTS 
+    extendedIngredients: Ingredient[]; // VITE_REACT_ALL_INGREDIENTS 
     description: Description; // VITE_REACT_DESCRIPTION ,
     tutorial: Tutorial // VITE_REACT_TUTORIA
 }

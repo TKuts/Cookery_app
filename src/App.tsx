@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './App.scss';
 import Gallary from './UI/Gallary/Gallary';
-
+import Categories from "./UI/Categories/Categories" 
 
 const API = import.meta.env.VITE_REACT_API_HOST
 const API_KEY = import.meta.env.VITE_REACT_API_KEY
@@ -17,11 +17,20 @@ const BY_NUTRIENTS = import.meta.env.VITE_REACT_FILTER_BY_NUTRIENTS
 
 function App() {
 
+const [categories, setCategories] = useState("");
+
+	const category = (string: string): void =>{
+		setCategories(string)
+	}
+
+	
+	
 
   return (
-    <div className='wrapper'>
-      
-      <Gallary />
+    <div className="wrapper">
+      <Categories category={category}/>
+      <Gallary stateCategories={categories}/>
+		
 		
     </div>
   )

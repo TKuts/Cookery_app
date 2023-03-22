@@ -3,23 +3,29 @@ import "./Gallary.scss";
 import { Recipe } from "../../domain/recipes"
 
 
+// path= home/info_id-143535/tutorial
+// favorite
+// shop
+// delivery
 
 interface GallaryProps {
-	recipe: Recipe[];
+	recipes: Recipe[];
 }
 
-function Gallary () {
+function Gallary (props: string) {
   const [recipes, setRecipes] = useState<Recipe[] | null >(null);
 
+//   const ppp = props.stateCategories 
+// console.log(recipes);
+
+// console.log(` https://api.spoonacular.com/recipes/complexSearch?addRecipeInformation=true&number=9&type=${props.stateCategories}&apiKey=0aa8e02c95b446af92b9757178b9165d`);
+
     useEffect(() => {
-	 fetch(` https://api.spoonacular.com/recipes/complexSearch?addRecipeInformation=true&number=9&apiKey=0aa8e02c95b446af92b9757178b9165d`)
+	 fetch(` https://api.spoonacular.com/recipes/complexSearch?addRecipeInformation=true&number=9&type=soup&apiKey=0aa8e02c95b446af92b9757178b9165d`)
       .then((response) => response.json())
-      .then((rec) => setRecipes(rec.results)
+      .then((rec) => 
+		setRecipes(rec.results)
 		// console.log(rec)
-		
-		
-		
-		
 		)
   }, []);
 
@@ -30,9 +36,10 @@ function Gallary () {
 			{
 			recipes && recipes.map(recipe => (
            <div className="recipe" key={recipe.id} >
+			{/* {children} */}
 						<img className="recipe__image" src={recipe.image} alt= {`img-recceps ${recipe.id}`} />
 						<h1 className="recipe__title">{recipe.title}</h1>
-						<p>{recipe.readyInMinutes} хв</p>
+						<p>{recipe.readyInMinutes} Minutes</p>
             </div>
         )
 				)
