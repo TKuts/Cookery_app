@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import './App.scss';
+
+
+import Header from "./UI/Header/Header"
 import Gallary from './UI/Gallary/Gallary';
 import Categories from "./UI/Categories/Categories" 
 
@@ -13,23 +16,27 @@ const DESCRIPTION = import.meta.env.VITE_REACT_DESCRIPTION
 const TUTORIAL = import.meta.env.VITE_REACT_TUTORIAL
 const BY_NUTRIENTS = import.meta.env.VITE_REACT_FILTER_BY_NUTRIENTS
 
-
+import { Recipe } from "../src/domain/recipes"
 
 function App() {
 
 const [categories, setCategories] = useState("");
+const [recipes, setRecipes] = useState<Recipe[] | null >(null);
 
 	const category = (string: string): void =>{
 		setCategories(string)
 	}
 
-	
-	
+	const api = (data: string) =>{
+		fetch(`https://api.spoonacular.com/recipes/complexSearch?addRecipeInformation=true&number=9&type=${data}&apiKey=8d7ddae365d4476296d763b1f0154bdf`).then(response => response.json()).then(rec => setRecipes(rec.results))
+	}
 
+	
   return (
     <div className="wrapper">
-      <Categories category={category}/>
-      <Gallary stateCategories={categories}/>
+		<Header/>
+      <Categories category={api}/>
+      <Gallary recipes={recipes}  stateCategories={categories}/>
 		
 		
     </div>
