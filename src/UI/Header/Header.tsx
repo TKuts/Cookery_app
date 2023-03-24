@@ -3,10 +3,10 @@ import "./Header.scss";
 
 
 
-function Header (props: string) {
+function Header () {
   
   return (
-		<section className="header">
+		<header className="header">
 			<ul className="header__logo">
 				<li className="header__logo-title">Foodieland</li>
 			</ul>
@@ -35,7 +35,7 @@ function Header (props: string) {
 					</a>
 				</li>
 			</ul>
-		</section>
+		</header>
 
   )
 	

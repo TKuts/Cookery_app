@@ -31,12 +31,14 @@ const [recipes, setRecipes] = useState<Recipe[] | null >(null);
 		fetch(`https://api.spoonacular.com/recipes/complexSearch?addRecipeInformation=true&number=9&type=${data}&apiKey=8d7ddae365d4476296d763b1f0154bdf`).then(response => response.json()).then(rec => setRecipes(rec.results))
 	}
 
+
+	
 	
   return (
     <div className="wrapper">
 		<Header/>
       <Categories category={api}/>
-      <Gallary recipes={recipes}  stateCategories={categories}/>
+      <Gallary recipes={recipes}  />
 		
 		
     </div>
