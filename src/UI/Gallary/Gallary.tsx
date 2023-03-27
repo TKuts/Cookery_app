@@ -11,15 +11,19 @@ import { Recipe } from "../../domain/recipes";
 
 export interface GallaryProps {
 	recipes: Recipe[] | null;
+	recipeDetails: any // додав сам
+	searchRecipeId: any
 }
 
-const Gallary: React.FC<GallaryProps> = ({ recipes }) =>{
+const Gallary: React.FC<GallaryProps> = ({ recipes, recipeDetails, searchRecipeId }) =>{
  
   return (
 		<section className="recipes-wrapper">
 			
 			{ recipes && recipes.map((recipe: any) => (
-           <div className="recipe" key={recipe.id} >
+           <div className="recipe" key={recipe.id} 
+			  onClick={()=> {recipeDetails(), searchRecipeId(recipe.id)}
+			  } >
 					<img className="recipe__image" src={recipe.image} alt= {`img-recceps ${recipe.id}`} />
 					<h1 className="recipe__title">{recipe.title}</h1>
 					<p className="recipe__time" >{recipe.readyInMinutes} Minutes</p>

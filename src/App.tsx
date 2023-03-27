@@ -5,6 +5,7 @@ import './App.scss';
 import Header from "./UI/Header/Header"
 import Gallary from './UI/Gallary/Gallary';
 import Categories from "./UI/Categories/Categories" 
+import RecipeDetails from "./UI/RecipeDetails/RecipeDetails"
 
 const API = import.meta.env.VITE_REACT_API_HOST
 const API_KEY = import.meta.env.VITE_REACT_API_KEY
@@ -20,17 +21,28 @@ import { Recipe } from "../src/domain/recipes"
 
 function App() {
 
-const [categories, setCategories] = useState("");
+// const [categories, setCategories] = useState("");
 const [recipes, setRecipes] = useState<Recipe[] | null >(null);
-
-	const category = (string: string): void =>{
-		setCategories(string)
-	}
+const [recipeDetails, setRecipeDetails] = useState(true)
+const [recipeId, setRecipeId] = useState("")
+	// const category = (string: string): void =>{
+	// 	setCategories(string)
+	// }
 
 	const api = (data: string) =>{
-		fetch(`https://api.spoonacular.com/recipes/complexSearch?addRecipeInformation=true&number=9&type=${data}&apiKey=8d7ddae365d4476296d763b1f0154bdf`).then(response => response.json()).then(rec => setRecipes(rec.results))
+		fetch(`https://api.spoonacular.com/recipes/complexSearch?addRecipeInformation=true&number=9&type=${data}&apiKey=0aa8e02c95b446af92b9757178b9165d`).then(response => response.json()).then(rec => setRecipes(rec.results))
 	}
 
+	const unfoldRecipeDetails: any = () => {
+		setRecipeDetails(!recipeDetails) 	
+	}
+	
+	const searchRecipeId: any = (id: string)=>{
+		setRecipeId(id)
+	}
+
+
+	
 
 	
 	
@@ -38,8 +50,13 @@ const [recipes, setRecipes] = useState<Recipe[] | null >(null);
     <div className="wrapper">
 		<Header/>
       <Categories category={api}/>
-      <Gallary recipes={recipes}  />
-		
+      <Gallary 
+		recipes={recipes} 
+		recipeDetails={unfoldRecipeDetails}
+		searchRecipeId={searchRecipeId}
+		/>
+		{!recipeDetails ? <RecipeDetails recipeId={recipeId}/> : <></>}
+	
 		
     </div>
   )

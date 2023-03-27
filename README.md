@@ -25,6 +25,7 @@ Drawing block schame
 9. Auth Farebase
 
 <!-- 0aa8e02c95b446af92b9757178b9165d -->
+<!-- 8d7ddae365d4476296d763b1f0154bdf -->
 
 1. Перша вкладка з усіма рецептами https://api.spoonacular.com/recipes/complexSearch?apiKey=0aa8e02c95b446af92b9757178b9165d - отримав всі рецепти які є на сайті (id - для подальшого пошуку інформації саме по цьому пецепту, title - заголовок під фото, image - фото страви)
 

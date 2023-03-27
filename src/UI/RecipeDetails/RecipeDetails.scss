@@ -1,0 +1,112 @@
+.detailed__wrapper {
+  margin: 80px 0 80px 0;
+}
+.detailed__title {
+  font-family: "Inter", sans-serif;
+  text-align: start;
+  font-weight: 600;
+  font-size: 64px;
+  line-height: 77px;
+  letter-spacing: -0.04em;
+  color: #000000;
+  margin-bottom: 50px;
+}
+.detailed__information {
+  display: flex;
+}
+.detailed__time {
+  display: flex;
+  padding: 5px 32px;
+  align-items: center;
+  &-img {
+    width: 24px;
+    height: 24px;
+  }
+  &-title {
+    font-family: "Inter", sans-serif;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 15px;
+    letter-spacing: 0.1em;
+    color: #000000;
+  }
+  &-minutes {
+    font-family: "Inter", sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+    letter-spacing: -0.02em;
+    color: rgba(0, 0, 0, 0.6);
+  }
+}
+.detailed__type {
+  display: flex;
+  padding: 5px 32px;
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+  &-img {
+    width: 24px;
+    height: 24px;
+  }
+  &-data {
+    display: block;
+    font-family: "Inter", sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+    letter-spacing: -0.02em;
+    color: rgba(0, 0, 0, 0.6);
+  }
+}
+.detailed__block {
+  display: flex;
+  &-img {
+    width: 840px;
+    height: 600px;
+    border-radius: 30px;
+  }
+}
+.ingredients {
+  width: 400px;
+  padding: 32px;
+  margin-left: 30px;
+  background: #e7fafe;
+  border-radius: 30px;
+  &__title {
+    font-family: "Inter", sans-serif;
+    text-align: start;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 29px;
+    letter-spacing: -0.04em;
+    color: #000000;
+    //  margin-bottom: 20px;
+  }
+}
+.ingredient {
+  &__wrapper {
+    display: flex;
+    justify-content: space-between;
+    padding: 16px 0 16px 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+  &__name {
+    display: block;
+    font-family: "Inter", sans-serif;
+    font-weight: 500;
+    text-transform: capitalize;
+    font-size: 18px;
+    line-height: 22px;
+    letter-spacing: -0.04em;
+    color: rgba(0, 0, 0, 0.6);
+  }
+  &__metric {
+    display: block;
+    font-family: "Inter", sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 22px;
+    text-align: right;
+    letter-spacing: -0.04em;
+    color: #000000;
+  }
+}
