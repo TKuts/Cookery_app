@@ -24,19 +24,16 @@ Drawing block schame
 8. Notification
 9. Auth Farebase
 
-<!-- 0aa8e02c95b446af92b9757178b9165d -->
-<!-- 8d7ddae365d4476296d763b1f0154bdf -->
+10. Перша вкладка з усіма рецептами https://api.spoonacular.com/recipes/complexSearch?apiKey=0aa8e02c95b446af92b9757178b9165d - отримав всі рецепти які є на сайті (id - для подальшого пошуку інформації саме по цьому пецепту, title - заголовок під фото, image - фото страви)
 
-1. Перша вкладка з усіма рецептами https://api.spoonacular.com/recipes/complexSearch?apiKey=0aa8e02c95b446af92b9757178b9165d - отримав всі рецепти які є на сайті (id - для подальшого пошуку інформації саме по цьому пецепту, title - заголовок під фото, image - фото страви)
+11. Пошук - по інгредієнту https://api.spoonacular.com/recipes/findByIngredients?ingredients=apples&apiKey=0aa8e02c95b446af92b9757178b9165d - повертає рецепти саме з цими значеннями (id - для подальшого пошуку інформації саме по цьому пецепту, title - заголовок під фото, image - фото страви)
 
-2. Пошук - по інгредієнту https://api.spoonacular.com/recipes/findByIngredients?ingredients=apples&apiKey=0aa8e02c95b446af92b9757178b9165d - повертає рецепти саме з цими значеннями (id - для подальшого пошуку інформації саме по цьому пецепту, title - заголовок під фото, image - фото страви)
+12. https://api.spoonacular.com/recipes/{id}/ingredientWidget.json?apiKey=0aa8e02c95b446af92b9757178b9165d - це інгредієнти рецепту під id - мисив об'єктів в одному об'єкті є (name - назва інгредієнту, image - зображення, amount - кількість => metric: {value: 1, unit: 'Tbsp'})
 
-3. https://api.spoonacular.com/recipes/{id}/ingredientWidget.json?apiKey=0aa8e02c95b446af92b9757178b9165d - це інгредієнти рецепту під id - мисив об'єктів в одному об'єкті є (name - назва інгредієнту, image - зображення, amount - кількість => metric: {value: 1, unit: 'Tbsp'})
+13. https://api.spoonacular.com/recipes/{id}/summary?apiKey=0aa8e02c95b446af92b9757178b9165d - опис страви по id (id, summary - опис, title - назва страви)
 
-4. https://api.spoonacular.com/recipes/{id}/summary?apiKey=0aa8e02c95b446af92b9757178b9165d - опис страви по id (id, summary - опис, title - назва страви)
+14. https://api.spoonacular.com/recipes/{id}/analyzedInstructions?apiKey=0aa8e02c95b446af92b9757178b9165d - опис, як готувати, крок за кроком.
 
-5. https://api.spoonacular.com/recipes/{id}/analyzedInstructions?apiKey=0aa8e02c95b446af92b9757178b9165d - опис, як готувати, крок за кроком.
+15. https://api.spoonacular.com/recipes/findByNutrients?minCarbs=10&maxCarbs=50&number=2?apiKey=0aa8e02c95b446af92b9757178b9165d - філтрація за багатьма показниками
 
-6. https://api.spoonacular.com/recipes/findByNutrients?minCarbs=10&maxCarbs=50&number=2?apiKey=0aa8e02c95b446af92b9757178b9165d - філтрація за багатьма показниками
-
-7. https://api.spoonacular.com/recipes/complexSearch?type=soup&apiKey=0aa8e02c95b446af92b9757178b9165d - пошук по типу
+16. https://api.spoonacular.com/recipes/complexSearch?type=soup&apiKey=0aa8e02c95b446af92b9757178b9165d - пошук по типу

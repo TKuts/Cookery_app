@@ -1,65 +1,43 @@
-import React, { useState } from 'react';
-import './App.scss';
+import React, { useState } from "react";
+import "./App.scss";
 
+import Header from "./UI/Header/Header";
+import Categories from "./UI/Categories/Categories";
+import Gallary from "./UI/Gallary/Gallary";
+import RecipeDetails from "./UI/RecipeDetails/RecipeDetails";
 
-import Header from "./UI/Header/Header"
-import Gallary from './UI/Gallary/Gallary';
-import Categories from "./UI/Categories/Categories" 
-import RecipeDetails from "./UI/RecipeDetails/RecipeDetails"
+const API = import.meta.env.VITE_REACT_API_HOST;
+const ALL_RECIPES = import.meta.env.VITE_REACT_ALL_RECIPES;
+const API_KEY = import.meta.env.VITE_REACT_API_KEY;
 
-const API = import.meta.env.VITE_REACT_API_HOST
-const API_KEY = import.meta.env.VITE_REACT_API_KEY
+import { CardRecipe } from "./domain/card-recipe";
+import { sendRequest } from "./adaptters/sendRequest";
 
-const ALL_RECIPES = import.meta.env.VITE_REACT_ALL_RECIPES
-const FIND_INGREDIENTS = import.meta.env.VITE_REACT_FIND_INGREDIENTS
-const INGREDIENTS = import.meta.env.VITE_REACT_ALL_INGREDIENTS
-const DESCRIPTION = import.meta.env.VITE_REACT_DESCRIPTION
-const TUTORIAL = import.meta.env.VITE_REACT_TUTORIAL
-const BY_NUTRIENTS = import.meta.env.VITE_REACT_FILTER_BY_NUTRIENTS
+const App = () => {
+  const [recipes, setRecipes] = useState<CardRecipe[] | []>([]);
+  const [recipeDetails, setRecipeDetails] = useState<boolean>(false);
+  const [recipeId, setRecipeId] = useState<number>(Number);
 
-import { Recipe } from "../src/domain/recipes"
+  const api = (nameCategories: string): any => {
+    sendRequest(
+		`${API}${ALL_RECIPES}addRecipeInformation=true&number=9&type=${nameCategories}&${API_KEY}`)
+		.then((respons) => setRecipes(respons.results)
+	 )
+  }
 
-function App() {
+  const unfoldRecipeDetails = (id: number): any => {
+    setRecipeId(id);
+    setRecipeDetails(!recipeDetails);
+  };
 
-// const [categories, setCategories] = useState("");
-const [recipes, setRecipes] = useState<Recipe[] | null >(null);
-const [recipeDetails, setRecipeDetails] = useState(true)
-const [recipeId, setRecipeId] = useState("")
-	// const category = (string: string): void =>{
-	// 	setCategories(string)
-	// }
-
-	const api = (data: string) =>{
-		fetch(`https://api.spoonacular.com/recipes/complexSearch?addRecipeInformation=true&number=9&type=${data}&apiKey=0aa8e02c95b446af92b9757178b9165d`).then(response => response.json()).then(rec => setRecipes(rec.results))
-	}
-
-	const unfoldRecipeDetails: any = () => {
-		setRecipeDetails(!recipeDetails) 	
-	}
-	
-	const searchRecipeId: any = (id: string)=>{
-		setRecipeId(id)
-	}
-
-
-	
-
-	
-	
   return (
     <div className="wrapper">
-		<Header/>
-      <Categories category={api}/>
-      <Gallary 
-		recipes={recipes} 
-		recipeDetails={unfoldRecipeDetails}
-		searchRecipeId={searchRecipeId}
-		/>
-		{!recipeDetails ? <RecipeDetails recipeId={recipeId}/> : <></>}
-	
-		
+      <Header />
+      <Categories category={api} />
+      <Gallary recipes={recipes} recipeDetails={unfoldRecipeDetails} />
+      {recipeDetails ? <RecipeDetails recipeId={recipeId} /> : <></>}
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;

@@ -1,28 +1,22 @@
 import React, { useState, useEffect } from "react";
 import "./Gallary.scss";
-import { Recipe } from "../../domain/recipes";
-// import { map } from "rxjs/operators";
 
 
-// path= home/info_id-143535/tutorial
-// favorite
-// shop
-// delivery
+import {CardRecipe} from "../../domain/card-recipe"
 
 export interface GallaryProps {
-	recipes: Recipe[] | null;
-	recipeDetails: any // додав сам
-	searchRecipeId: any
+	recipes: CardRecipe[];
+	recipeDetails: any; // any тому, що recipeDetails це функція (як показати TS, що працюю з функцією?)
 }
 
-const Gallary: React.FC<GallaryProps> = ({ recipes, recipeDetails, searchRecipeId }) =>{
- 
+const Gallary: React.FC<GallaryProps> = ({ recipes, recipeDetails }) =>{
+	
   return (
 		<section className="recipes-wrapper">
 			
 			{ recipes && recipes.map((recipe: any) => (
            <div className="recipe" key={recipe.id} 
-			  onClick={()=> {recipeDetails(), searchRecipeId(recipe.id)}
+			  onClick={()=> {recipeDetails(recipe.id)}
 			  } >
 					<img className="recipe__image" src={recipe.image} alt= {`img-recceps ${recipe.id}`} />
 					<h1 className="recipe__title">{recipe.title}</h1>

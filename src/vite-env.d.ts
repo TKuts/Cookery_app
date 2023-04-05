@@ -1,4 +1,4 @@
-// / <reference types="vite/client" />
+
 interface ImportMetaEnv {
 	readonly VITE_REACT_API_HOST: string
 	readonly VITE_REACT_API_KEY: string
@@ -9,7 +9,7 @@ interface ImportMetaEnv {
 	readonly VITE_REACT_DESCRIPTION: string
 	readonly VITE_REACT_TUTORIAL: string
 	readonly VITE_REACT_FILTER_BY_NUTRIENTS: string
-	// more env variables...
+
  }
  
  interface ImportMeta {

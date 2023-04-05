@@ -19,7 +19,7 @@ export type Step = {
 }
 
 export type Tutorial = {
-	steps: [Step];
+	results: Step[];
 }
 
 export type Metrix = {

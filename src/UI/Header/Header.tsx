@@ -10,14 +10,14 @@ function Header () {
 			<ul className="header__logo">
 				<li className="header__logo-title">Foodieland</li>
 			</ul>
-
-			<ul className="header__menu">
-				<li className="header__menu-point">Home</li>
-				<li className="header__menu-point">Recipes</li>
-				<li className="header__menu-point">Blog</li>
-				<li className="header__menu-point">About</li>
-			</ul>
-
+			{/* <nav> */}
+				<ul className="header__menu">
+					<li className="header__menu-point">Home</li>
+					<li className="header__menu-point">Recipes</li>
+					<li className="header__menu-point">Blog</li>
+					<li className="header__menu-point">About</li>
+				</ul>
+			{/* </nav> */}
 			<ul className="header__social">
 				<li className="header__social-icon">
 					<a href="#" target={"_blank"}>
