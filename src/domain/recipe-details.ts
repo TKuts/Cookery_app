@@ -18,8 +18,15 @@ export interface Summary{
 	image: string;
 }
 
-// export interface RecipeDetails{
-// 	summary: Summary;
-// 	ingredients:Ingredients;
+export interface Instructions{
+	number: number;
+	step: string;
+	ingredients: [{
+		name: string;
+	}];
+	equipment: [{
+			name: string;
+		}]
 
-// }
+
+}
