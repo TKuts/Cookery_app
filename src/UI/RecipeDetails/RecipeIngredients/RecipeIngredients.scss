@@ -1,0 +1,45 @@
+.ingredients {
+  width: 400px;
+  padding: 32px;
+  margin-left: 25px;
+  background: #e7fafe;
+  border-radius: 30px;
+  &__title {
+    font-family: "Inter", sans-serif;
+    text-align: start;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 29px;
+    letter-spacing: -0.04em;
+    color: #000000;
+  }
+}
+
+.ingredient {
+  &__wrapper {
+    display: flex;
+    justify-content: space-between;
+    padding: 16px 0 16px 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+  &__name {
+    display: block;
+    font-family: "Inter", sans-serif;
+    font-weight: 500;
+    text-transform: capitalize;
+    font-size: 18px;
+    line-height: 22px;
+    letter-spacing: -0.04em;
+    color: rgba(0, 0, 0, 0.6);
+  }
+  &__metric {
+    display: block;
+    font-family: "Inter", sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 22px;
+    text-align: right;
+    letter-spacing: -0.04em;
+    color: #000000;
+  }
+}
