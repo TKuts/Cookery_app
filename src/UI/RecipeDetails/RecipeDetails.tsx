@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from "react";
 import "./RecipeDetails.scss";
+import  sendRequest  from "../../adaptters/sendRequest";
+import {Ingredients, Summary, Instructions} from "../../domain/recipe-details";
 
 const API = import.meta.env.VITE_REACT_API_HOST;
 const INGREDIENTS = import.meta.env.VITE_REACT_ALL_INGREDIENTS;
 const TUTORIAL = import.meta.env.VITE_REACT_TUTORIAL;
 const API_KEY = import.meta.env.VITE_REACT_API_KEY;
 
-import { sendRequest } from "../../adaptters/sendRequest";
-import {Ingredients, Summary, Instructions} from "../../domain/recipe-details"
-
 interface RecipeDetailsProps {
 	recipeId: number;
 }
+
+
 
 const RecipeDetails: React.FC<RecipeDetailsProps> = ({ recipeId }) => {
 
@@ -28,17 +29,18 @@ const RecipeDetails: React.FC<RecipeDetailsProps> = ({ recipeId }) => {
 
 	const apiIngredients =  (id: number) => {
 		sendRequest(`${API}${id}${INGREDIENTS}${API_KEY}`)
-			.then((rec) =>  setIngredients(rec.ingredients));
+			.then((rec: {ingredients: Ingredients[] }) => setIngredients(rec.ingredients));
 	};
 
 	const apiSummary = (id: number) => {
 		sendRequest(`${API}${id}/information?includeNutrition=false&${API_KEY}`)
-			.then((rec) => setSummary(rec));
+			.then((rec: Summary) => setSummary(rec));
 	};
 
   const apiInstructions =  (id: number) => {
 	sendRequest(`${API}${id}${TUTORIAL}${API_KEY}`)
-      .then((rec) => setInstructions(rec[0].steps));
+      .then((rec: [{steps: Instructions[]}]) => setInstructions(rec[0].steps)
+		);
 	
   };
 
@@ -115,13 +117,11 @@ const RecipeDetails: React.FC<RecipeDetailsProps> = ({ recipeId }) => {
 				instructions.map((elem, index) => (
 					<div key={index} className="direction">
 						<div className="direction__step">
-
 							<button
 								type="button"
 								className="task__btn"
 								onClick={() => {checkInstruction()}}
 							>
-							
 							
 							<img style={{ display: checkDoneInstruction ? "block" : "none" }} className="direction__step-img" 
 							src="src/UI/RecipeDetails/img/circle.svg" 
@@ -137,7 +137,7 @@ const RecipeDetails: React.FC<RecipeDetailsProps> = ({ recipeId }) => {
 						<div className="direction__tool">
 							<div className="direction__tool-wrapper">
 							{
-								elem.ingredients.length !== 0 ? elem.ingredients.map(tool => (
+								elem.ingredients.length > 0 ? elem.ingredients.map(tool => (
 									<p className="direction__tool-ingredient">{tool.name}</p>
 								) 
 								) : <p className="direction__tool-equipment">use the same ingredient</p>
@@ -145,25 +145,17 @@ const RecipeDetails: React.FC<RecipeDetailsProps> = ({ recipeId }) => {
 							</div>
 							<div className="direction__tool-wrapper">
 							{
-								elem.equipment.length !== 0 ? elem.equipment.map(tool => (
+								elem.equipment.length > 0 ? elem.equipment.map(tool => (
 									<p className="direction__tool-equipment">{tool.name}</p>
 								) 
 								) : <p className="direction__tool-equipment">use the same dishes</p>
 								}
 							</div>
-						
-						
 						</div>
 					</div>
 				))
-				
 			} 
-			
 		</div>
-
-
-
-
     </section>
           
   );

@@ -1,4 +1,4 @@
-export const sendRequest = async (url) => {
+const sendRequest = async (url) => {
   const respons = await fetch(url, {
     method: "GET",
     headers: {
@@ -8,3 +8,5 @@ export const sendRequest = async (url) => {
   const resuly = await respons.json();
   return resuly;
 };
+
+export default sendRequest;

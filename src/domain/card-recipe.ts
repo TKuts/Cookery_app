@@ -6,5 +6,11 @@ export interface CardRecipe {
 	image: CardString;
 	title: CardString;
 	readyInMinutes: CardNumber;
+	// results: [{
+	// 	id: number;
+	// 	image: string;
+	// 	title: string;
+	// 	readyInMinutes: number;
+	// }]
 }
 
