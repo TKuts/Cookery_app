@@ -27,6 +27,10 @@ export interface Instructions{
 	equipment: [{
 			name: string;
 		}]
+}
 
-
+export interface Nutrition {
+	name: string;
+	amount: number;
+	unit: string;
 }

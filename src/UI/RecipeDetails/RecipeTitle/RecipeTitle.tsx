@@ -3,11 +3,11 @@ import "./RecipeTitle.scss";
 
 import {Summary} from "../../../domain/recipe-details";
 
-interface RecipeTitle {
+interface RecipeTitleProps {
 	summary: Summary;
 }
 
-const RecipeTitle: React.FC<RecipeTitle> = ({summary}) => {
+const RecipeTitle: React.FC<RecipeTitleProps> = ({summary}) => {
 
 	const dishTypes = (data: string[]): any => {
 		let newString = "";

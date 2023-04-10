@@ -30,6 +30,7 @@ const App = () => {
     setRecipeDetails(!recipeDetails);
   };
 
+
   return (
     <div className="wrapper">
       <Header />

@@ -1,4 +1,10 @@
-.ingredients {
+.nutrition {
+  width: 400px;
+  height: 468px;
+  padding: 32px;
+  margin-left: 25px;
+  background: #e7fafe;
+  border-radius: 30px;
   &__title {
     font-family: "Inter", sans-serif;
     text-align: start;
@@ -8,9 +14,6 @@
     letter-spacing: -0.04em;
     color: #000000;
   }
-}
-
-.ingredient {
   &__wrapper {
     display: flex;
     justify-content: space-between;

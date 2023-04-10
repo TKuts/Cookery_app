@@ -1,7 +1,12 @@
+.recipe__summury-wrapper {
+  margin-bottom: 30px;
+}
+
 .block__left {
-  width: 800px;
+  display: flex;
+
   &-img {
-    width: 100%;
+    width: 790px;
     border-radius: 30px;
     margin-bottom: 25px;
   }
