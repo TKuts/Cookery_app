@@ -14,6 +14,8 @@ import { CardRecipe } from "./domain/card-recipe";
 import  sendRequest  from "./adaptters/sendRequest";
 
 const App = () => {
+  // useContext == MobX == Redux - state menager
+  // HOC
   const [recipes, setRecipes] = useState<CardRecipe[] | []>([]); // bug types  recipes = []
   const [recipeDetails, setRecipeDetails] = useState<boolean>(false);
   const [recipeId, setRecipeId] = useState<number>(Number);

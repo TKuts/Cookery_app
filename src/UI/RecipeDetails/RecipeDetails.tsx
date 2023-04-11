@@ -61,8 +61,9 @@ const RecipeDetails: React.FC<RecipeDetailsProps> = ({ recipeId }) => {
    summary && ingredients && instructions && nutrition &&
 		<section className="detailed__wrapper">
 			<RecipeTitle summary={summary}/>
-			<RecipeSummary summary={summary} 
-			children={<RecipeNutrition nutrition={nutrition}/>}/>
+			<RecipeSummary summary={summary}>
+				<RecipeNutrition nutrition={nutrition}/>
+			</RecipeSummary>
 			<RecipeIngredients ingredients={ingredients}/>
 			<RecipeInstructions instructions={instructions} />
 		</section>

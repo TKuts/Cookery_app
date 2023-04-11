@@ -1,15 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, ReactNode} from "react";
 import "./RecipeSummary.scss";
 
 import {Summary, Nutrition} from "../../../domain/recipe-details";
 
 interface RecipeSummary {
 	summary: Summary;
-	children: Nutrition[];
+	children: ReactNode;
 }
 
 const RecipeSummary: React.FC<RecipeSummary> = ({summary, children}) => {
-
 	const dishTypes = (data: string[]): any => {
 		let newString = "";
 		data && data.map((item) => {
@@ -32,14 +31,11 @@ const RecipeSummary: React.FC<RecipeSummary> = ({summary, children}) => {
 			/>
 			{children}
 		</div>
-
 		<p
 		className="block__left-text"
 		dangerouslySetInnerHTML={createMarkup(summary)}
 		/>
-
 	</section>
-          
   );
 };
 

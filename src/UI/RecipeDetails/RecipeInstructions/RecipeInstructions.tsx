@@ -12,7 +12,10 @@ const RecipeInstructions: React.FC<RecipeInstructions> = ({instructions}) => {
 
 	const [checkDoneInstruction, setCheckDoneInstruction] = useState(false)
 
-	const checkInstruction = () =>{
+	const checkInstruction = (event) =>{
+		event.preventDefault ()
+		console.log(event.target);
+		
 		setCheckDoneInstruction(!checkDoneInstruction) }
 
   return (
@@ -20,23 +23,27 @@ const RecipeInstructions: React.FC<RecipeInstructions> = ({instructions}) => {
 			<h3 className="detailed__directions-title">Directions</h3>
 			{
 				instructions.map((elem, index) => (
-					<div key={index} className="direction">
+					<div  key={index} className="direction">
 						<div className="direction__step">
-							{/* <button
+							<button
 								type="button"
 								className="task__btn"
-								onClick={() => {checkInstruction()}}
-							>
-							<img style={{ display: checkDoneInstruction ? "block" : "none" }} className="direction__step-img" 
+								onClick={() => {checkInstruction(event)}}>
+							<img 
+							style={{ display: checkDoneInstruction ? "none": "block" }} className="direction__step-img" 
 							src="src/UI/RecipeDetails/img/circle.svg" 
 							alt="circle" />
-							<img style={{ display: checkDoneInstruction ? "block" : "none" }} className="direction__step-img" 
+							<img 
+							style={{ display: checkDoneInstruction ? "block" : "none" }} className="direction__step-img" 
 							src="src/UI/RecipeDetails/img/check-circle.svg" 
-							alt="check-circle" />				
+							alt="check-circle" />
+							</button>
+
+							{/* <button>	</button> */}
 							
-							</button> */}
+							<p className="direction__step-title">
 							
-							<p className="direction__step-title">{elem.number}. {elem.step}</p>
+								 {elem.number}. {elem.step}</p>
 						</div>
 						
 						<div className="direction__wrapper">
