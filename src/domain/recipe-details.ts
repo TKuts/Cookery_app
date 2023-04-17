@@ -21,6 +21,7 @@ export interface Summary{
 export interface Instructions{
 	number: number;
 	step: string;
+	checked: boolean;
 	ingredients: [{
 		name: string;
 	}];

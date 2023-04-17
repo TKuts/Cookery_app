@@ -14,9 +14,11 @@
 .direction {
   padding: 40px 24px 40px 0px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  user-select: none;
   &__step {
     display: flex;
     margin-bottom: 30px;
+    align-items: flex-start;
     &-title {
       font-family: "Inter", sans-serif;
       font-weight: 400;
@@ -71,3 +73,33 @@
     }
   }
 }
+.task__btn {
+  display: flex;
+  padding: 0;
+  margin: 3px 25px 0 0;
+  border: none;
+  //   font: inherit;
+  //   color: inherit;
+  background-color: transparent;
+  cursor: pointer;
+  &-img {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+// .checkbox-done {
+//   -webkit-appearance: none;
+//   -moz-appearance: none;
+//   appearance: none;
+// }
+
+// .checkbox-done:before {
+//   content: "";
+//   display: inline-block;
+//   width: 16px;
+//   height: 16px;
+//   margin-right: 5px;
+//   vertical-align: middle;
+//   background: url("src/UI/RecipeDetails/img/circle.svg") no-repeat;
+// }

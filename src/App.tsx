@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "./App.scss";
 
 import Header from "./UI/Header/Header";
@@ -13,17 +13,19 @@ const API_KEY = import.meta.env.VITE_REACT_API_KEY;
 import { CardRecipe } from "./domain/card-recipe";
 import  sendRequest  from "./adaptters/sendRequest";
 
+// import {ThemeContext} from "./application/state"
+
 const App = () => {
   // useContext == MobX == Redux - state menager
   // HOC
-  const [recipes, setRecipes] = useState<CardRecipe[] | []>([]); // bug types  recipes = []
+  const [recipes, setRecipes] = useState<CardRecipe[] | []>([]); 
   const [recipeDetails, setRecipeDetails] = useState<boolean>(false);
   const [recipeId, setRecipeId] = useState<number>(Number);
 
   const api = (nameCategories: string): any => {
     sendRequest(
 		`${API}${ALL_RECIPES}addRecipeInformation=true&number=9&type=${nameCategories}&${API_KEY}`)
-		.then((respons: {results: CardRecipe[]}) => setRecipes(respons.results) // respons.results = [[{}]]
+		.then((respons: {results: CardRecipe[]}) => setRecipes(respons.results) 
 	 )
   }
 
@@ -32,10 +34,16 @@ const App = () => {
     setRecipeDetails(!recipeDetails);
   };
 
+//   const contex = useContext(ThemeContext)
+// console.log(contex);
 
   return (
+
+	
+
     <div className="wrapper">
       <Header />
+	
       <Categories category={api} />
       <Gallary recipes={recipes} recipeDetails={unfoldRecipeDetails} />
       {recipeDetails ? <RecipeDetails recipeId={recipeId} /> : <></>}
