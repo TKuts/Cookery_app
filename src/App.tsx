@@ -1,5 +1,10 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import "./App.scss";
+
+import { observer } from "mobx-react-lite";
+import { store } from "./application/storage/BusinessStore.js"
+
+
 
 import Header from "./UI/Header/Header";
 import Categories from "./UI/Categories/Categories";
@@ -15,7 +20,19 @@ import  sendRequest  from "./adaptters/sendRequest";
 
 // import {ThemeContext} from "./application/state"
 
-const App = () => {
+const App = observer(() => {
+
+	const useFoo = () => {
+		const { count } = store;
+	 
+		useEffect(() => {
+		  console.log(count);
+		}, [count]);
+	 };
+	
+	 console.log(store);
+	 
+
   // useContext == MobX == Redux - state menager
   // HOC
   const [recipes, setRecipes] = useState<CardRecipe[] | []>([]); 
@@ -42,6 +59,15 @@ const App = () => {
 	
 
     <div className="wrapper">
+<button onClick={() => {store.steCount({
+	a:1,
+	b:2
+}), console.log(store)}
+
+
+}>555555</button>
+
+
       <Header />
 	
       <Categories category={api} />
@@ -49,6 +75,6 @@ const App = () => {
       {recipeDetails ? <RecipeDetails recipeId={recipeId} /> : <></>}
     </div>
   );
-};
+});
 
 export default App;

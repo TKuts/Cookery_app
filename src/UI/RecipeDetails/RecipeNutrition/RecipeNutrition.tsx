@@ -10,12 +10,12 @@ interface RecipeNutritionProps {
 
 const RecipeNutrition: React.FC<RecipeNutritionProps> = ({nutrition}) => {
 
-	const data = ['Calories', 'Fat', 'Protein','Carbohydrates', 'Cholesterol']
+	const nutritionFilter = ['Calories', 'Fat', 'Protein','Carbohydrates', 'Cholesterol']
 
 	const nutritionWhatNeed: Nutrition[] = []
 
 	nutrition.map((element) => 
-		data.filter(word => {
+	nutritionFilter.filter(word => {
 			if(word === element.name){
 			nutritionWhatNeed.push(element)
 		}})
@@ -30,10 +30,10 @@ const RecipeNutrition: React.FC<RecipeNutritionProps> = ({nutrition}) => {
 			{	nutritionWhatNeed.map((element, index) => {
 					return (
 						<div  className="nutrition__wrapper" key={index}>
-						<p className="nutrition__name">{element.name}</p>
-						<p className="nutrition__metric">
-						{Math.round(element.amount)} {element.unit}
-						</p>
+							<p className="nutrition__name">{element.name}</p>
+							<p className="nutrition__metric">
+							{Math.round(element.amount)} {element.unit}
+							</p>
 						</div>
 					)
 				})
