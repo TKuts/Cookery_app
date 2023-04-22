@@ -9,7 +9,7 @@ export interface Ingredients{
 	}
 
 }
-export interface Summary{ 
+export interface Summary { 
 	id: number;
 	title: string;
 	summary: string;

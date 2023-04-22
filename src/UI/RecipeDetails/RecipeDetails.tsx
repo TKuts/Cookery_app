@@ -15,44 +15,58 @@ const TUTORIAL = import.meta.env.VITE_REACT_TUTORIAL;
 const API_KEY = import.meta.env.VITE_REACT_API_KEY;
 const NUTRITION = import.meta.env.VITE_REACT_ALL_NUTRITION;
 
+import { observer} from "mobx-react-lite";
+import  { store } from "../../application/storage/BusinessStore"
+import { toJS } from "mobx";
+
 interface RecipeDetailsProps {
-	recipeId: number;
+	// recipeId: number;
 }
 
-const RecipeDetails: React.FC<RecipeDetailsProps> = ({ recipeId }) => {
+const RecipeDetails: React.FC<RecipeDetailsProps> = observer(() => {
 
   const [ingredients, setIngredients] = useState< null | Ingredients[]>([]);
-  const [summary, setSummary] = useState< null | Summary>(null) ;
+  const [summary, setSummary] = useState< null | Summary >(null) ;
   const [instructions, setInstructions] = useState< null | Instructions[]>([]);
   const [nutrition, setNutrition] = useState <null | Nutrition[]> ([])
   
+  const { recipeId, recipeByCategory} = store;
+
 
   useEffect(() => {
     apiIngredients(recipeId);
-    apiSummary(recipeId);
+    recipeSummary(recipeId);
     apiInstructions(recipeId)
 	 apiNutrition(recipeId)
-  }, []);
+  }, [recipeId]);
+
+
 
 	const apiIngredients =  (id: number) => {
 		sendRequest(`${API}${id}${INGREDIENTS}${API_KEY}`)
 			.then((respons: {ingredients: Ingredients[] }) => setIngredients(respons.ingredients));
 	};
 
-	const apiNutrition = (id: number) => {
-		sendRequest(`${API}${id}${NUTRITION}${API_KEY}`).then((respons: {nutrients: Nutrition[]}) => setNutrition(respons.nutrients)
-		 )
-	}
+console.log(ingredients);
 
-	const apiSummary = (id: number) => {
-		sendRequest(`${API}${id}/information?includeNutrition=false&${API_KEY}`)
-			.then((respons: Summary) => setSummary(respons));
+	
+	const apiNutrition = (id: number) => {
+		sendRequest(`${API}${id}${NUTRITION}${API_KEY}`)
+		.then((respons: {nutrients: Nutrition[]}) => setNutrition(respons.nutrients))
+	}
+	const recipeSummary = (id: number) => {
+		let selectedRecipe = null
+		recipeByCategory.map(recipe => {
+			if (recipe.id === id){
+				selectedRecipe = (toJS(recipe));
+			}
+		})
+		setSummary(selectedRecipe)
 	};
 
   const apiInstructions =  (id: number) => {
 	sendRequest(`${API}${id}${TUTORIAL}${API_KEY}`)
-      .then((respons: [{steps: Instructions[]}]) => setInstructions(respons[0].steps)
-		);
+      .then((respons: [{steps: Instructions[]}]) => setInstructions(respons[0].steps));
 	
   };
 
@@ -69,6 +83,6 @@ const RecipeDetails: React.FC<RecipeDetailsProps> = ({ recipeId }) => {
 		</section>
           
   );
-};
+});
 
 export default RecipeDetails;
