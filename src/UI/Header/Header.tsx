@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./Header.scss";
 
-
-
-function Header () {
+const Header = () => {
   
   return (
 		<header className="header">

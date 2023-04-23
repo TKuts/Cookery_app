@@ -9,23 +9,30 @@ export interface Ingredients{
 	}
 
 }
-export interface Summary { 
+export interface SelectedRecipe { 
 	id: number;
 	title: string;
+	readyInMinutes: number;
 	summary: string;
-	readyInMinutes: string;
-	dishTypes: string[];
 	image: string;
+	dishTypes: string[];
+	analyzedInstructions: {
+		steps: [];
+	}[],
 }
+
+
 
 export interface Instructions{
 	number: number;
 	step: string;
 	checked: boolean;
 	ingredients: [{
+		id: number;
 		name: string;
 	}];
 	equipment: [{
+			id: number;
 			name: string;
 		}]
 }

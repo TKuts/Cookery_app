@@ -1,10 +1,10 @@
 import React, { useState, useEffect, ReactNode} from "react";
 import "./RecipeSummary.scss";
 
-import {Summary, Nutrition} from "../../../domain/recipe-details";
+import { SelectedRecipe } from "../../../domain/recipe-details";
 
 interface RecipeSummary {
-	summary: Summary;
+	summary: SelectedRecipe;
 	children: ReactNode;
 }
 
@@ -17,7 +17,7 @@ const RecipeSummary: React.FC<RecipeSummary> = ({summary, children}) => {
 		return newString;
 	 };
 
-	 const createMarkup = (summary: Summary) => {
+	 const createMarkup = (summary: SelectedRecipe) => {
 		return { __html: summary.summary };
 	 };
 
@@ -27,14 +27,12 @@ const RecipeSummary: React.FC<RecipeSummary> = ({summary, children}) => {
 			<img
 			className="block__left-img"
 			src={summary.image}
-			alt={summary.title}
-			/>
+			alt={summary.title}/>
 			{children}
 		</div>
 		<p
 		className="block__left-text"
-		dangerouslySetInnerHTML={createMarkup(summary)}
-		/>
+		dangerouslySetInnerHTML={createMarkup(summary)}/>
 	</section>
   );
 };

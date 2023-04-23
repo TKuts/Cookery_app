@@ -12,11 +12,8 @@ import { CardRecipe } from "../../domain/card-recipe";
 import { observer } from "mobx-react-lite";
 import { store } from "../../application/storage/BusinessStore"
 
-interface CategoriesProps {
-	// category: any;
-	}
 
-const Categories: React.FC<CategoriesProps> = observer(() => {
+const Categories: React.FC = observer(() => {
 
 	const [recipes, setRecipes] = useState<{}[] | []>([]); 
 
@@ -33,11 +30,8 @@ const Categories: React.FC<CategoriesProps> = observer(() => {
 			`${API}${ALL_RECIPES}addRecipeInformation=true&number=9&type=${nameCategories}&${API_KEY}`)
 			.then((respons: {results: CardRecipe[]}) => setRecipes(respons.results))
 	 };
-
-	 console.log("recipes", recipes);
 	 
   return (
-	
 	<div className="component__categories">
 		<h2 className="component__categories-title">Categories</h2>
 		<div className="categories">

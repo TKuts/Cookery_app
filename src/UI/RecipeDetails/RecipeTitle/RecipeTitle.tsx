@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import "./RecipeTitle.scss";
 
-import {Summary} from "../../../domain/recipe-details";
+import { SelectedRecipe } from "../../../domain/recipe-details";
 
 interface RecipeTitleProps {
-	summary: Summary;
+	summary: SelectedRecipe;
 }
 
 const RecipeTitle: React.FC<RecipeTitleProps> = ({summary}) => {
