@@ -38,3 +38,16 @@
     color: #000000;
   }
 }
+.testDiv {
+  display: flex;
+  flex-direction: column;
+  margin: 50px 0 50px 0;
+  height: 500px;
+  width: 500px;
+  background-color: aqua;
+}
+.dropped-widget {
+  display: flex;
+  text-align: center;
+  justify-content: space-around;
+}
