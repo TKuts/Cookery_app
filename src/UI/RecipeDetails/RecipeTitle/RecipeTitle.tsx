@@ -27,9 +27,9 @@ const RecipeTitle: React.FC<RecipeTitleProps> = ({summary}) => {
 					src="src/UI/RecipeDetails/img/hourglass.svg"
 					alt="hourglass"
 					/>
-					<div>
-						<p className="detailed__time-title">COOK TIME</p>
-						<p className="detailed__time-minutes">{summary.readyInMinutes}</p>
+					<div className="time__information">
+						<p className="time__information-title">COOK TIME</p>
+						<p className="time__information-minutes">{summary.readyInMinutes} Minutes</p>
 					</div>
 				</div>
 				<div className="detailed__type">

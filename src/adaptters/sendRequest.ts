@@ -1,12 +1,15 @@
-const sendRequest = async (url) => {
+const sendRequest = async (url: string) => {
 	const respons = await fetch(url, {
 	  method: "GET",
 	  headers: {
 		 "Content-type": "application/json; charset=UTF-8",
 	  },
 	});
-	const resuly = await respons.json();
-	return resuly;
+	const result = await respons.json();
+
+	return result;
  };
- 
- export default sendRequest;
+
+	  
+
+export default sendRequest;

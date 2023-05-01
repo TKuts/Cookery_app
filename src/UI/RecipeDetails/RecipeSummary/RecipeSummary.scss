@@ -4,7 +4,7 @@
 
 .block__left {
   display: flex;
-
+  justify-content: space-between;
   &-img {
     width: 790px;
     border-radius: 30px;

@@ -1,18 +1,17 @@
-// import React, { useState, useContext, useEffect } from "react";
+const API = import.meta.env.VITE_REACT_API_HOST;
+const INGREDIENTS = import.meta.env.VITE_REACT_ALL_INGREDIENTS;
+const API_KEY = import.meta.env.VITE_REACT_API_KEY;
+const NUTRITION = import.meta.env.VITE_REACT_ALL_NUTRITION;
 
-// import  sendRequest  from "../adaptters/sendRequest"
-// import { CardRecipe } from "../domain/card-recipe";
+import  sendRequest  from "../adaptters/sendRequest";
 
-// const API = import.meta.env.VITE_REACT_API_HOST;
-// const ALL_RECIPES = import.meta.env.VITE_REACT_ALL_RECIPES;
-// const API_KEY = import.meta.env.VITE_REACT_API_KEY;
+import {Ingredients, SelectedRecipe, Instructions, Nutrition} from "../domain/recipe-details";
 
+// import  { store } from "../application/storage/BusinessStore"
 
+// const { recipeId, recipeByCategory} = store;
 
-// const [recipes, setRecipes] = useState<CardRecipe[] | []>([]); 
-
-// export const getRecipeByCategory = (nameCategories: string): any => {
-// 	sendRequest(
-// 	  `${API}${ALL_RECIPES}addRecipeInformation=true&number=9&type=${nameCategories}&${API_KEY}`)
-// 	//   .then((respons: {results: CardRecipe[]}) => setRecipes(respons.results))
-//  }
+export const apiIngredients =  (id: number) => {
+	return sendRequest(`${API}${id}${INGREDIENTS}${API_KEY}`)
+		.then((respons: {ingredients: Ingredients[] }) => respons);
+};

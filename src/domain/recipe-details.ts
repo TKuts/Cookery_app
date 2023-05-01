@@ -26,7 +26,8 @@ export interface SelectedRecipe {
 export interface Instructions{
 	number: number;
 	step: string;
-	checked: boolean;
+	checked?: boolean;
+	expand?: boolean;
 	ingredients: [{
 		id: number;
 		name: string;

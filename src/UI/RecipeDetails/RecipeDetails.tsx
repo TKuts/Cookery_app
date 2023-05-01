@@ -18,6 +18,12 @@ import { observer} from "mobx-react-lite";
 import  { store } from "../../application/storage/BusinessStore"
 import { toJS } from "mobx";
 
+// test
+// import { apiIngredients } from "../../adaptters/sendAllRequest"
+
+
+
+
 const RecipeDetails: React.FC = observer(() => {
 
   const [ingredients, setIngredients] = useState< null | Ingredients[]>([]);
@@ -27,8 +33,10 @@ const RecipeDetails: React.FC = observer(() => {
   
   const { recipeId, recipeByCategory} = store;
 
-  useEffect(() => {
-    apiIngredients(recipeId);
+
+
+  useEffect(() => {	
+   apiIngredients(recipeId);
     allDataSelectedRecipe(recipeId);
 	 apiNutrition(recipeId)
   }, [recipeId]);
@@ -38,11 +46,15 @@ const RecipeDetails: React.FC = observer(() => {
 			.then((respons: {ingredients: Ingredients[] }) => setIngredients(respons.ingredients));
 	};
 
+// console.log(apiIngredients(recipeId));
+
+	
+
 	const apiNutrition = (id: number) => {
 		sendRequest(`${API}${id}${NUTRITION}${API_KEY}`)
 		.then((respons: {nutrients: Nutrition[]}) => setNutrition(respons.nutrients))
 	}
-
+	
 	const allDataSelectedRecipe = (id: number) => {
 		let selectedRecipe = null
 		recipeByCategory.map(recipe => {
@@ -61,6 +73,8 @@ const RecipeDetails: React.FC = observer(() => {
   return (
    selectedRecipe && ingredients && nutrition &&
 		<section className="detailed__wrapper">
+			{/* <button onClick={() => {console.log("apiIngredients",apiIngredients(recipeId).then(respons => respons.ingredients))
+			}}>55555</button> */}
 			<RecipeTitle summary={selectedRecipe}/>
 			<RecipeSummary summary={selectedRecipe}>
 				<RecipeNutrition nutrition={nutrition}/>

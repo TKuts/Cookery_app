@@ -7,7 +7,7 @@ const API = import.meta.env.VITE_REACT_API_HOST;
 const ALL_RECIPES = import.meta.env.VITE_REACT_ALL_RECIPES;
 const API_KEY = import.meta.env.VITE_REACT_API_KEY;
 
-import { CardRecipe } from "../../domain/card-recipe";
+import { SelectedRecipe } from "../../domain/recipe-details";
 
 import { observer } from "mobx-react-lite";
 import { store } from "../../application/storage/BusinessStore"
@@ -15,21 +15,20 @@ import { store } from "../../application/storage/BusinessStore"
 
 const Categories: React.FC = observer(() => {
 
-	const [recipes, setRecipes] = useState<{}[] | []>([]); 
+	const [recipes, setRecipes] = useState<SelectedRecipe[] | []>([]); 
 
 	useEffect(() => {
 		useMobx(recipes)
 	},[recipes])
 
-	const useMobx = (state) => {
+	const useMobx = (state: SelectedRecipe[]) => {
 		store.getRecipeByCategory(state)
 	}
 
 	const getRecipeByCategory = (nameCategories: string): any => {
-		sendRequest(
-			`${API}${ALL_RECIPES}addRecipeInformation=true&number=9&type=${nameCategories}&${API_KEY}`)
-			.then((respons: {results: CardRecipe[]}) => setRecipes(respons.results))
-	 };
+	sendRequest(`${API}${ALL_RECIPES}addRecipeInformation=true&number=9&type=${nameCategories}&${API_KEY}`)
+		.then((respons: {results: SelectedRecipe[]}) => setRecipes(respons.results))
+	};
 	 
   return (
 	<div className="component__categories">

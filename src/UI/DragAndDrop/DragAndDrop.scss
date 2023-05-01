@@ -1,0 +1,55 @@
+.shopping-list {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  min-height: 200px;
+  min-width: 300px;
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+  border: 1px solid #efd17a;
+  background-color: #ffffff;
+  &_title {
+    font-family: "Inter", sans-serif;
+    font-weight: 400;
+    font-size: 25px;
+    padding: 20px 0 20px 0;
+    background-color: #efd17a;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+  }
+}
+.dropped-widget {
+  display: flex;
+  text-align: center;
+  justify-content: space-between;
+  margin: 5px 10px 5px 10px;
+  padding: 0 15px 3px 15px;
+
+  border-bottom: 1px solid rgba(0, 0, 0, 0.6);
+  &:last-child {
+    margin-bottom: 15px;
+  }
+
+  &_name {
+    display: block;
+    font-family: "Inter", sans-serif;
+    font-weight: 500;
+    text-transform: capitalize;
+    font-size: 18px;
+    line-height: 22px;
+    letter-spacing: -0.04em;
+    color: rgba(0, 0, 0, 0.6);
+  }
+  &_metric {
+    display: block;
+    font-family: "Inter", sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 22px;
+    text-align: right;
+    letter-spacing: -0.04em;
+    color: #000000;
+  }
+}
