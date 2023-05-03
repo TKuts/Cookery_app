@@ -3,20 +3,23 @@ import "./RecipeIngredients.scss";
 
 import { Ingredients } from "../../../domain/recipe-details";
 import DragAndDrop from "../../DragAndDrop/DragAndDrop"
+import { apiIngredients } from "../../../adaptters/sendAllRequest"
+import  { store } from "../../../application/storage/BusinessStore"
 
-interface RecipeIngredientsProps {
-  ingredients: Ingredients[];
-}
+const RecipeIngredients: React.FC = () => {
+	const { recipeId } = store;
+	const [ingredients, setIngredients] = useState< Ingredients[]  | null >(null);
 
+	useEffect(() => {	
+		apiIngredients(recipeId).then((res) => setIngredients(res.ingredients))
+	  }, []);
 
-
-const RecipeIngredients: React.FC<RecipeIngredientsProps> = ({ingredients}) => {
-  
-	const handleOnDrag = (e: React.DragEvent, widgetType: string) => {
-		e.dataTransfer.setData("aa", widgetType);
+	const handleOnDrag = (event: React.DragEvent, widgetType: string) => {
+		event.dataTransfer.setData("aa", widgetType);
 	 };
 
   return (
+	ingredients &&
     <section className="recipe__ingredient">
       <h3 className="recipe__ingredient-title">Ingredients</h3>
       {ingredients.map((elem, index) => (
@@ -24,11 +27,8 @@ const RecipeIngredients: React.FC<RecipeIngredientsProps> = ({ingredients}) => {
           key={index}
           className="recipe__ingredient-wrapper"
           draggable
-          onDragStart={(e) =>
-            handleOnDrag(
-              e,
-              `${elem.name}, ${elem.amount.metric.value}, ${elem.amount.metric.unit}`
-            )
+          onDragStart={(event) =>
+            handleOnDrag(event, `${elem.name}, ${elem.amount.metric.value}, ${elem.amount.metric.unit}`)
           }
         >
           <p>{elem.name}</p>
@@ -36,7 +36,7 @@ const RecipeIngredients: React.FC<RecipeIngredientsProps> = ({ingredients}) => {
           </p>
         </div>
       ))}
-      <DragAndDrop  />
+      <DragAndDrop/>
     </section>
   );
 };

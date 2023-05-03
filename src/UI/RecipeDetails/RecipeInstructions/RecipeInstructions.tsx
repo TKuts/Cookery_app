@@ -1,20 +1,38 @@
 import React, { useState, useEffect } from "react";
 import "./RecipeInstructions.scss";
 
-import {Instructions} from "../../../domain/recipe-details";
+import {Instructions, SelectedRecipe} from "../../../domain/recipe-details";
+import  { store } from "../../../application/storage/BusinessStore"
+import { toJS } from "mobx";
 
-interface RecipeInstructions {
-	instructions: Instructions[];
-	
-}
 
-const RecipeInstructions: React.FC<RecipeInstructions> = ({instructions}) => {
+const RecipeInstructions: React.FC = () => {
+	const { recipeId, recipeByCategory} = store;
+	const [recipeInstructions, setRecipeInstructions] = useState<Instructions[]>([]);
+
+	  useEffect(() => {	
+		allDataSelectedRecipe(recipeId)
+  }, [recipeId]);
+
+	const allDataSelectedRecipe = (id: number) => {
+		let selectedRecipe = null
+		recipeByCategory.map(recipe => {
+			if (recipe.id === id){
+				selectedRecipe = (toJS(recipe));
+			}
+		})
+		apiInstructions(selectedRecipe)
+	};
+
+	const apiInstructions =  (recipe: null | SelectedRecipe) => {
+		recipe ? setRecipeInstructions(recipe.analyzedInstructions[0].steps) : console.log("робити помилку");
+	};
 
 	const [checkDoneInstruction, setCheckDoneInstruction] = useState(false)
 	const [showAllIngridients, setShowAllIngridients] = useState(false)
 
 	const checkInstruction = (elemNumber: number): void =>{
-		 instructions.map(instruction => {
+		recipeInstructions.map(instruction => {
 			if(instruction.number === elemNumber) {
 				instruction.checked = !checkDoneInstruction
 				setCheckDoneInstruction(!checkDoneInstruction)			
@@ -22,7 +40,7 @@ const RecipeInstructions: React.FC<RecipeInstructions> = ({instructions}) => {
 	}
 
 	const expand = (elemNumber: number): void =>{
-		instructions.map(instruction => {
+		recipeInstructions.map(instruction => {
 		  if(instruction.number === elemNumber) {
 			  instruction.expand = !showAllIngridients
 			  setShowAllIngridients(!showAllIngridients)			
@@ -48,13 +66,11 @@ const RecipeInstructions: React.FC<RecipeInstructions> = ({instructions}) => {
 
 
   return (
+	recipeInstructions &&
 	<section className="detailed__directions">
 		<h3 className="detailed__directions-title">Directions</h3>
 		{
-
-			
-
-			instructions.map((elem) => (	
+			recipeInstructions.map((elem) => (	
 				<div  key={elem.number} className="direction" style={{ opacity: elem.checked ? " 0.5": "1" }}>
 					<div className="direction__step">
 						<button type="button" className="task__btn" onClick={() => {
@@ -80,7 +96,6 @@ const RecipeInstructions: React.FC<RecipeInstructions> = ({instructions}) => {
 									<p key={tool.id} className="direction__tool-step" style={{ display: elem.expand ? "block": "none" }} >{tool.name}</p>
 								)) : <p className="direction__tool-step" style={{ display: elem.expand ? "block": "none" }}>not needed at this stage</p>
 							}
-							
 						</div>
 						<div className="direction__tool">
 							<p className="direction__tool-title">equipment for this step:</p>
@@ -91,7 +106,6 @@ const RecipeInstructions: React.FC<RecipeInstructions> = ({instructions}) => {
 							}
 						</div>
 					</div>
-
 					<button onClick={() => expand(elem.number)}>sgow</button>
 				</div>
 			))

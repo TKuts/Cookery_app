@@ -1,13 +1,18 @@
-import React from "react";
+import React, { useEffect,useState }from "react";
 import "./RecipeNutrition.scss";
 
 import { Nutrition } from "../../../domain/recipe-details";
+import {apiNutrition} from "../../../adaptters/sendAllRequest";
+import { store } from "../../../application/storage/BusinessStore";
 
-interface RecipeNutritionProps {
-	nutrition: Nutrition[];
-}
+const RecipeNutrition: React.FC = () => {
 
-const RecipeNutrition: React.FC<RecipeNutritionProps> = ({nutrition}) => {
+	const [nutrition, setNutrition] = useState < Nutrition[] > ([]);
+	const { recipeId } = store;
+
+	useEffect(() => {	
+		apiNutrition(recipeId).then(res => setNutrition(res.nutrients))
+	 }, []);
 
 	const nutritionFilter = ['Calories', 'Fat', 'Protein','Carbohydrates', 'Cholesterol']
 
