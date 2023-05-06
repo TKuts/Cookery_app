@@ -2,7 +2,7 @@ import React, { useEffect,useState }from "react";
 import "./RecipeNutrition.scss";
 
 import { Nutrition } from "../../../domain/recipe-details";
-import {apiNutrition} from "../../../adaptters/sendAllRequest";
+import { apiNutrition } from "../../../adaptters/sendAllRequest";
 import { store } from "../../../application/storage/BusinessStore";
 
 const RecipeNutrition: React.FC = () => {
@@ -12,7 +12,7 @@ const RecipeNutrition: React.FC = () => {
 
 	useEffect(() => {	
 		apiNutrition(recipeId).then(res => setNutrition(res.nutrients))
-	 }, []);
+	 }, [recipeId]);
 
 	const nutritionFilter = ['Calories', 'Fat', 'Protein','Carbohydrates', 'Cholesterol']
 

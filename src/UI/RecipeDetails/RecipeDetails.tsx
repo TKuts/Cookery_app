@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./RecipeDetails.scss";
 
 import RecipeTitle from "./RecipeTitle/RecipeTitle"
@@ -8,8 +8,19 @@ import RecipeNutrition from "./RecipeNutrition/RecipeNutrition"
 import RecipeIngredients from "./RecipeIngredients/RecipeIngredients"
 
 import { observer} from "mobx-react-lite";
+import  { store } from "../../application/storage/BusinessStore"
 
-const RecipeDetails: React.FC = observer(() => {
+interface PropsORecipeDetails {
+	
+}
+
+const RecipeDetails: React.FC<PropsORecipeDetails> = observer(() => {
+
+	const {recipeId} = store;
+
+	useEffect(() => {
+		
+	}, [recipeId])
 
   return (
 		<section className="detailed__wrapper">

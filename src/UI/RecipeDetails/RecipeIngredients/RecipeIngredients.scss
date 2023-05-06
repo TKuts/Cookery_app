@@ -1,5 +1,6 @@
 .recipe__ingredient {
   margin-bottom: 25px;
+
   &-title {
     font-family: "Inter", sans-serif;
     text-align: start;
@@ -9,7 +10,14 @@
     letter-spacing: -0.04em;
     color: #000000;
   }
-  &-wrapper {
+  &-section {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.recipe__section {
+  &-ingredient {
     display: flex;
     justify-content: space-between;
     font-family: "Inter", sans-serif;

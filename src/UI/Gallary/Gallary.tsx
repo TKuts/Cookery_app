@@ -18,7 +18,7 @@ const Gallary: React.FC<GallaryProps> = observer(({ showRecipeDetails }) => {
 	}
   return (
 		<section className="recipes-wrapper">
-			{ recipeByCategory && recipeByCategory.map((recipe: any) => (
+			{ recipeByCategory && recipeByCategory.map((recipe) => (
            <div className="recipe" key={recipe.id} 
 			  onClick={()=> {useMobx(recipe.id)}
 			  } >

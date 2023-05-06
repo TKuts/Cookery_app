@@ -10,7 +10,9 @@ interface ImportMetaEnv {
 	readonly VITE_REACT_TUTORIAL: string
 	readonly VITE_REACT_FILTER_BY_NUTRIENTS: string
 	readonly VITE_REACT_ALL_NUTRITION: string
-
+	readonly VITE_REACT_RANDOM_NUMBER: string
+	readonly VITE_REACT_RANDOM_TAGS: string
+	
  }
  
  interface ImportMeta {
