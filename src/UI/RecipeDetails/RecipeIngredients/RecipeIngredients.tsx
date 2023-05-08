@@ -1,4 +1,4 @@
-import React, { useState, useEffect, ReactNode } from "react";
+import React, { useState, useEffect, ReactNode, useRef } from "react";
 import "./RecipeIngredients.scss";
 
 import { Ingredients } from "../../../domain/recipe-details";
@@ -16,20 +16,26 @@ const RecipeIngredients: React.FC<PropsRecipeIngredients> = () => {
 	const { recipeId } = store;
 	const [ingredients, setIngredients] = useState< Ingredients[]  | null >(null);
 
+	// const ref = useRef()
 	useEffect(() => {	
 		apiIngredients(recipeId).then((res) => setIngredients(res.ingredients))
+		// console.log(ref.current);
+		
 	  }, [recipeId]);
 
 	const handleOnDrag = (event: React.DragEvent, widgetType: string) => {
 		event.dataTransfer.setData("aa", widgetType);
 	 };
-
+	
+		
   return (
 	ingredients &&
     <section className="recipe__ingredient">
-      <h3 className="recipe__ingredient-title">Ingredients</h3>
 		<div className="recipe__ingredient-section"> 
-			<ul className="recipe__section">
+			<h3 className="recipe__ingredient-title">Ingredients</h3>
+			<ul className="recipe__section" 
+			// ref={ref}
+			>
 				{ingredients.map((elem, index) => (
 				<li
 					key={index}
@@ -43,8 +49,9 @@ const RecipeIngredients: React.FC<PropsRecipeIngredients> = () => {
 				</li>
 				))}
 			</ul>
-			<OtherRecipe/>
+			
 		</div>
+		<OtherRecipe/>
       <DragAndDrop/>
     </section>
   );

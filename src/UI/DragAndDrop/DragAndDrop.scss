@@ -10,6 +10,10 @@
   border-top-right-radius: 30px;
   border: 1px solid #efd17a;
   background-color: #ffffff;
+  transition: 0.5s ease-in-out;
+  opacity: 1;
+  cursor: pointer;
+  visibility: visible;
   &_title {
     font-family: "Inter", sans-serif;
     font-weight: 400;
@@ -52,4 +56,24 @@
     letter-spacing: -0.04em;
     color: #000000;
   }
+}
+
+.cirkle {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 100px;
+  height: 100px;
+  background-color: #efd17a;
+  border-radius: 50%;
+
+  transition: 0.5s ease-in-out;
+  opacity: 1;
+  cursor: pointer;
+  visibility: visible;
+}
+
+.active {
+  opacity: 0;
+  visibility: hidden;
 }

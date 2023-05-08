@@ -20,6 +20,7 @@ const OtherRecipe: React.FC<PropsOtherRecipe> = observer(() => {
 
 	useEffect(() => {
 		randomRecipe(2, recipeCategori ).then((respons) => setRandomRecipes(respons.recipes))
+		
 	}, [])
 
 	const useMobx = (id: number) => {

@@ -1,6 +1,7 @@
 .recipe__ingredient {
   margin-bottom: 25px;
-
+  display: flex;
+  justify-content: space-between;
   &-title {
     font-family: "Inter", sans-serif;
     text-align: start;
@@ -12,10 +13,11 @@
   }
   &-section {
     display: flex;
-    justify-content: space-between;
   }
 }
-
+.recipe__ingredient-section {
+  flex-direction: column;
+}
 .recipe__section {
   &-ingredient {
     display: flex;

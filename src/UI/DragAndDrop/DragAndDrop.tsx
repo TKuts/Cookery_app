@@ -18,6 +18,7 @@ interface DragAndDropWidget{
 const DragAndDrop: React.FC<DragAndDropProps> = observer(() => {
 
 	const [widgets, setWidgets] = useState<DragAndDropWidget[]>([]);
+	const [changeBtn, setChangeBtn] = useState(false)
  
 	 const handleOnDrop = (e: React.DragEvent) => {
 	  const widgetType = e.dataTransfer.getData("aa") as string;
@@ -42,23 +43,32 @@ const DragAndDrop: React.FC<DragAndDropProps> = observer(() => {
 	}
 
 
+	// { changeBtn ?  "cirkle" :  "cirkle active"}
+	// 
   return (
+		<>
+			<section className={ changeBtn ? "cirkle active" : "cirkle" } onClick={()=> {setChangeBtn(!changeBtn)}}>
+
+
+			</section>
+			<section className={changeBtn ? "shopping-list" :  "shopping-list active"}
+			onDrop={handleOnDrop}
+			onDragOver={handleDragOver}
+			>
+				<h3 className="shopping-list_title" onClick={()=> {setChangeBtn(!changeBtn)}}>Shopping list</h3>
+			{widgets.map((widget, index) => (
+				<div className="dropped-widget" key={index}>
+					<p className="dropped-widget_name">{widget.name}</p>
+					<p className="dropped-widget_metric">{Math.round(+widget.value)} {widget.unit}</p>
+				
+				</div>
+			))}
+
+			</section>
+		</>
 
 	
-		<section className="shopping-list"
-        onDrop={handleOnDrop}
-        onDragOver={handleDragOver}
-      >
-			<h3 className="shopping-list_title">Shopping list</h3>
-        {widgets.map((widget, index) => (
-          <div className="dropped-widget" key={index}>
-            <p className="dropped-widget_name">{widget.name}</p>
-            <p className="dropped-widget_metric">{Math.round(+widget.value)} {widget.unit}</p>
-         
-          </div>
-        ))}
-
-		</section>
+		
   )	
 })
 
