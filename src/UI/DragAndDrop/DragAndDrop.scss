@@ -59,6 +59,7 @@
 }
 
 .cirkle {
+  display: flex;
   position: fixed;
   bottom: 20px;
   right: 20px;
@@ -66,11 +67,16 @@
   height: 100px;
   background-color: #efd17a;
   border-radius: 50%;
-
   transition: 0.5s ease-in-out;
   opacity: 1;
   cursor: pointer;
   visibility: visible;
+  align-items: center;
+  justify-content: center;
+  & .list-icon {
+    font-size: 40px;
+    color: #000000;
+  }
 }
 
 .active {

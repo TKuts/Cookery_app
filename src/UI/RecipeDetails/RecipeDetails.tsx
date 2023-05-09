@@ -7,7 +7,7 @@ import RecipeSummary from "./RecipeSummary/RecipeSummary"
 import RecipeNutrition from "./RecipeNutrition/RecipeNutrition"
 import RecipeIngredients from "./RecipeIngredients/RecipeIngredients"
 
-import { observer} from "mobx-react-lite";
+import { observer } from "mobx-react-lite";
 import  { store } from "../../application/storage/BusinessStore"
 
 interface PropsORecipeDetails {
@@ -18,9 +18,9 @@ const RecipeDetails: React.FC<PropsORecipeDetails> = observer(() => {
 
 	const {recipeId} = store;
 
-	useEffect(() => {
+	// useEffect(() => {
 		
-	}, [recipeId])
+	// }, [recipeId])
 
   return (
 		<section className="detailed__wrapper">
@@ -31,7 +31,6 @@ const RecipeDetails: React.FC<PropsORecipeDetails> = observer(() => {
 			<RecipeIngredients />
 			<RecipeInstructions />
 		</section>
-          
   );
 });
 

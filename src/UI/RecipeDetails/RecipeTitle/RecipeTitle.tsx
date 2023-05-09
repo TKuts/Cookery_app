@@ -38,22 +38,14 @@ const RecipeTitle: React.FC = () => {
 			<h2 className="detailed__title">{selectedRecipe.title}</h2>
 			<div className="detailed__information">
 				<div className="detailed__time">
-					<img
-					className="detailed__time-img"
-					src="src/UI/RecipeDetails/img/hourglass.svg"
-					alt="hourglass"
-					/>
+					<i className="fa-regular fa-hourglass-half detailed__time-icons"></i>
 					<div className="time__information">
 						<p className="time__information-title">COOK TIME</p>
 						<p className="time__information-minutes">{selectedRecipe.readyInMinutes} Minutes</p>
 					</div>
 				</div>
 				<div className="detailed__type">
-					<img
-					className="detailed__time-img"
-					src="src/UI/RecipeDetails/img/ForkKnife.svg"
-					alt="ForkKnife"
-					/>
+					<i className="fa-solid fa-utensils detailed__time-icons"></i>
 					<p className="detailed__type-data">{dishTypes(selectedRecipe.dishTypes)}</p>
 				</div>
 			</div>

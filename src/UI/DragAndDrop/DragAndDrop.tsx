@@ -43,13 +43,11 @@ const DragAndDrop: React.FC<DragAndDropProps> = observer(() => {
 	}
 
 
-	// { changeBtn ?  "cirkle" :  "cirkle active"}
 	// 
   return (
 		<>
 			<section className={ changeBtn ? "cirkle active" : "cirkle" } onClick={()=> {setChangeBtn(!changeBtn)}}>
-
-
+				<i className="fa-regular fa-rectangle-list list-icon"></i>
 			</section>
 			<section className={changeBtn ? "shopping-list" :  "shopping-list active"}
 			onDrop={handleOnDrop}

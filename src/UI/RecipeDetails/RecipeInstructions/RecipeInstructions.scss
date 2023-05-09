@@ -19,6 +19,7 @@
     display: flex;
     margin-bottom: 30px;
     align-items: flex-start;
+
     &-title {
       font-family: "Inter", sans-serif;
       font-weight: 400;
@@ -123,15 +124,16 @@
 .task__btn {
   display: flex;
   padding: 0;
-  margin: 3px 25px 0 0;
+  margin: 3px 15px 0 5px;
   border: none;
   //   font: inherit;
   //   color: inherit;
   background-color: transparent;
   cursor: pointer;
   &-img {
-    width: 24px;
-    height: 24px;
+    font-size: 25px;
+    //  width: 24px;
+    //  height: 24px;
   }
 }
 

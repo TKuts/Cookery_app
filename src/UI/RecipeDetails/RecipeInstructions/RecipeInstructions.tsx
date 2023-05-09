@@ -72,19 +72,11 @@ const RecipeInstructions: React.FC = () => {
 		{
 			recipeInstructions.map((elem) => (	
 				<div  key={elem.number} className="direction" style={{ opacity: elem.checked ? " 0.5": "1" }}>
-					<div className="direction__step">
-						<button type="button" className="task__btn" onClick={() => {
-							checkInstruction(elem.number)}}>
-							<img 
-							style={{ display: elem.checked ? "none": "block" }} 
-							className="task__btn-img" 
-							src="src/UI/RecipeDetails/img/circle.svg" 
-							alt="circle" />
-							<img 
-							style={{ display: elem.checked ? "block" : "none" }} 
-							className="task__btn-img " 
-							src="src/UI/RecipeDetails/img/check-circle.svg" 
-							alt="check-circle" />
+					<div className="direction__step" >
+						<button type="button" className="task__btn" 
+									onClick={() => {checkInstruction(elem.number)}}>
+							<i className="fa-regular fa-circle task__btn-img" style={{ display: elem.checked ? "none": "block" }} ></i>
+							<i className="fa-regular fa-circle-check task__btn-img" style={{ display: elem.checked ? "block" : "none" }} ></i>
 						</button>
 						<p className="direction__step-title">{elem.number}. {elem.step}</p>
 					</div>

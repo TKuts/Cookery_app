@@ -35,13 +35,13 @@ const RecipeSummary: React.FC<RecipeSummary> = ({ children }) => {
   return (
 	selectedRecipe &&
 	<section className="recipe__summury-wrapper">
-		<div className="block__left">
+		<figure className="block__left">
 			<img
 			className="block__left-img"
 			src={selectedRecipe.image}
 			alt={selectedRecipe.title}/>
 			{children}
-		</div>
+		</figure>
 		<p
 		className="block__left-text"
 		dangerouslySetInnerHTML={createMarkup(selectedRecipe)}/>

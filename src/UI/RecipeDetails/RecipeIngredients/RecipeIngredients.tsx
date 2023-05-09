@@ -16,7 +16,7 @@ const RecipeIngredients: React.FC<PropsRecipeIngredients> = () => {
 	const { recipeId } = store;
 	const [ingredients, setIngredients] = useState< Ingredients[]  | null >(null);
 
-	// const ref = useRef()
+	// const ref = useRe()f
 	useEffect(() => {	
 		apiIngredients(recipeId).then((res) => setIngredients(res.ingredients))
 		// console.log(ref.current);

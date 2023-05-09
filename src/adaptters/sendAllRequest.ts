@@ -7,7 +7,7 @@ const RANDOM_NUMBER = import.meta.env.VITE_REACT_RANDOM_NUMBER;
 const TAGS = import.meta.env.VITE_REACT_RANDOM_TAGS;
 
 import  sendRequest  from "../adaptters/sendRequest";
-import {Ingredients, Nutrition, SelectedRecipe} from "../domain/recipe-details";
+import { Ingredients, Nutrition, SelectedRecipe } from "../domain/recipe-details";
 
 
 export const apiIngredients =  (id: number) => {  // ok
