@@ -22,6 +22,7 @@ const RecipeInstructions: React.FC = () => {
 			}
 		})
 		apiInstructions(selectedRecipe)
+		
 	};
 
 	const apiInstructions =  (recipe: null | SelectedRecipe) => {
@@ -71,10 +72,11 @@ const RecipeInstructions: React.FC = () => {
 		<h3 className="detailed__directions-title">Directions</h3>
 		{
 			recipeInstructions.map((elem) => (	
-				<div  key={elem.number} className="direction" style={{ opacity: elem.checked ? " 0.5": "1" }}>
+				<div key={elem.number} className="direction" style={{ opacity: elem.checked ? " 0.5": "1" }}>
 					<div className="direction__step" >
 						<button type="button" className="task__btn" 
-									onClick={() => {checkInstruction(elem.number)}}>
+									onClick={(e) => {checkInstruction(elem.number)}
+									}>
 							<i className="fa-regular fa-circle task__btn-img" style={{ display: elem.checked ? "none": "block" }} ></i>
 							<i className="fa-regular fa-circle-check task__btn-img" style={{ display: elem.checked ? "block" : "none" }} ></i>
 						</button>

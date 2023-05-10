@@ -13,8 +13,11 @@ interface PropsRecipeIngredients{
 
 
 const RecipeIngredients: React.FC<PropsRecipeIngredients> = () => {
+
 	const { recipeId } = store;
 	const [ingredients, setIngredients] = useState< Ingredients[]  | null >(null);
+
+	let lengthIngredientBlock = Array.isArray(ingredients) ? ingredients.length : null
 
 	// const ref = useRe()f
 	useEffect(() => {	
@@ -51,7 +54,7 @@ const RecipeIngredients: React.FC<PropsRecipeIngredients> = () => {
 			</ul>
 			
 		</div>
-		<OtherRecipe/>
+		<OtherRecipe lengthIngredientBlock={lengthIngredientBlock}/>
       <DragAndDrop/>
     </section>
   );
