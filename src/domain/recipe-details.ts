@@ -1,3 +1,4 @@
+import { Step } from './recipes-information';
 export interface Ingredients{
 	index: number;
 	name: string;
@@ -17,7 +18,7 @@ export interface SelectedRecipe {
 	image: string;
 	dishTypes: string[];
 	analyzedInstructions: {
-		steps: [];
+		steps: Instructions[];
 	}[],
 }
 
