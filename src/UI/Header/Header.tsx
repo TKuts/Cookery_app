@@ -6,16 +6,16 @@ const Header = () => {
   return (
 		<header className="header">
 			<ul className="header__logo">
-				<li className="header__logo-title">Foodieland</li>
+				<li className="header__logo-title">Foodieland<span className="header__logo-point">.</span></li>
 			</ul>
-			{/* <nav> */}
-				<ul className="header__menu">
+			<nav className="header__menu">
+				<ul className="header__menu-list">
 					<li className="header__menu-point">Home</li>
 					<li className="header__menu-point">Recipes</li>
 					<li className="header__menu-point">Blog</li>
 					<li className="header__menu-point">About</li>
 				</ul>
-			{/* </nav> */}
+			</nav>
 			<ul className="header__social">
 				<li className="header__social-icon">
 					<a href="#" target={"_blank"}>

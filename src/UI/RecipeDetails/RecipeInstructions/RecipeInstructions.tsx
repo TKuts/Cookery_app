@@ -32,7 +32,7 @@ const RecipeInstructions: React.FC = () => {
 		if(recipe){
 			recipe.analyzedInstructions[0].steps.forEach(instruction => {
 				instruction.checked = false;
-				instruction.expand = false;
+				instruction.unwrap = false;
 				newRecipe.push(instruction);
 			})
 		}else{
@@ -42,21 +42,19 @@ const RecipeInstructions: React.FC = () => {
 
 	};
 
-
-	const [showAllIngridients, setShowAllIngridients] = useState(false)
-
 	const checkInstruction = (elemNumber: number): void =>{
 		recipeInstructions.map(instruction => {
 			if(instruction.number === elemNumber) {
-				instruction.checked = !instruction.checked
+				instruction.checked = !instruction.checked;
+				instruction.unwrap = false;
 				setRenderPage(!renderPage)			
 		 }})
 	}
 
-	const expand = (elemNumber: number): void =>{
+	const unwrap = (elemNumber: number): void =>{
 		recipeInstructions.map(instruction => {
 		  if(instruction.number === elemNumber) {
-			  instruction.expand = !instruction.expand
+			  instruction.unwrap = !instruction.unwrap
 			  setRenderPage(!renderPage)			
 		}})
   }
@@ -69,34 +67,32 @@ const RecipeInstructions: React.FC = () => {
 			recipeInstructions.map((elem) => (
 				<div key={elem.number} className={elem.checked ? "direction checked" : "direction"}>
 					<div className="direction__step" >
-						<button type="button" className="task__btn" 
-									onClick={(e) => {checkInstruction(elem.number)}
+						<button type="button" className="direction__step-btn" 
+									onClick={() => {checkInstruction(elem.number)}
 									}>
-							<i className="fa-regular fa-circle task__btn-img" style={{ display: elem.checked ? "none": "block" }} ></i>
-							<i className="fa-regular fa-circle-check task__btn-img" style={{ display: elem.checked ? "block" : "none" }} ></i>
+							<i className="fa-regular fa-circle direction__step-btn-img" style={{ display: elem.checked ? "none": "block" }} ></i>
+							<i className="fa-regular fa-circle-check direction__step-btn-img" style={{ display: elem.checked ? "block" : "none" }} ></i>
 						</button>
 						<p className="direction__step-title">{elem.number}. {elem.step}</p>
 					</div>
 
-					<div className="direction__wrapper">
-						<div className="direction__ingredients" onClick={() => expand(elem.number)}>
-							<p className="direction__ingredients-title">ingredients for this step:</p>
+					<div 
+						className= {elem.checked ? "direction__wrapper hiden " : "direction__wrapper"} 
+						onClick={() => unwrap(elem.number)}>
+						<div className="direction__block" >
+							<p className="direction__block-title">ingredients for this step:</p>
 							{
 								elem.ingredients.length > 0 ? elem.ingredients.map(tool => (
-									<p key={tool.id} className="direction__ingredients-step" style={{ display: elem.expand ? "block": "none" }} >{tool.name}</p>
-								)) : <p className="direction__ingredients-step" style={{ display: elem.expand ? "block": "none" }}>not needed at this stage</p>
+									<p key={tool.id} className={elem.unwrap  ? "direction__block-step" : "direction__block-step hiden"} >{tool.name}</p>
+								)) : <p className= {elem.unwrap  ? "direction__block-step" : "direction__block-step hiden"}>not needed at this stage</p>
 							}
 						</div>
-						<div className="direction__tool">
-							<p className="direction__tool-title">equipment for this step:</p>
+						<div className="direction__block">
+							<p className="direction__block-title">equipment for this step:</p>
 							{
 								elem.equipment.length > 0 ? elem.equipment.map(tool => (
-									<p key={tool.id}className="direction__tool-step" 
-									// style={{ display: elem.expand ? "block": "none" }}
-									>{tool.name}</p>
-								)) : <p className="direction__tool-step" 
-								// style={{ display: elem.expand ? "block": "none" }}
-								>not needed at this stage</p>
+									<p key={tool.id}className={elem.unwrap  ? "direction__block-step" : "direction__block-step hiden"}>{tool.name}</p>
+								)) : <p className= {elem.unwrap  ? "direction__block-step" : "direction__block-step hiden"}>not needed at this stage</p>
 							}
 						</div>
 					</div>

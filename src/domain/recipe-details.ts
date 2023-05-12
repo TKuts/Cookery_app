@@ -28,7 +28,7 @@ export interface Instructions{
 	number: number;
 	step: string;
 	checked?: boolean;
-	expand?: boolean;
+	unwrap?: boolean;
 	ingredients: [{
 		id: number;
 		name: string;

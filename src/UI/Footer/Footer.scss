@@ -1,0 +1,79 @@
+.footer {
+  margin: 150px 0 20px 0;
+}
+
+.footer-up {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 30px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+
+  &__logo {
+    &-title {
+      font-family: "Lobster", cursive;
+      font-weight: 400;
+      font-size: 24px;
+      line-height: 30px;
+      color: #000000;
+    }
+    &-point {
+      color: #ff7426;
+    }
+  }
+  &__menu {
+    font-family: "Inter", sans-serif;
+    font-weight: 500;
+    font-size: 19px;
+    line-height: 19px;
+    letter-spacing: -0.02em;
+    padding-top: 28px;
+    color: #000000;
+    &-list {
+      display: flex;
+    }
+    &-point {
+      margin-right: 60px;
+      cursor: pointer;
+      &:last-child {
+        margin-right: 0px;
+      }
+    }
+  }
+}
+.footer-down {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 1fr;
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  align-items: center;
+  &__title {
+    grid-area: 1 / 2 / 2 / 3;
+    font-family: "Inter", sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 23px;
+    letter-spacing: -0.02em;
+    color: rgba(0, 0, 0, 0.6);
+  }
+  &__name {
+    color: #ff7426;
+  }
+  &__social {
+    display: flex;
+    grid-area: 1 / 3 / 2 / 4;
+    justify-content: end;
+    &-icon {
+      margin-right: 20px;
+      cursor: pointer;
+      &:last-child {
+        margin-right: 0px;
+      }
+    }
+    &-img {
+      width: 22px;
+      height: 30px;
+    }
+  }
+}

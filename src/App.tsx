@@ -7,6 +7,7 @@ import Header from "./UI/Header/Header";
 import Categories from "./UI/Categories/Categories";
 import Gallary from "./UI/Gallary/Gallary";
 import RecipeDetails from "./UI/RecipeDetails/RecipeDetails";
+import Footer from "./UI/Footer/Footer";
 
 const App = observer(() => {
 
@@ -19,9 +20,13 @@ const showRecipeDetails = () => {
   return (
     <div className="wrapper">
       <Header />
-      <Categories/>
-      <Gallary showRecipeDetails={showRecipeDetails}/>
-      {recipeDetails ? <RecipeDetails/> : <></>}
+
+			<Categories/>
+			<Gallary showRecipeDetails={showRecipeDetails}/>
+			{recipeDetails ? <RecipeDetails/> : <></>}
+	
+      
+		<Footer/>
     </div>
   );
 });
