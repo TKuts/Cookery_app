@@ -1,2 +1,2 @@
-import OtherRecipe from "./OtherRecipe";
-export default OtherRecipe;
+import MayLikeRecipes from "./MayLikeRecipes";
+export default MayLikeRecipes;

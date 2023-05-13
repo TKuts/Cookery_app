@@ -21,8 +21,13 @@ export const apiNutrition = (id: number) => {
 };
 
 
-export const randomRecipe = (numberOfRecipes: number, categoriOfRecipes: string ) => {
-	return sendRequest(`${API}${RANDOM_NUMBER}${numberOfRecipes}${TAGS}${categoriOfRecipes}&${API_KEY}`).then((respons: {recipes: SelectedRecipe[]}) => respons);
+export const randomRecipe = (numberOfRecipes: number, categoriOfRecipes?: string ) => {
+	if(categoriOfRecipes){
+		return sendRequest(`${API}${RANDOM_NUMBER}${numberOfRecipes}${TAGS}${categoriOfRecipes}&${API_KEY}`).then((respons: {recipes: SelectedRecipe[]}) => respons);
+	}else{
+		return sendRequest(`${API}${RANDOM_NUMBER}${numberOfRecipes}${TAGS}&${API_KEY}`).then((respons: {recipes: SelectedRecipe[]}) => respons);
+	}
+	
 }
 
  export const getRecipeByCategory = (nameCategories: string): any => {

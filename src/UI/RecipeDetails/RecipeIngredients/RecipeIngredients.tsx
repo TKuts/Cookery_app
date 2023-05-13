@@ -37,7 +37,6 @@ const RecipeIngredients: React.FC<PropsRecipeIngredients> = () => {
 		<div className="recipe__ingredient-section"> 
 			<h3 className="recipe__ingredient-title">Ingredients</h3>
 			<ul className="recipe__section" 
-			// ref={ref}
 			>
 				{ingredients.map((elem, index) => (
 				<li

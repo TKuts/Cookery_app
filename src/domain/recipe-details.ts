@@ -16,6 +16,7 @@ export interface SelectedRecipe {
 	readyInMinutes: number;
 	summary: string;
 	image: string;
+	like: boolean;
 	dishTypes: string[];
 	analyzedInstructions: {
 		steps: Instructions[];

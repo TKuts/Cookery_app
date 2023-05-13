@@ -6,6 +6,7 @@ import RecipeInstructions from "./RecipeInstructions/RecipeInstructions"
 import RecipeSummary from "./RecipeSummary/RecipeSummary"
 import RecipeNutrition from "./RecipeNutrition/RecipeNutrition"
 import RecipeIngredients from "./RecipeIngredients/RecipeIngredients"
+import MayLikeRecipes from "../MayLikeRecipes/MayLikeRecipes"
 
 import { observer } from "mobx-react-lite";
 import  { store } from "../../application/storage/BusinessStore"
@@ -30,6 +31,7 @@ const RecipeDetails: React.FC<PropsORecipeDetails> = observer(() => {
 			</RecipeSummary>
 			<RecipeIngredients />
 			<RecipeInstructions />
+			<MayLikeRecipes/>
 		</section>
   );
 });
