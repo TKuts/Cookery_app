@@ -4,6 +4,7 @@ import "./SubmissionToBlog.scss";
 import { observer} from "mobx-react-lite";
 
 const SubmissionToBlog: React.FC = observer(() => {
+ 
 
   return (
 			<section className="submission__blog">
