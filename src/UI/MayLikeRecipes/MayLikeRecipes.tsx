@@ -10,7 +10,7 @@ import  { store } from "../../application/storage/BusinessStore"
 
 
 const MayLikeRecipes: React.FC = observer(() => {
-	const { recipeCategori} = store;
+	const { recipeCategori } = store;
 	const [randomRecipes, setRandomRecipes] = useState< SelectedRecipe[] >([])
 	const [renderPage, setRenderPage] = useState(false)
 
@@ -21,10 +21,9 @@ const MayLikeRecipes: React.FC = observer(() => {
 				recipe.like = false
 			})
 			setRandomRecipes(newArray)
-		}
-		)
-	}, [recipeCategori])
-	
+		})
+	}, [store.recipeId])
+
 	const dishTypes = (data: string[]): any => {
 		let newString = "";
 		let through = data.slice(0, 3)
@@ -36,16 +35,18 @@ const MayLikeRecipes: React.FC = observer(() => {
 	 };
 
 	 const checkInstruction = (elemId: number): void =>{
-		
 		randomRecipes.map(instruction => {
-			
-			
 			if(instruction.id === elemId) {
-				console.log(instruction);
 				instruction.like = !instruction.like;
-
 				setRenderPage(!renderPage)			
 		 }})
+	}
+
+	const useMobx = (id: number) => {
+
+		store.getRecipeId(id);
+		store.getRecipeByCategory(randomRecipes)
+	
 	}
 	
   return (
@@ -53,7 +54,9 @@ const MayLikeRecipes: React.FC = observer(() => {
 			<h3 className="may__like-title">You may like these recipe too</h3>
 			<div className="may__like-block">
 			{ randomRecipes && randomRecipes.map((recipe) => (
-				<div className="flashcard" key={recipe.id}  >
+				<div className="flashcard" key={recipe.id}  
+				onClick={()=> {{useMobx(recipe.id)}}
+				} >
 					<img className="flashcard-img" src={recipe.image} alt= {`img-recceps ${recipe.id}`} />
 					<h1 className="flashcard-title">{recipe.title}</h1>
 					<div className="flashcard-information">
@@ -66,10 +69,10 @@ const MayLikeRecipes: React.FC = observer(() => {
 							<p className="flashcard-information__type-data">{dishTypes(recipe.dishTypes)}</p>
 						</div>
 					</div>
-					<button className="btn__like" onClick={() => {checkInstruction(recipe.id)}
+					<button className="btn__like" onClick={(event) => {event.stopPropagation(),checkInstruction(recipe.id)}
 									}>
 						<i className="fa-regular fa-heart btn__like-img" style={{ display: recipe.like ? "none": "block" }}></i>
-						<i className="fa-solid fa-heart btn__like-img" style={{ display: recipe.like ?"block":  "none" }}></i>
+						<i className="fa-solid fa-heart btn__like-img red" style={{ display: recipe.like ? "block":  "none" }}></i>
 
 					</button>
 				</div>

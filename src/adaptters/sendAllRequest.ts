@@ -34,3 +34,9 @@ export const randomRecipe = (numberOfRecipes: number, categoriOfRecipes?: string
 	return sendRequest(`${API}${ALL_RECIPES}addRecipeInformation=true&number=9&type=${nameCategories}&${API_KEY}`)
 		.then((respons: {results: SelectedRecipe[]}) => respons)
 	};
+
+	export const getAllRecipes = () => {
+		return sendRequest(`${API}${ALL_RECIPES}maxReadyTime=10&addRecipeInformation=true&number=9&${API_KEY}`)
+		.then((respons: {results:SelectedRecipe[]}) => respons);
+	};
+	

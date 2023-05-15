@@ -13,7 +13,7 @@ interface PropsOtherRecipe {
 
 const OtherRecipe: React.FC<PropsOtherRecipe> = observer(({lengthIngredientBlock}) => {
   
-	const { recipeCategori, getRecipeByCategory} = store;
+	const { recipeCategori } = store;
 	const [randomRecipes, setRandomRecipes] = useState< SelectedRecipe[] >([])
 
 	const lengthForRender = typeof lengthIngredientBlock === "number" ? Math.floor(lengthIngredientBlock/3) : 1

@@ -2,11 +2,12 @@
   margin-bottom: 100px;
   &-title {
     font-family: "Inter", sans-serif;
-    font-style: normal;
     font-weight: 600;
     font-size: 48px;
+    letter-spacing: -0.04em;
     text-align: start;
     margin-bottom: 50px;
+    color: #000000;
   }
 }
 
