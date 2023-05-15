@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import "./SubmissionToBlog.scss";
 
 import { observer} from "mobx-react-lite";
