@@ -1,34 +1,46 @@
 import React, { useState, useEffect } from "react";
-import "./Gallary.scss";
 
 import { observer} from "mobx-react-lite";
-import  { store } from "../../application/storage/BusinessStore"
+import { store } from "../../application/storage/BusinessStore";
+import { useParams} from "react-router-dom";
+import { getRecipeByCategory } from "../../adaptters/sendAllRequest";
+import { SelectedRecipe } from "../../domain/recipe-details";
 
-export interface GallaryProps {
-	showRecipeDetails: any; // any тому, що recipeDetails це функція (як показати TS, що працюю з функцією?)
-}
+import "./Gallary.scss";
 
-const Gallary: React.FC<GallaryProps> = observer(({ showRecipeDetails }) => {
+const Gallary: React.FC = observer(() => {
 
-	const { recipeByCategory, recipeId } = store;
+	const { category } = useParams();
+	const [recipes, setRecipes] = useState<SelectedRecipe[] | []>([]); 
+
+	useEffect(()=> {
+		if(category) 
+		actionSelectedRecipe(category);
+	},[])
+
+	const actionSelectedRecipe = (selectedRecipe: string) => {
+		getRecipeByCategory(selectedRecipe).then((respons: {results: SelectedRecipe[]}) => setRecipes(respons.results));
+	}
 
 	const useMobx = (id: number) => {
 		store.getRecipeId(id);
-		showRecipeDetails(); // буде замінено на роут, буде видалено
 	}
+
   return (
-		<section className="recipes-wrapper">
-			{ recipeByCategory && recipeByCategory.map((recipe) => (
-           <div className="recipe" key={recipe.id} 
-			  onClick={()=> {useMobx(recipe.id)}
-			  } >
-					<img className="recipe__image" src={recipe.image} alt= {`img-recceps ${recipe.id}`} />
-					<h1 className="recipe__title">{recipe.title}</h1>
-					<p className="recipe__time" >{recipe.readyInMinutes} Minutes</p>
+		<section className="recipes">
+			<h2 className="recipes-title">{`category ${category}`}</h2>
+			<div className="recipes-wrapper">
+			{ recipes && recipes.map(({id, image, title, readyInMinutes}) => (
+           <div className="recipe" key={id} 
+			  onClick={()=> {useMobx(id)}} >
+					<img className="recipe__image" src={image} alt= {`img-recceps ${id}`} />
+					<h1 className="recipe__title">{title}</h1>
+					<p className="recipe__time" >{readyInMinutes} Minutes</p>
             </div>
-        )
-				) 
+        )) 
 			}
+			</div>
+			
 		</section>
   )	
 })

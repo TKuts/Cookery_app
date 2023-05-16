@@ -1,7 +1,6 @@
 .component__categories {
   margin-bottom: 100px;
   &-title {
-    font-family: "Inter", sans-serif;
     font-weight: 600;
     font-size: 48px;
     letter-spacing: -0.04em;
@@ -15,6 +14,7 @@
   display: flex;
 }
 .categories__card {
+  text-decoration: none;
   width: 180px;
   background: linear-gradient(
     180deg,
@@ -34,8 +34,6 @@
     margin-bottom: 30px;
   }
   &-title {
-    font-family: "Inter";
-    font-style: normal;
     font-weight: 600;
     font-size: 18px;
     line-height: 22px;

@@ -15,45 +15,32 @@ import {SelectedRecipe} from "../../domain/recipe-details"
 // }
 
 interface Store {
-  recipeByCategory: SelectedRecipe[];
   recipeId: number;
   recipeCategori: string;
-  getRecipeByCategory: (array: SelectedRecipe[]) => void;
+  selectedRecipe: {};
   getRecipeId: (id: number) => void;
   getRecipeCategory: (nameCategori: string) => void;
+  getSelectedRecipe: (object: string) => void ;
 }
 
-const recipeByCategoryFilter: string[] = ["id","title",	"readyInMinutes", "dishTypes", "image", "summary", "analyzedInstructions"]
+const recipeByCategoryFilter: string[] = ["id","title", "readyInMinutes", "dishTypes", "image", "summary", "analyzedInstructions"]
 
 export const store: Store = makeAutoObservable({
   recipeByCategory: [],
   recipeId: 0,
+  selectedRecipe: {},
   recipeCategori: "",
-
-  getRecipeByCategory: action(function(this: Store, array: SelectedRecipe[]) {
-    this.recipeByCategory.length = 0;
-
-	 array.map((element) => {
-		let obj = {}
-		recipeByCategoryFilter.map(catelori  => {			
-			obj[catelori] = element[catelori]
-	 	
-	})
-	this.recipeByCategory.push(obj)
-	// console.log("recipeByCategory", toJS(this.recipeByCategory));
-	
-})}),
   getRecipeId: action(function(this: Store, id: number){
 	this.recipeId = id
-}
-
-	
-	
-	),
+	console.log("this.recipeId", this.recipeId);
+	}),
 
 	getRecipeCategory: action(function(this: Store, nameCategori: string){
 		this.recipeCategori = nameCategori
-	})
+	}),
+	getSelectedRecipe: action(function(this: Store, object: string){
+		this.selectedRecipe = object		
+	}),
 });
 
 

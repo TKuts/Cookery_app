@@ -9,6 +9,10 @@ const TAGS = import.meta.env.VITE_REACT_RANDOM_TAGS;
 import  sendRequest  from "../adaptters/sendRequest";
 import { Ingredients, Nutrition, SelectedRecipe } from "../domain/recipe-details";
 
+export const apiSelectedRecipe = (id: number) => {
+	return sendRequest(`${API}${id}/information?includeNutrition=true&${API_KEY}`)
+		.then((respons: {ingredients: Ingredients[] }) => respons);
+}
 
 export const apiIngredients =  (id: number) => {  // ok
 	return sendRequest(`${API}${id}${INGREDIENTS}${API_KEY}`)
