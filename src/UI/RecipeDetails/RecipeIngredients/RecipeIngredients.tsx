@@ -1,31 +1,28 @@
-import React, { useState, useEffect, ReactNode, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import "./RecipeIngredients.scss";
 
 import { Ingredients } from "../../../domain/recipe-details";
-import DragAndDrop from "../../DragAndDrop/DragAndDrop"
-import OtherRecipe from "../../OtherRecipe/OtherRecipe"
-import { apiIngredients } from "../../../adaptters/sendAllRequest"
-import  { store } from "../../../application/storage/BusinessStore"
+import DragAndDrop from "../../DragAndDrop/DragAndDrop";
+import OtherRecipe from "../../OtherRecipe/OtherRecipe";
+
+import { store } from "../../../application/storage/BusinessStore";
 
 interface PropsRecipeIngredients{
-	// children: ReactNode;
-}
 
+}
 
 const RecipeIngredients: React.FC<PropsRecipeIngredients> = () => {
 
-	
-	const { recipeId } = store;
-	const [ingredients, setIngredients] = useState< Ingredients[]  | null >(null);
+	const { nutrition } = store.filteredRecipe
 
-	let lengthIngredientBlock = Array.isArray(ingredients) ? ingredients.length : null
+	const [stateIngredients, setStateIngredients] = useState< Ingredients[]  | null >(null);
 
-	// const ref = useRe()f
+	const lengthIngredientBlock = Array.isArray(stateIngredients) ? stateIngredients.length : null
+
+
 	useEffect(() => {	
-		apiIngredients(recipeId).then((res) => setIngredients(res.ingredients))
-		// console.log(ref.current);
-		
-	  }, [recipeId]);
+		setStateIngredients(nutrition.ingredients)
+	}, [nutrition]);
 
 	const handleOnDrag = (event: React.DragEvent, widgetType: string) => {
 		event.dataTransfer.setData("aa", widgetType);
@@ -33,21 +30,21 @@ const RecipeIngredients: React.FC<PropsRecipeIngredients> = () => {
 	
 		
   return (
-	ingredients &&
+	store.filteredRecipe && stateIngredients &&
     <section className="recipe__ingredient">
 		<div className="recipe__ingredient-section"> 
 			<h3 className="recipe__ingredient-title">Ingredients</h3>
 			<ul className="recipe__section" 
 			>
-				{ingredients.map((elem, index) => (
+				{stateIngredients.map((elem, index) => (
 				<li
 					key={index}
 					className="recipe__section-ingredient"
 					draggable
 					onDragStart={(event) =>
-						handleOnDrag(event, `${elem.name}, ${elem.amount.metric.value}, ${elem.amount.metric.unit}`)}>
+						handleOnDrag(event, `${elem.name}, ${elem.amount}, ${elem.unit}`)}>
 					<p>{elem.name}</p>
-					<p>{Math.round(elem.amount.metric.value)} {elem.amount.metric.unit}
+					<p>{Math.round(elem.amount)} {elem.unit}
 					</p>
 				</li>
 				))}

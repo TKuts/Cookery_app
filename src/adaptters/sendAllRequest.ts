@@ -11,19 +11,8 @@ import { Ingredients, Nutrition, SelectedRecipe } from "../domain/recipe-details
 
 export const apiSelectedRecipe = (id: number) => {
 	return sendRequest(`${API}${id}/information?includeNutrition=true&${API_KEY}`)
-		.then((respons: {ingredients: Ingredients[] }) => respons);
+		.then((respons: {ingredients: {}[]}) => respons);
 }
-
-export const apiIngredients =  (id: number) => {  // ok
-	return sendRequest(`${API}${id}${INGREDIENTS}${API_KEY}`)
-		.then((respons: {ingredients: Ingredients[] }) => respons);
-};
-
-// export const apiNutrition = (id: number) => {
-// 	return sendRequest(`${API}${id}${NUTRITION}${API_KEY}`)
-// 	.then((respons: {nutrients: Nutrition[]}) => respons);
-// };
-
 
 export const randomRecipe = (numberOfRecipes: number, categoriOfRecipes?: string ) => {
 	if(categoriOfRecipes){

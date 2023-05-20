@@ -8,6 +8,8 @@ import RecipeNutrition from "../../UI/RecipeDetails/RecipeNutrition/RecipeNutrit
 import RecipeIngredients from "../../UI/RecipeDetails/RecipeIngredients/RecipeIngredients"
 import MayLikeRecipes from "../../UI/MayLikeRecipes/MayLikeRecipes"
 
+import {  SelectedRecipe, FilreredRecipe } from "../../domain/recipe-details"
+
 import { apiSelectedRecipe } from "../../adaptters/sendAllRequest"
 
 import { observer } from "mobx-react-lite";
@@ -24,25 +26,25 @@ const SelectedRecipePage: React.FC<PropsORecipeDetails> = observer(() => {
 
 	const recipeByCategoryFilter: string[] = ["id","title", "readyInMinutes", "dishTypes", "image", "summary", "analyzedInstructions", "nutrition"]
 
-	const [ recipeFromApi, setRecipeFromApi ] = useState({})
-
 	useEffect(() => {
-		apiSelectedRecipe(recipeId).then((respons) => setRecipeFromApi(respons));	
-		
+		apiSelectedRecipe(recipeId).then((respons) => madeFilterRecioe(recipeByCategoryFilter, respons));	
 		
 	}, [recipeId])
-	let obj = {}
-	console.log("recipeFromApi", recipeFromApi);
-	recipeByCategoryFilter.map((categori) => {
-		obj[categori] = recipeFromApi[categori]
-	})
-	
-	// const { title, readyInMinutes, dishTypes} = store.filteredRecipe;
-// console.log("obj",obj);
 
-	store.getSelectedRecipe(obj)
+	const madeFilterRecioe = (howFiltered: string[], whatFiltered: SelectedRecipe ) => {
+		let obj: FilreredRecipe = {}
+	
+		howFiltered.map((categori: string) => {
+			
+			obj[categori] = whatFiltered[categori]
+		})
+console.log("obj", toJS(obj));
+
+		store.getFilteredRecipe(obj)
+	}
+
   return (
-	recipeFromApi && 
+	store.filteredRecipe && 
 		<section className="detailed__wrapper">
 			<RecipeTitle />
 			<RecipeSummary >

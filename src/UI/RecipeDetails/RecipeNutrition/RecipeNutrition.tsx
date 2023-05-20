@@ -8,32 +8,24 @@ const RecipeNutrition: React.FC = () => {
 
 const[stateNutrients, setStateNutrients] = useState<Nutrition[]>([])
 
+	const { nutrition } = store.filteredRecipe
 
-// const nutrients = store.filteredRecipe.nutrition
-
-// console.log("nutrients", toJS(stateNutrients));
-
-// 	useEffect(()=>{
+	useEffect(()=>{
 		
-// 		setStateNutrients(nutrients.nutrients)
-// 	},[nutrients])
-
-// 	console.log("stateNutrients", toJS(stateNutrients));
-	
+		setStateNutrients(nutrition.nutrients)
+	},[nutrition])
 	
 	const nutritionFilter = ['Calories', 'Fat', 'Protein','Carbohydrates', 'Cholesterol']
 
 	const nutritionWhatNeed: Nutrition[] = []
 
-	// stateNutrients.map((element: Nutrition) => {
-	// 	nutritionFilter.filter(word => {
-	// 		if(word === element.name){
-	// 			nutritionWhatNeed.push(element)
-	// 		}
-	// 	})
-	// })
-
-	
+	stateNutrients.map((element: Nutrition) => {
+		nutritionFilter.filter(word => {
+			if(word === element.name){
+				nutritionWhatNeed.push(element)
+			}
+		})
+	})
 
   return (
 	store.filteredRecipe &&

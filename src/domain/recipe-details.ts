@@ -1,13 +1,10 @@
 import { Step } from './recipes-information';
-export interface Ingredients{
-	index: number;
-	name: string;
-	amount: {
-		metric:{
-			value: number,
-			unit: string
-		}
-	}
+export interface Ingredients {
+	id: number; 
+	name: string; 
+	amount: number; 
+	unit: string; 
+	nutrients?: {}[]
 
 }
 export interface SelectedRecipe { 
@@ -28,25 +25,34 @@ export interface SelectedRecipe {
 		ingredients: [],
 	};
 	analyzedInstructions: {
-		steps: Instructions[];
+		steps: AnalyzedInstructions[];
 	}[],
 }
 
 
 
-export interface Instructions{
-	number: number;
-	step: string;
+export interface AnalyzedInstructions {
+	name?: string, 
+	steps: Instructions[];
+}
+
+export interface Instructions {
+	number: number; 
+	step: string; 
+	ingredients: {
+		id: number;
+		name: string; 
+		localizedName: string, 
+		image?: string;
+	}[]; 
+	equipment: {
+		id: number;
+		name: string; 
+		localizedName: string, 
+		image?: string;
+	}[];
 	checked?: boolean;
 	unwrap?: boolean;
-	ingredients: [{
-		id: number;
-		name: string;
-	}];
-	equipment: [{
-			id: number;
-			name: string;
-		}]
 }
 
 export interface Nutrition {
@@ -54,4 +60,21 @@ export interface Nutrition {
 	amount: number;
 	unit: string;
 	percentOfDailyNeeds?: number;
+}
+
+export interface FilreredRecipe {
+	analyzedInstructions : AnalyzedInstructions[];
+	dishTypes : string[];
+	id : number;
+	image : string;
+	nutrition : {
+		nutrients?: {}[]; 
+		properties?: {}[]; 
+		flavonoids?: {}[]; 
+		ingredients?: {}[]; 
+		caloricBreakdown?: {}[]
+	};
+	readyInMinutes :number;
+	summary : string; 
+	title : string;
 }

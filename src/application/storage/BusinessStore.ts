@@ -20,7 +20,7 @@ interface Store {
   filteredRecipe: SelectedRecipe;
   getRecipeId: (id: number) => void;
   getRecipeCategory: (nameCategori: string) => void;
-  getSelectedRecipe: (object: string) => void;
+  getFilteredRecipe: (object: {}) => void;
 }
 
 const recipeByCategoryFilter: string[] = ["id","title", "readyInMinutes", "dishTypes", "image", "summary", "analyzedInstructions"]
@@ -37,8 +37,9 @@ export const store: Store = makeAutoObservable({
 	getRecipeCategory: action(function(this: Store, nameCategori: string){
 		this.recipeCategori = nameCategori
 	}),
-	getSelectedRecipe: action(function(this: Store, object: SelectedRecipe){
+	getFilteredRecipe: action(function(this: Store, object: SelectedRecipe){
 		this.filteredRecipe = object;
+		
 		
 	}),
 });

@@ -1,45 +1,38 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./RecipeInstructions.scss";
 
-import {Instructions, SelectedRecipe} from "../../../domain/recipe-details";
-import  { store } from "../../../application/storage/BusinessStore"
-import { toJS } from "mobx";
+import { store } from "../../../application/storage/BusinessStore";
+import { AnalyzedInstructions, Instructions } from "../../../domain/recipe-details";
 
 
 const RecipeInstructions: React.FC = () => {
-	const { recipeId, recipeByCategory} = store;
+
 	const [recipeInstructions, setRecipeInstructions] = useState<Instructions[]>([]);
 	const [renderPage, setRenderPage] = useState(false)
 
+	const { analyzedInstructions } = store.filteredRecipe
+	
+	
 	useEffect(() => {	
-		allDataSelectedRecipe(recipeId)
-  }, [recipeId]);
+		apiInstructions(analyzedInstructions)
+  }, [analyzedInstructions]);
 
-	const allDataSelectedRecipe = (id: number) => {
-		let selectedRecipe = null
-		recipeByCategory.map(recipe => {
-			if (recipe.id === id){
-				selectedRecipe = (toJS(recipe));
-			}
-		})
-		apiInstructions(selectedRecipe)
-		
-	};
 
-	const apiInstructions =  (recipe: null | SelectedRecipe) => {
+	const apiInstructions =  (recipe: null | AnalyzedInstructions) => {
 		let newRecipe: Instructions[] = []
 		
+		
 		if(recipe){
-			recipe.analyzedInstructions[0].steps.forEach(instruction => {
+			recipe[0].steps.forEach(instruction => {
 				instruction.checked = false;
 				instruction.unwrap = false;
 				newRecipe.push(instruction);
 			})
-		}else{
+		} else {
 			console.log("робити помилку")
 		}
 		setRecipeInstructions(newRecipe)
-
+	
 	};
 
 	const checkInstruction = (elemNumber: number): void =>{
@@ -60,7 +53,7 @@ const RecipeInstructions: React.FC = () => {
   }
 
   return (
-	recipeInstructions &&
+	store.filteredRecipe && 
 	<section className="detailed__directions">
 		<h3 className="detailed__directions-title">Directions</h3>
 		{

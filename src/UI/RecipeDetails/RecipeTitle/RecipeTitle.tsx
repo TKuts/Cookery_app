@@ -8,21 +8,6 @@ import  { store } from "../../../application/storage/BusinessStore"
 const RecipeTitle: React.FC = () => {
 
 	const { title, readyInMinutes, dishTypes} = store.filteredRecipe;
-	// const [selectedRecipe, setSelectedRecipe] = useState< null | SelectedRecipe >({}) ;
-
-	// useEffect(() => {	
-	// 	 allDataSelectedRecipe(filteredRecipe); 
-	//   }, [recipeId]);
-
-// 	  const allDataSelectedRecipe = (recipe: {}) => {
-// 		let selectedRecipe = (toJS(recipe))
-// console.log(selectedRecipe);
-
-		
-// 		// setSelectedRecipe(selectedRecipe)
-// 	};
-	
-
 
 	const readDishTypes = (data: string[]): any => {
 		let newString = "";
