@@ -14,6 +14,7 @@ interface PropsRecipeIngredients{
 
 const RecipeIngredients: React.FC<PropsRecipeIngredients> = () => {
 
+	
 	const { recipeId } = store;
 	const [ingredients, setIngredients] = useState< Ingredients[]  | null >(null);
 

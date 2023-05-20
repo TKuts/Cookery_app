@@ -17,10 +17,10 @@ import {SelectedRecipe} from "../../domain/recipe-details"
 interface Store {
   recipeId: number;
   recipeCategori: string;
-  selectedRecipe: {};
+  filteredRecipe: SelectedRecipe;
   getRecipeId: (id: number) => void;
   getRecipeCategory: (nameCategori: string) => void;
-  getSelectedRecipe: (object: string) => void ;
+  getSelectedRecipe: (object: string) => void;
 }
 
 const recipeByCategoryFilter: string[] = ["id","title", "readyInMinutes", "dishTypes", "image", "summary", "analyzedInstructions"]
@@ -28,18 +28,18 @@ const recipeByCategoryFilter: string[] = ["id","title", "readyInMinutes", "dishT
 export const store: Store = makeAutoObservable({
   recipeByCategory: [],
   recipeId: 0,
-  selectedRecipe: {},
+  filteredRecipe: {},
   recipeCategori: "",
   getRecipeId: action(function(this: Store, id: number){
 	this.recipeId = id
-	console.log("this.recipeId", this.recipeId);
 	}),
 
 	getRecipeCategory: action(function(this: Store, nameCategori: string){
 		this.recipeCategori = nameCategori
 	}),
-	getSelectedRecipe: action(function(this: Store, object: string){
-		this.selectedRecipe = object		
+	getSelectedRecipe: action(function(this: Store, object: SelectedRecipe){
+		this.filteredRecipe = object;
+		
 	}),
 });
 

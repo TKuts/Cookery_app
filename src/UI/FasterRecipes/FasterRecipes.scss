@@ -1,7 +1,6 @@
 .faster__recipe {
   margin-bottom: 100px;
   &-title {
-    font-family: "Inter", sans-serif;
     font-weight: 600;
     font-size: 48px;
     letter-spacing: -0.04em;
@@ -16,7 +15,7 @@
   &-flashcard {
     display: flex;
     flex-direction: column;
-    text-decoration: none;
+    cursor: pointer;
     width: 400px;
     margin: 0 40px 15px 0;
     padding: 24px;
@@ -42,7 +41,6 @@
       margin-bottom: 16px;
     }
     &-title {
-      font-family: "Inter", sans-serif;
       font-weight: 600;
       font-size: 24px;
       line-height: 32px;
@@ -64,9 +62,9 @@
         &-icons {
           font-size: 20px;
           margin-right: 10px;
+          color: #000000;
         }
         &-minutes {
-          font-family: "Inter", sans-serif;
           font-weight: 500;
           font-size: 14px;
           line-height: 17px;
@@ -81,9 +79,9 @@
         &-icons {
           font-size: 20px;
           margin-right: 10px;
+          color: #000000;
         }
         &-data {
-          font-family: "Inter", sans-serif;
           font-weight: 500;
           font-size: 14px;
           line-height: 17px;

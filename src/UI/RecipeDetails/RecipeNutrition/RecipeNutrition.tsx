@@ -1,33 +1,42 @@
-import React, { useEffect,useState }from "react";
-import "./RecipeNutrition.scss";
-
+import React, {useEffect, useState} from "react";
 import { Nutrition } from "../../../domain/recipe-details";
-import { apiNutrition } from "../../../adaptters/sendAllRequest";
 import { store } from "../../../application/storage/BusinessStore";
+import { toJS } from "mobx";
+import "./RecipeNutrition.scss";
 
 const RecipeNutrition: React.FC = () => {
 
-	const [nutrition, setNutrition] = useState < Nutrition[] > ([]);
-	const { recipeId } = store;
+const[stateNutrients, setStateNutrients] = useState<Nutrition[]>([])
 
-	useEffect(() => {	
-		apiNutrition(recipeId).then(res => setNutrition(res.nutrients))
-	 }, [recipeId]);
 
+// const nutrients = store.filteredRecipe.nutrition
+
+// console.log("nutrients", toJS(stateNutrients));
+
+// 	useEffect(()=>{
+		
+// 		setStateNutrients(nutrients.nutrients)
+// 	},[nutrients])
+
+// 	console.log("stateNutrients", toJS(stateNutrients));
+	
+	
 	const nutritionFilter = ['Calories', 'Fat', 'Protein','Carbohydrates', 'Cholesterol']
 
 	const nutritionWhatNeed: Nutrition[] = []
 
-	nutrition.map((element) => {
-		nutritionFilter.filter(word => {
-			if(word === element.name){
-				nutritionWhatNeed.push(element)
-			}})
-		}
-	)
+	// stateNutrients.map((element: Nutrition) => {
+	// 	nutritionFilter.filter(word => {
+	// 		if(word === element.name){
+	// 			nutritionWhatNeed.push(element)
+	// 		}
+	// 	})
+	// })
+
+	
 
   return (
-	nutrition &&
+	store.filteredRecipe &&
 		<div className="nutrition">
 			<h3 className="nutrition__title">Nutrition Information</h3>
 			{	
@@ -39,8 +48,7 @@ const RecipeNutrition: React.FC = () => {
 							{Math.round(element.amount)} {element.unit}
 							</p>
 						</div>
-					)
-				})
+						)})
 			}
 		</div>          
   );

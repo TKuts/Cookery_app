@@ -41,21 +41,21 @@ const FasterRecipes: React.FC = observer(() => {
 				<h2 className="faster__recipe-title">Simple and tasty recipes</h2>
 				<div className="faster__recipe-block">
 				{ allRecopes && allRecopes.map((recipe) => (
-					<Link to={`/selectedRecipe/${recipe.id}`} className="faster__recipe-flashcard"  key={recipe.id}  
+					<Link to={`/selectedRecipe/${recipe.id}`} className="faster__recipe-flashcard link"  key={recipe.id}  
 					onClick={()=> {{useMobx(recipe.id)}}
 					}>
-							<img className="faster__recipe-flashcard-img" src={recipe.image} alt= {`img-recceps ${recipe.id}`} />
-							<h1 className="faster__recipe-flashcard-title">{recipe.title}</h1>
-							<div className="faster__recipe-flashcard-information">
-								<div className="faster__recipe-flashcard-information__time">
-									<i className="fa-regular fa-hourglass-half faster__recipe-flashcard-information__time-icons"></i>
-									<p className="faster__recipe-flashcard-information__time-minutes">{recipe.readyInMinutes} Minutes</p>
-								</div>
-								<div className="faster__recipe-flashcard-information__type">
-									<i className="fa-solid fa-utensils faster__recipe-flashcard-information__type-icons"></i>
-									<p className="faster__recipe-flashcard-information__type-data">{dishTypes(recipe.dishTypes)}</p>
-								</div>
+						<img className="faster__recipe-flashcard-img" src={recipe.image} alt= {`img-recceps ${recipe.id}`} />
+						<h1 className="faster__recipe-flashcard-title">{recipe.title}</h1>
+						<div className="faster__recipe-flashcard-information">
+							<div className="faster__recipe-flashcard-information__time">
+								<i className="fa-regular fa-hourglass-half faster__recipe-flashcard-information__time-icons link"></i>
+								<p className="faster__recipe-flashcard-information__time-minutes">{recipe.readyInMinutes} Minutes</p>
 							</div>
+							<div className="faster__recipe-flashcard-information__type">
+								<i className="fa-solid fa-utensils faster__recipe-flashcard-information__type-icons link"></i>
+								<p className="faster__recipe-flashcard-information__type-data">{dishTypes(recipe.dishTypes)}</p>
+							</div>
+						</div>
 					</Link>
 				))}
 				</div>

@@ -7,24 +7,24 @@ import  { store } from "../../../application/storage/BusinessStore"
 
 const RecipeTitle: React.FC = () => {
 
-	const { recipeId, recipeByCategory} = store;
-	const [selectedRecipe, setSelectedRecipe] = useState< null | SelectedRecipe >(null) ;
+	const { title, readyInMinutes, dishTypes} = store.filteredRecipe;
+	// const [selectedRecipe, setSelectedRecipe] = useState< null | SelectedRecipe >({}) ;
 
-	useEffect(() => {	
-		 allDataSelectedRecipe(recipeId); 
-	  }, [recipeId]);
+	// useEffect(() => {	
+	// 	 allDataSelectedRecipe(filteredRecipe); 
+	//   }, [recipeId]);
 
-	  const allDataSelectedRecipe = (id: number) => {
-		let selectedRecipe = null
-		recipeByCategory.map(recipe => {
-			if (recipe.id === id){
-				selectedRecipe = (toJS(recipe));
-			}
-		})
-		setSelectedRecipe(selectedRecipe)
-	};
+// 	  const allDataSelectedRecipe = (recipe: {}) => {
+// 		let selectedRecipe = (toJS(recipe))
+// console.log(selectedRecipe);
 
-	const dishTypes = (data: string[]): any => {
+		
+// 		// setSelectedRecipe(selectedRecipe)
+// 	};
+	
+
+
+	const readDishTypes = (data: string[]): any => {
 		let newString = "";
 		data && data.map((item) => {
 			 newString += `#${item} `;
@@ -33,20 +33,20 @@ const RecipeTitle: React.FC = () => {
 	 };
 
   return (
-	selectedRecipe &&
+	store.filteredRecipe &&
 		<section >
-			<h2 className="detailed__title">{selectedRecipe.title}</h2>
+			<h2 className="detailed__title">{title}</h2>
 			<div className="detailed__information">
 				<div className="detailed__time">
 					<i className="fa-regular fa-hourglass-half detailed__time-icons"></i>
 					<div className="time__information">
 						<p className="time__information-title">COOK TIME</p>
-						<p className="time__information-minutes">{selectedRecipe.readyInMinutes} Minutes</p>
+						<p className="time__information-minutes">{readyInMinutes} Minutes</p>
 					</div>
 				</div>
 				<div className="detailed__type">
 					<i className="fa-solid fa-utensils detailed__time-icons"></i>
-					<p className="detailed__type-data">{dishTypes(selectedRecipe.dishTypes)}</p>
+					<p className="detailed__type-data">{readDishTypes(dishTypes)}</p>
 				</div>
 			</div>
 		</section>

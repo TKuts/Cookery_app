@@ -19,10 +19,10 @@ export const apiIngredients =  (id: number) => {  // ok
 		.then((respons: {ingredients: Ingredients[] }) => respons);
 };
 
-export const apiNutrition = (id: number) => {
-	return sendRequest(`${API}${id}${NUTRITION}${API_KEY}`)
-	.then((respons: {nutrients: Nutrition[]}) => respons);
-};
+// export const apiNutrition = (id: number) => {
+// 	return sendRequest(`${API}${id}${NUTRITION}${API_KEY}`)
+// 	.then((respons: {nutrients: Nutrition[]}) => respons);
+// };
 
 
 export const randomRecipe = (numberOfRecipes: number, categoriOfRecipes?: string ) => {

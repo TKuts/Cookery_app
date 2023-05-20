@@ -7,14 +7,16 @@ const Header = () => {
   
   return (
 		<header className="header">
+
 			<Link to={"/"} className="header__logo-title link">
 					Foodieland<span className="header__logo-point">.</span>
 			</Link>
 
+
 			<nav className="header__menu">
 				<ul className="header__menu-list">
-					<Link to={"/"} className="header__menu-point">
-						<li>Home</li>
+					<Link to={"/"} className="link">
+						<li className="header__menu-point ">Home</li>
 					</Link>
 					<li className="header__menu-point">Recipes</li>
 					<li className="header__menu-point">Blog</li>

@@ -18,6 +18,15 @@ export interface SelectedRecipe {
 	image: string;
 	like: boolean;
 	dishTypes: string[];
+	nutrition: {
+		nutrients: {
+			name: string, 
+			amount: number, 
+			unit: string, 
+			percentOfDailyNeeds?: number
+		}[],
+		ingredients: [],
+	};
 	analyzedInstructions: {
 		steps: Instructions[];
 	}[],
