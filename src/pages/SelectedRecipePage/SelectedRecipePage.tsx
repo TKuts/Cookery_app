@@ -8,53 +8,52 @@ import RecipeNutrition from "../../UI/RecipeDetails/RecipeNutrition/RecipeNutrit
 import RecipeIngredients from "../../UI/RecipeDetails/RecipeIngredients/RecipeIngredients"
 import MayLikeRecipes from "../../UI/MayLikeRecipes/MayLikeRecipes"
 
-import {  SelectedRecipe, FilreredRecipe } from "../../domain/recipe-details"
+import { SelectedRecipe, FilreredRecipe } from "../../domain/recipe-details"
 
 import { apiSelectedRecipe } from "../../adaptters/sendAllRequest"
 
 import { observer } from "mobx-react-lite";
 import { toJS } from "mobx";
-import  { store } from "../../application/storage/BusinessStore"
+import { store } from "../../application/storage/BusinessStore"
 
 interface PropsORecipeDetails {
-	
+
 }
 
 const SelectedRecipePage: React.FC<PropsORecipeDetails> = observer(() => {
 
 	const { recipeId } = store;
 
-	const recipeByCategoryFilter: string[] = ["id","title", "readyInMinutes", "dishTypes", "image", "summary", "analyzedInstructions", "nutrition"]
+	const recipeByCategoryFilter: string[] = ["id", "title", "readyInMinutes", "dishTypes", "image", "summary", "analyzedInstructions", "nutrition"]
 
 	useEffect(() => {
-		apiSelectedRecipe(recipeId).then((respons) => madeFilterRecioe(recipeByCategoryFilter, respons));	
-		
+		apiSelectedRecipe(recipeId).then((respons) => madeFilterRecioe(recipeByCategoryFilter, respons));
+
 	}, [recipeId])
 
-	const madeFilterRecioe = (howFiltered: string[], whatFiltered: SelectedRecipe ) => {
-		let obj: FilreredRecipe = {}
-	
+
+	const madeFilterRecioe = (howFiltered: string[], whatFiltered: SelectedRecipe) => {
+		let obj: FilreredRecipe | {} = {}
+
 		howFiltered.map((categori: string) => {
-			
+
 			obj[categori] = whatFiltered[categori]
 		})
-console.log("obj", toJS(obj));
-
 		store.getFilteredRecipe(obj)
 	}
 
-  return (
-	store.filteredRecipe && 
+	return (
+		store.filteredRecipe.nutrition &&
 		<section className="detailed__wrapper">
 			<RecipeTitle />
 			<RecipeSummary >
-				<RecipeNutrition/>
+				<RecipeNutrition />
 			</RecipeSummary>
 			<RecipeIngredients />
 			<RecipeInstructions />
-			<MayLikeRecipes/>
+			<MayLikeRecipes />
 		</section>
-  );
+	);
 });
 
 export default SelectedRecipePage;

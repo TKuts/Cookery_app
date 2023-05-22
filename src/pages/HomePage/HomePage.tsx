@@ -5,13 +5,13 @@ import FasterRecipes from "../../UI/FasterRecipes/FasterRecipes"
 import SubmissionToBlog from "../../UI/SubmissionToBlog/SubmissionToBlog"
 
 const HomePage: React.FC = () => {
-  return (
-			<>
-				<Categories/>
-				<FasterRecipes/>
-				<SubmissionToBlog/>
-			</>
-  )	
+	return (
+		<>
+			<Categories />
+			<FasterRecipes />
+			<SubmissionToBlog />
+		</>
+	)
 }
 
 export default HomePage;

@@ -3,22 +3,22 @@ import "./RecipeTitle.scss";
 
 import { SelectedRecipe } from "../../../domain/recipe-details";
 import { toJS } from "mobx";
-import  { store } from "../../../application/storage/BusinessStore"
+import { store } from "../../../application/storage/BusinessStore"
 
 const RecipeTitle: React.FC = () => {
 
-	const { title, readyInMinutes, dishTypes} = store.filteredRecipe;
+	const { title, readyInMinutes, dishTypes } = store.filteredRecipe;
 
 	const readDishTypes = (data: string[]): any => {
 		let newString = "";
 		data && data.map((item) => {
-			 newString += `#${item} `;
-		  });
+			newString += `#${item} `;
+		});
 		return newString;
-	 };
+	};
 
-  return (
-	store.filteredRecipe &&
+	return (
+		store.filteredRecipe &&
 		<section >
 			<h2 className="detailed__title">{title}</h2>
 			<div className="detailed__information">
@@ -35,7 +35,7 @@ const RecipeTitle: React.FC = () => {
 				</div>
 			</div>
 		</section>
-  );
+	);
 };
 
 export default RecipeTitle;

@@ -3,7 +3,7 @@
   display: flex;
   padding: 40px 80px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  margin-bottom: 50px;
+  margin-bottom: 40px;
   align-items: center;
   &__logo {
     &-title {
@@ -55,7 +55,7 @@
     }
   }
   &-img {
-    width: 22px;
-    height: 30px;
+    font-size: 22px;
+    color: #000000;
   }
 }

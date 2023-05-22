@@ -4,7 +4,7 @@ import { useState } from "react";
 // const { observable } = mobx;
 import { makeAutoObservable, action, toJS } from "mobx";
 
-import {SelectedRecipe} from "../../domain/recipe-details"
+import { SelectedRecipe } from "../../domain/recipe-details";
 // interface Recipe {
 // 	id: number;
 // 	title: string;
@@ -23,27 +23,31 @@ interface Store {
   getFilteredRecipe: (object: {}) => void;
 }
 
-const recipeByCategoryFilter: string[] = ["id","title", "readyInMinutes", "dishTypes", "image", "summary", "analyzedInstructions"]
+const recipeByCategoryFilter: string[] = [
+  "id",
+  "title",
+  "readyInMinutes",
+  "dishTypes",
+  "image",
+  "summary",
+  "analyzedInstructions",
+];
 
 export const store: Store = makeAutoObservable({
   recipeByCategory: [],
   recipeId: 0,
   filteredRecipe: {},
   recipeCategori: "",
-  getRecipeId: action(function(this: Store, id: number){
-	this.recipeId = id
-	}),
+  getRecipeId: action(function (this: Store, id: number) {
+    this.recipeId = id;
+  }),
 
-	getRecipeCategory: action(function(this: Store, nameCategori: string){
-		this.recipeCategori = nameCategori
-	}),
-	getFilteredRecipe: action(function(this: Store, object: SelectedRecipe){
-		this.filteredRecipe = object;
-		
-		
-	}),
+  getRecipeCategory: action(function (this: Store, nameCategori: string) {
+    this.recipeCategori = nameCategori;
+  }),
+  getFilteredRecipe: action(function (this: Store, object: SelectedRecipe) {
+    this.filteredRecipe = object;
+  }),
 });
-
-
 
 // analyzedInstructions замість (const apiNutrition)

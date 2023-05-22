@@ -4,12 +4,12 @@ import { Link } from "react-router-dom"
 import "./Header.scss";
 
 const Header = () => {
-  
-  return (
+
+	return (
 		<header className="header">
 
 			<Link to={"/"} className="header__logo-title link">
-					Foodieland<span className="header__logo-point">.</span>
+				Foodieland<span className="header__logo-point">.</span>
 			</Link>
 
 
@@ -23,28 +23,28 @@ const Header = () => {
 					<li className="header__menu-point">About</li>
 				</ul>
 			</nav>
-			
+
 			<ul className="header__social">
 				<li className="header__social-icon">
-					<a href="#" target={"_blank"}>
-						<img className="header__social-img" src="src/UI/Header/img/facebook.svg" alt="facebook" />
+					<a href="#" target={"_blank"} className="header__social-img">
+						<i className="bi bi-facebook"></i>
 					</a>
 				</li>
 				<li className="header__social-icon">
-					<a href="#" target={"_blank"}>
-						<img className="header__social-img" src="src/UI/Header/img/twitter.svg" alt="twitter" />
+					<a href="#" target={"_blank"} className="header__social-img">
+						<i className="bi bi-twitter"></i>
 					</a>
 				</li>
-				<li className="header__social-icon">
-					<a href="#" target={"_blank"}>
-						<img className="header__social-img" src="src/UI/Header/img/instagram.svg" alt="instagram" />
+				<li className="header__social-icon ">
+					<a href="#" target={"_blank"} className="header__social-img link">
+						<i className="bi bi-instagram"></i>
 					</a>
 				</li>
 			</ul>
 		</header>
 
-  )
-	
+	)
+
 }
 
 export default Header;

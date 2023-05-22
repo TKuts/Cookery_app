@@ -1,12 +1,12 @@
 .faster__recipe {
-  margin-bottom: 100px;
+  margin-bottom: 70px;
   &-title {
     font-weight: 600;
     font-size: 48px;
     letter-spacing: -0.04em;
     text-align: start;
     color: #000000;
-    margin-bottom: 50px;
+    margin-bottom: 40px;
   }
   &-block {
     display: flex;
@@ -75,7 +75,7 @@
       &__type {
         display: flex;
         align-items: center;
-        margin-bottom: 32px;
+        margin-bottom: 10px;
         &-icons {
           font-size: 20px;
           margin-right: 10px;
