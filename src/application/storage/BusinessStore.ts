@@ -18,9 +18,11 @@ interface Store {
   recipeId: number;
   recipeCategori: string;
   filteredRecipe: SelectedRecipe;
+  pageName: string;
   getRecipeId: (id: number) => void;
   getRecipeCategory: (nameCategori: string) => void;
   getFilteredRecipe: (object: {}) => void;
+  getPageName: (pageName: string) => void;
 }
 
 const recipeByCategoryFilter: string[] = [
@@ -37,6 +39,7 @@ export const store: Store = makeAutoObservable({
   recipeByCategory: [],
   recipeId: 0,
   filteredRecipe: {},
+  pageName: "",
   recipeCategori: "",
   getRecipeId: action(function (this: Store, id: number) {
     this.recipeId = id;
@@ -47,6 +50,9 @@ export const store: Store = makeAutoObservable({
   }),
   getFilteredRecipe: action(function (this: Store, object: SelectedRecipe) {
     this.filteredRecipe = object;
+  }),
+  getPageName: action(function (this: Store, pageName: string) {
+    this.pageName = pageName;
   }),
 });
 

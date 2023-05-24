@@ -4,7 +4,7 @@ import "./RecipeTitle.scss";
 import { SelectedRecipe } from "../../../domain/recipe-details";
 import { toJS } from "mobx";
 import { store } from "../../../application/storage/BusinessStore"
-
+import { useNavigate } from "react-router-dom"
 const RecipeTitle: React.FC = () => {
 
 	const { title, readyInMinutes, dishTypes } = store.filteredRecipe;
@@ -17,6 +17,8 @@ const RecipeTitle: React.FC = () => {
 		return newString;
 	};
 
+	// const navigate = useNavigate();
+	// const goBack = () => navigate(-1);
 	return (
 		store.filteredRecipe &&
 		<section >

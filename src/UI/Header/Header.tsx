@@ -12,13 +12,16 @@ const Header = () => {
 				Foodieland<span className="header__logo-point">.</span>
 			</Link>
 
-
 			<nav className="header__menu">
 				<ul className="header__menu-list">
 					<Link to={"/"} className="link">
 						<li className="header__menu-point ">Home</li>
 					</Link>
-					<li className="header__menu-point">Recipes</li>
+
+					<Link to={"/galary/:category"} className="link">
+						<li className="header__menu-point">Recipes</li>
+					</Link>
+
 					<li className="header__menu-point">Blog</li>
 					<li className="header__menu-point">About</li>
 				</ul>

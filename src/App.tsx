@@ -3,8 +3,8 @@ import "./App.scss";
 
 import { observer } from "mobx-react-lite";
 
-import { Routes, Route } from "react-router-dom"
-
+import { Routes, Route, useNavigate } from "react-router-dom"
+import { store } from "./application/storage/BusinessStore"
 import Header from "./UI/Header/Header";
 import HomePage from "./pages/HomePage/HomePage"
 import SelectedRecipePage from "./pages/SelectedRecipePage/SelectedRecipePage";
@@ -16,10 +16,22 @@ import Footer from "./UI/Footer/Footer";
 
 const App = observer(() => {
 
+	const navigate = useNavigate();
+	const goBack = () => navigate(-1);
+
+
 
 	return (
 		<div className="wrapper">
 			<Header />
+			<div className="arrow__wrap" >
+				{
+					store.pageName !== "Home" ? <i className="bi bi-caret-left arrow" onClick={goBack}></i> : <></>
+				}
+
+
+				<span className="arrow__wrap-tittle">{store.pageName}</span>
+			</div>
 			<Routes>
 				<Route path="/" element={<HomePage />} />
 				<Route path="/galary/:category" element={<Gallary />} />

@@ -8,6 +8,7 @@ import RecipeNutrition from "../../UI/RecipeDetails/RecipeNutrition/RecipeNutrit
 import RecipeIngredients from "../../UI/RecipeDetails/RecipeIngredients/RecipeIngredients"
 import MayLikeRecipes from "../../UI/MayLikeRecipes/MayLikeRecipes"
 
+
 import { SelectedRecipe, FilreredRecipe } from "../../domain/recipe-details"
 
 import { apiSelectedRecipe } from "../../adaptters/sendAllRequest"
@@ -20,6 +21,14 @@ interface PropsORecipeDetails {
 
 }
 
+// type RecipeByCategoryFilter = {
+// 	recipeByCategoryFilter: string[]
+// }
+
+//  type ModalFilterRecipes = {
+// 	madeFilterRecipe : (recipeByCategoryFilter: RecipeByCategoryFilter, respons: SelectedRecipe ) => void
+//  }
+
 const SelectedRecipePage: React.FC<PropsORecipeDetails> = observer(() => {
 
 	const { recipeId } = store;
@@ -27,20 +36,24 @@ const SelectedRecipePage: React.FC<PropsORecipeDetails> = observer(() => {
 	const recipeByCategoryFilter: string[] = ["id", "title", "readyInMinutes", "dishTypes", "image", "summary", "analyzedInstructions", "nutrition"]
 
 	useEffect(() => {
-		apiSelectedRecipe(recipeId).then((respons) => madeFilterRecioe(recipeByCategoryFilter, respons));
+		apiSelectedRecipe(recipeId).then((respons) => madeFilterRecipe(recipeByCategoryFilter, respons));
+
+		store.getPageName("Selected Recipe")
 
 	}, [recipeId])
 
 
-	const madeFilterRecioe = (howFiltered: string[], whatFiltered: SelectedRecipe) => {
+	const madeFilterRecipe = (howFiltered: string[], whatFiltered: SelectedRecipe) => {
 		let obj: FilreredRecipe | {} = {}
 
-		howFiltered.map((categori: string) => {
+		howFiltered.map((category: string) => {
 
-			obj[categori] = whatFiltered[categori]
+			obj[category] = whatFiltered[category]
 		})
 		store.getFilteredRecipe(obj)
 	}
+
+
 
 	return (
 		store.filteredRecipe.nutrition &&

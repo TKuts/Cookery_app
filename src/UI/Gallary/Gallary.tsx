@@ -16,6 +16,9 @@ const Gallary: React.FC = observer(() => {
 	useEffect(() => {
 		if (category)
 			actionSelectedRecipe(category);
+
+		store.getPageName("Galary")
+
 	}, [])
 
 	const actionSelectedRecipe = (selectedRecipe: string) => {
