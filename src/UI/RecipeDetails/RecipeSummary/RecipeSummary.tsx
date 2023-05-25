@@ -1,16 +1,13 @@
-import React, { useState, useEffect, ReactNode } from "react";
+import React, { ReactNode } from "react";
 import "./RecipeSummary.scss";
 
-import { SelectedRecipe } from "../../../domain/recipe-details";
-
-import { store } from "../../../application/storage/BusinessStore"
+import { store } from "../../../application/storage/BusinessStore";
 
 interface RecipeSummary {
 	children: ReactNode;
 }
 
 const RecipeSummary: React.FC<RecipeSummary> = ({ children }) => {
-
 
 	const { summary, title, image } = store.filteredRecipe;
 	const createMarkup = (summary: string) => {

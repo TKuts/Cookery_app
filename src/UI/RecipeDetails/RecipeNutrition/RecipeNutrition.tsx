@@ -6,19 +6,13 @@ import "./RecipeNutrition.scss";
 
 const RecipeNutrition: React.FC = () => {
 
-	const [stateNutrients, setStateNutrients] = useState<Nutrition[]>([])
+	const { nutrients } = store.filteredRecipe.nutrition;
 
-	const { nutrition } = store.filteredRecipe
+	const nutritionFilter = ['Calories', 'Fat', 'Protein', 'Carbohydrates', 'Cholesterol'];
 
-	useEffect(() => {
-		setStateNutrients(nutrition.nutrients)
-	}, [nutrition])
+	const nutritionWhatNeed: Nutrition[] = [];
 
-	const nutritionFilter = ['Calories', 'Fat', 'Protein', 'Carbohydrates', 'Cholesterol']
-
-	const nutritionWhatNeed: Nutrition[] = []
-
-	stateNutrients.map((element: Nutrition) => {
+	nutrients.map((element: Nutrition) => {
 		nutritionFilter.filter(word => {
 			if (word === element.name) {
 				nutritionWhatNeed.push(element)
@@ -26,22 +20,22 @@ const RecipeNutrition: React.FC = () => {
 		})
 	})
 
+	const renderNutrition = nutritionWhatNeed.map((element, index) => {
+		return (
+			<div className="nutrition__wrapper" key={index}>
+				<p className="nutrition__name">{element.name}</p>
+				<p className="nutrition__metric">
+					{Math.round(element.amount)} {element.unit}
+				</p>
+			</div>
+		)
+	})
+
 	return (
-		stateNutrients && store.filteredRecipe && nutritionWhatNeed &&
+		store.filteredRecipe && nutritionWhatNeed &&
 		<div className="nutrition">
 			<h3 className="nutrition__title">Nutrition Information</h3>
-			{
-				nutritionWhatNeed.map((element, index) => {
-					return (
-						<div className="nutrition__wrapper" key={index}>
-							<p className="nutrition__name">{element.name}</p>
-							<p className="nutrition__metric">
-								{Math.round(element.amount)} {element.unit}
-							</p>
-						</div>
-					)
-				})
-			}
+			{renderNutrition}
 		</div>
 	);
 };

@@ -26,30 +26,6 @@ export interface SelectedRecipe {
   analyzedInstructions: AnalyzedInstructions[];
 }
 
-export interface AnalyzedInstructions {
-  name?: string;
-  steps: Instructions[];
-}
-
-export interface Instructions {
-  number: number;
-  step: string;
-  ingredients: {
-    id: number;
-    name: string;
-    localizedName: string;
-    image?: string;
-  }[];
-  equipment: {
-    id: number;
-    name: string;
-    localizedName: string;
-    image?: string;
-  }[];
-  checked?: boolean;
-  unwrap?: boolean;
-}
-
 export interface Nutrition {
   name: string;
   amount: number;
@@ -58,18 +34,40 @@ export interface Nutrition {
 }
 
 export interface FilreredRecipe {
-  analyzedInstructions: AnalyzedInstructions[];
-  dishTypes: string[];
   id: number;
+  title: string;
+  readyInMinutes: number;
+  dishTypes: string[];
   image: string;
+  summary: string;
+  analyzedInstructions: AnalyzedInstructions[];
   nutrition: {
-    nutrients?: {}[];
+    nutrients?: Nutrition[];
     properties?: {}[];
     flavonoids?: {}[];
-    ingredients?: {}[];
+    ingredients?: Ingredients[];
     caloricBreakdown?: {}[];
   };
-  readyInMinutes: number;
-  summary: string;
-  title: string;
+}
+export interface AnalyzedInstructions {
+  name?: string;
+  steps: Instructions[];
+}
+export interface Instructions {
+  number: number;
+  step: string;
+  ingredients: {
+    id?: number;
+    name?: string;
+    localizedName?: string;
+    image?: string;
+  }[];
+  equipment: {
+    id?: number;
+    name?: string;
+    localizedName?: string;
+    image?: string;
+  }[];
+  checked?: boolean;
+  unwrap?: boolean;
 }
