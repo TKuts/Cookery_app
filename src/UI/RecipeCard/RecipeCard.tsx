@@ -1,26 +1,43 @@
 import React, { useState, useEffect } from "react";
-import "./FasterRecipes.scss";
 
-import { SelectedRecipe } from "../../domain/recipe-details";
 import { observer } from "mobx-react-lite";
-import { store } from "../../application/storage/BusinessStore"
-import { getFasterRecipes } from "../../adaptters/sendAllRequest"
-import { Link } from "react-router-dom"
+import { store } from "../../application/storage/BusinessStore";
+import { useParams } from "react-router-dom";
+import { getRecipeByCategory } from "../../adaptters/sendAllRequest";
+import { SelectedRecipe } from "../../domain/recipe-details";
 
-const FasterRecipes: React.FC = observer(() => {
-	const [allRecopes, setAllRecopes] = useState<SelectedRecipe[]>([])
+import "./RecipeCard.scss";
+import { Link } from "react-router-dom"
+interface PropsInformationForCard {
+	informationForCard: SelectedRecipe[];
+
+}
+
+const RecipeCard: React.FC<PropsInformationForCard> = observer(({ informationForCard }) => {
+
+	const { category } = useParams();
+	const [recipes, setRecipes] = useState<SelectedRecipe[] | []>([]);
 
 	useEffect(() => {
-		getFasterRecipes().then((respons) => setAllRecopes(respons.results))
+		if (category)
+			actionSelectedRecipe(category);
+
+		store.getPageName("Galary")
+
 	}, [])
 
-	const checkInstruction = (elemId: number): void => {
-		allRecopes.map(instruction => {
-			if (instruction.id === elemId) {
-				instruction.like = !instruction.like;
-			}
-		})
+	// console.log("informationForCard", informationForCard);
+
+
+	const actionSelectedRecipe = (selectedRecipe: string) => {
+		getRecipeByCategory(selectedRecipe).then((respons: { results: SelectedRecipe[] }) => setRecipes(respons.results));
 	}
+
+	const useMobx = (id: number) => {
+		store.getRecipeId(id);
+	}
+
+
 
 	const dishTypes = (data: string[]): any => {
 		let newString = "";
@@ -32,16 +49,10 @@ const FasterRecipes: React.FC = observer(() => {
 		return newString;
 	};
 
-	const useMobx = (id: number) => {
-		store.getRecipeId(id);
-		// store.getRecipeByCategory(randomRecipes)
-	}
-
 	return (
 		<section className="faster__recipe">
-			<h2 className="faster__recipe-title">Simple and tasty recipes</h2>
 			<div className="faster__recipe-block">
-				{allRecopes && allRecopes.map((recipe) => (
+				{informationForCard.map((recipe) => (
 					<Link to={`/selectedRecipe/${recipe.id}`} className="faster__recipe-flashcard link" key={recipe.id}
 						onClick={() => { { useMobx(recipe.id) } }
 						}>
@@ -62,9 +73,7 @@ const FasterRecipes: React.FC = observer(() => {
 			</div>
 
 		</section>
-
 	)
-
 })
 
-export default FasterRecipes;
+export default RecipeCard;

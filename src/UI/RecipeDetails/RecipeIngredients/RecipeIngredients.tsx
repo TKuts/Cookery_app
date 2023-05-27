@@ -16,7 +16,7 @@ const RecipeIngredients: React.FC = () => {
 		event.dataTransfer.setData("getData", widgetType);
 	};
 
-	const renderIngredients = ingredients.map((elem, index) => (
+	const renderIngredients = ingredients?.map((elem, index) => (
 		<li
 			key={index}
 			className="recipe__section-ingredient"

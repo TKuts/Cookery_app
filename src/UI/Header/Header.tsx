@@ -18,7 +18,7 @@ const Header = () => {
 						<li className="header__menu-point ">Home</li>
 					</Link>
 
-					<Link to={"/galary/:category"} className="link">
+					<Link to={"/recipes"} className="link">
 						<li className="header__menu-point">Recipes</li>
 					</Link>
 

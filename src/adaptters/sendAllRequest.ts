@@ -5,12 +5,14 @@ const NUTRITION = import.meta.env.VITE_REACT_ALL_NUTRITION;
 const ALL_RECIPES = import.meta.env.VITE_REACT_ALL_RECIPES;
 const RANDOM_NUMBER = import.meta.env.VITE_REACT_RANDOM_NUMBER;
 const TAGS = import.meta.env.VITE_REACT_RANDOM_TAGS;
+const RECIPE_INFORMATION = import.meta.env.VITE_REACT_RECIPE_INFORMATION;
 
 import sendRequest from "../adaptters/sendRequest";
 import {
   Ingredients,
   Nutrition,
   SelectedRecipe,
+  FyllRecipeFromApi,
 } from "../domain/recipe-details";
 
 export const apiSelectedRecipe = (id: number) => {
@@ -40,8 +42,14 @@ export const getRecipeByCategory = (nameCategories: string): any => {
   ).then((respons: { results: SelectedRecipe[] }) => respons);
 };
 
+export const getFasterRecipes = () => {
+  return sendRequest(
+    `${API}${ALL_RECIPES}maxReadyTime=10&${RECIPE_INFORMATION}&number=9&${API_KEY}`
+  ).then((respons: { results: SelectedRecipe[] }) => respons);
+};
+
 export const getAllRecipes = () => {
   return sendRequest(
-    `${API}${ALL_RECIPES}maxReadyTime=10&addRecipeInformation=true&number=9&${API_KEY}`
+    `https://api.spoonacular.com/recipes/complexSearch?&${RECIPE_INFORMATION}number=100&${API_KEY}`
   ).then((respons: { results: SelectedRecipe[] }) => respons);
 };

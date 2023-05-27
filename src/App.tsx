@@ -12,6 +12,7 @@ import ErrorPage from "./pages/ErrorPage/ErrorPage"
 
 import Gallary from "./UI/Gallary/Gallary";
 
+import RecipesPage from "./pages/RecipesPage/RecipesPage";
 import Footer from "./UI/Footer/Footer";
 
 const App = observer(() => {
@@ -34,7 +35,7 @@ const App = observer(() => {
 			</div>
 			<Routes>
 				<Route path="/" element={<HomePage />} />
-				<Route path="/galary/:category" element={<Gallary />} />
+				<Route path="/recipes" element={<RecipesPage />} />
 				<Route path="/selectedRecipe/:id" element={<SelectedRecipePage />} />
 				<Route path="/*" element={<ErrorPage />} />
 			</Routes>

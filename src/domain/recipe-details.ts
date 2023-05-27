@@ -71,3 +71,5 @@ export interface Instructions {
   checked?: boolean;
   unwrap?: boolean;
 }
+
+export interface FyllRecipeFromApi {}
