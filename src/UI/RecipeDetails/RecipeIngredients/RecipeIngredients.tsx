@@ -5,11 +5,8 @@ import { store } from "../../../application/storage/BusinessStore";
 import DragAndDrop from "../../DragAndDrop/DragAndDrop";
 import OtherRecipe from "../../OtherRecipe/OtherRecipe";
 
-interface PropsRecipeIngredients {
 
-}
-
-const RecipeIngredients: React.FC<PropsRecipeIngredients> = () => {
+const RecipeIngredients: React.FC = () => {
 
 	const { ingredients } = store.filteredRecipe.nutrition;
 
