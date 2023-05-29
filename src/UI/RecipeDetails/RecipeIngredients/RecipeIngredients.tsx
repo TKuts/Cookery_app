@@ -5,8 +5,11 @@ import { store } from "../../../application/storage/BusinessStore";
 import DragAndDrop from "../../DragAndDrop/DragAndDrop";
 import OtherRecipe from "../../OtherRecipe/OtherRecipe";
 
+interface PropsRecipeIngredients {
 
-const RecipeIngredients: React.FC = () => {
+}
+
+const RecipeIngredients: React.FC<PropsRecipeIngredients> = () => {
 
 	const { ingredients } = store.filteredRecipe.nutrition;
 
@@ -16,7 +19,7 @@ const RecipeIngredients: React.FC = () => {
 		event.dataTransfer.setData("getData", widgetType);
 	};
 
-	const renderIngredients = ingredients?.map((elem, index) => (
+	const renderIngredients = ingredients.map((elem, index) => (
 		<li
 			key={index}
 			className="recipe__section-ingredient"
@@ -30,7 +33,7 @@ const RecipeIngredients: React.FC = () => {
 	))
 
 	return (
-		ingredients &&
+		ingredients && renderIngredients &&
 		<section className="recipe__ingredient">
 			<div className="recipe__ingredient-section">
 				<h3 className="recipe__ingredient-title">Ingredients</h3>

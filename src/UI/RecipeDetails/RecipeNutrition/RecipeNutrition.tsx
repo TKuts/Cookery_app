@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { Nutrition } from "../../../domain/recipe-details";
+import React from "react";
 import { store } from "../../../application/storage/BusinessStore";
-import { toJS } from "mobx";
+import { Nutrition } from "../../../domain/recipe-details";
 import "./RecipeNutrition.scss";
 
 const RecipeNutrition: React.FC = () => {

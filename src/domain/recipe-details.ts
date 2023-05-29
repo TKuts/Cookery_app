@@ -42,10 +42,10 @@ export interface FilreredRecipe {
   summary: string;
   analyzedInstructions: AnalyzedInstructions[];
   nutrition: {
-    nutrients?: Nutrition[];
+    nutrients: Nutrition[];
     properties?: {}[];
     flavonoids?: {}[];
-    ingredients?: Ingredients[];
+    ingredients: Ingredients[];
     caloricBreakdown?: {}[];
   };
 }
