@@ -35,7 +35,7 @@ const RecipesPage: React.FC = observer(() => {
 
 
 	return (
-		// store.filteredRecipe.nutrition &&
+
 		<section className="detailed__wrapper">
 			<RecipeCard informationForCard={currentPost} />
 			<Pagination totalPosts={allRecipes.length} postsPerPage={postsPerPage} setCurrentPage={setCurrentPage} />

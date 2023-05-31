@@ -4,6 +4,10 @@ import "./RecipeTitle.scss";
 import { store } from "../../../application/storage/BusinessStore";
 const RecipeTitle: React.FC = () => {
 
+	// if (Object.keys(store.filteredRecipe).length !== 0) {
+
+	// }
+
 	const { title, readyInMinutes, dishTypes } = store.filteredRecipe;
 
 	const readDishTypes = (data: string[]): any => {

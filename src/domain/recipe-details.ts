@@ -49,6 +49,7 @@ export interface FilreredRecipe {
     caloricBreakdown?: {}[];
   };
 }
+
 export interface AnalyzedInstructions {
   name?: string;
   steps: Instructions[];

@@ -16,7 +16,30 @@ interface Store {
 export const store: Store = makeAutoObservable({
   recipeId: 0,
   recipeCategori: "",
-  filteredRecipe: {},
+  filteredRecipe: {
+    id: 0,
+    title: "",
+    readyInMinutes: 0,
+    dishTypes: [],
+    image: "",
+    summary: "",
+    analyzedInstructions: [
+      {
+        steps: [
+          {
+            number: 0,
+            step: "",
+            ingredients: [],
+            equipment: [],
+          },
+        ],
+      },
+    ],
+    nutrition: {
+      nutrients: [],
+      ingredients: [],
+    },
+  },
   pageName: "",
 
   getRecipeId: action(function (this: Store, id: number) {
@@ -25,9 +48,10 @@ export const store: Store = makeAutoObservable({
   getRecipeCategory: action(function (this: Store, nameCategori: string) {
     this.recipeCategori = nameCategori;
   }),
+
   getFilteredRecipe: action(function (this: Store, object: FilreredRecipe) {
     this.filteredRecipe = object;
-    console.log("this.filteredRecipe", toJS(this.filteredRecipe));
+    console.log(" this.filteredRecipe", toJS(this.filteredRecipe));
   }),
   getPageName: action(function (this: Store, pageName: string) {
     this.pageName = pageName;

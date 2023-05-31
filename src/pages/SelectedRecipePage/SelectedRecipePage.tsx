@@ -8,10 +8,13 @@ import RecipeNutrition from "../../UI/RecipeDetails/RecipeNutrition/RecipeNutrit
 import RecipeSummary from "../../UI/RecipeDetails/RecipeSummary/RecipeSummary";
 import RecipeTitle from "../../UI/RecipeDetails/RecipeTitle/RecipeTitle";
 
+
+
 import { observer } from "mobx-react-lite";
 import { apiSelectedRecipe } from "../../adaptters/sendAllRequest";
 import { store } from "../../application/storage/BusinessStore";
 
+import { FilreredRecipe } from "../../domain/recipe-details";
 
 const SelectedRecipePage: React.FC = observer(() => {
 
@@ -24,6 +27,8 @@ const SelectedRecipePage: React.FC = observer(() => {
 			const { id, title, readyInMinutes, dishTypes, image, summary, analyzedInstructions, nutrition } = respons;
 
 			store.getFilteredRecipe({ id, title, readyInMinutes, dishTypes, image, summary, analyzedInstructions, nutrition });
+
+
 		})
 
 		store.getPageName("Selected Recipe")
