@@ -20,6 +20,8 @@ const SelectedRecipePage: React.FC = observer(() => {
 
 	const { recipeId } = store;
 
+
+
 	useEffect(() => {
 
 		apiSelectedRecipe(recipeId).then((respons) => {
@@ -36,7 +38,7 @@ const SelectedRecipePage: React.FC = observer(() => {
 
 
 	return (
-		store.filteredRecipe.nutrition &&
+		store.filteredRecipe &&
 		<section className="detailed__wrapper">
 			<RecipeTitle />
 			<RecipeSummary >

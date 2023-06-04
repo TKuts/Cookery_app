@@ -1,14 +1,23 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import "./RecipeTitle.scss";
 
 import { store } from "../../../application/storage/BusinessStore";
+
 const RecipeTitle: React.FC = () => {
 
-	// if (Object.keys(store.filteredRecipe).length !== 0) {
-
-	// }
-
 	const { title, readyInMinutes, dishTypes } = store.filteredRecipe;
+
+	useEffect(() => {
+		scrollToMyRef()
+	}, [store.recipeId]);
+
+	const myRef = useRef<HTMLHeadingElement>(null);
+
+	const scrollToMyRef = () => {
+		if (myRef.current) {
+			window.scrollTo(0, myRef.current.scrollHeight)
+		}
+	}
 
 	const readDishTypes = (data: string[]): any => {
 		let newString = "";
@@ -21,7 +30,7 @@ const RecipeTitle: React.FC = () => {
 	return (
 		store.filteredRecipe &&
 		<section >
-			<h2 className="detailed__title">{title}</h2>
+			<h2 className="detailed__title" ref={myRef}>{title} </h2>
 			<div className="detailed__information">
 				<div className="detailed__time">
 					<i className="fa-regular fa-hourglass-half detailed__time-icons"></i>

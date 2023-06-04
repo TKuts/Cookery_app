@@ -51,7 +51,6 @@ export const store: Store = makeAutoObservable({
 
   getFilteredRecipe: action(function (this: Store, object: FilreredRecipe) {
     this.filteredRecipe = object;
-    console.log(" this.filteredRecipe", toJS(this.filteredRecipe));
   }),
   getPageName: action(function (this: Store, pageName: string) {
     this.pageName = pageName;

@@ -25,7 +25,6 @@ const RecipesPage: React.FC = observer(() => {
 
 	const currentPost = allRecipes.slice(firstPostIndex, lastPostIndex);
 
-	console.log();
 
 	useEffect(() => {
 		getAllRecipes().then((respons) => setAllRecipes(respons.results))
@@ -38,7 +37,7 @@ const RecipesPage: React.FC = observer(() => {
 
 		<section className="detailed__wrapper">
 			<RecipeCard informationForCard={currentPost} />
-			<Pagination totalPosts={allRecipes.length} postsPerPage={postsPerPage} setCurrentPage={setCurrentPage} />
+			<Pagination totalPosts={allRecipes.length} postsPerPage={postsPerPage} setCurrentPage={setCurrentPage} currentPage={currentPage} />
 		</section>
 	);
 });
