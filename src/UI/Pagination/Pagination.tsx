@@ -12,14 +12,25 @@ interface PropsPagination {
 
 const Pagination: React.FC<PropsPagination> = observer(({ totalPosts, postsPerPage, setCurrentPage, currentPage }) => {
 
-	let pages = [];
+	let pages: number[] = [];
 
 	for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {
 		pages.push(i)
 	}
 
-	let renderButton = (allButton: number[]): number[] => {
-		return allButton.slice(0, 5);
+	let pageNumbers = (total: number, max: number, current: number) => {
+		const half = Math.round(max / 2);
+		let to = max;
+
+		if (current + half >= total) {
+			to = total;
+		} else if (current > half) {
+			to = current + half;
+		}
+
+		let from = to - max;
+
+		return Array.from({ length: max }, (_, i) => (i + 1) + from);
 
 	}
 
@@ -43,26 +54,35 @@ const Pagination: React.FC<PropsPagination> = observer(({ totalPosts, postsPerPa
 
 	}
 
+	const renderPagination = pageNumbers(pages.length, 6, currentPage).map((page, index) => {
+		return (
+			<button
+				className={currentPage === page ? "pagination__btn focus" : "pagination__btn"}
+				type="button" key={index}
+				onClick={() => setCurrentPage(page)}>
+				{page}
+			</button>
+		)
+	})
+
+
 
 	return (
-
-		<section>
-			<button onClick={() => setCurrentPage(1)}> ba </button>
-			<button onClick={() => setCurrentPage(buttonOneStep("previous"))}> prev </button>
-			{
-				pages.map((page, index) => {
-					return (
-						<button key={index} onClick={() => setCurrentPage(page)}>
-							{page}
-						</button>
-					)
-				})
-			}
-			<button onClick={() => setCurrentPage(buttonOneStep("next"))}> next </button>
-			<button onClick={() => setCurrentPage(pages.length)}>ga</button>
+		<section className="pagination">
+			<button className="pagination__btn" type="button" onClick={() => setCurrentPage(1)}>
+				<i className="bi bi-chevron-double-left"></i>
+			</button>
+			<button className="pagination__btn" type="button" onClick={() => setCurrentPage(buttonOneStep("previous"))}>
+				<i className="bi bi-chevron-left"></i>
+			</button>
+			{renderPagination}
+			<button className="pagination__btn" type="button" onClick={() => setCurrentPage(buttonOneStep("next"))}>
+				<i className="bi bi-chevron-right"></i>
+			</button>
+			<button className="pagination__btn" type="button" onClick={() => setCurrentPage(pages.length)}>
+				<i className="bi bi-chevron-double-right"></i>
+			</button>
 		</section>
-
-
 	)
 })
 
