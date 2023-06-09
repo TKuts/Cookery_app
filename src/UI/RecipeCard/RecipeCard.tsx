@@ -33,7 +33,6 @@ const RecipeCard: React.FC<PropsRecipeCard> = observer(({ informationForCard, ch
 	};
 
 	return (
-
 		<section className="recipe-card">
 			{
 				informationForCard.map((recipe) => (

@@ -18,7 +18,7 @@ const Header = () => {
 						<li className="header__menu-point ">Home</li>
 					</Link>
 
-					<Link to={"/recipes"} className="link">
+					<Link to={"/galary/all"} className="link">
 						<li className="header__menu-point">Recipes</li>
 					</Link>
 

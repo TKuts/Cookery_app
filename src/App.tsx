@@ -35,7 +35,7 @@ const App = observer(() => {
 			</div>
 			<Routes>
 				<Route path="/" element={<HomePage />} />
-				<Route path="/recipes" element={<RecipesPage />} />
+				<Route path="/galary/:category" element={<RecipesPage />} />
 				<Route path="/selectedRecipe/:id" element={<SelectedRecipePage />} />
 				<Route path="/*" element={<ErrorPage />} />
 			</Routes>

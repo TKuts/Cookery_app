@@ -36,9 +36,9 @@ export const randomRecipe = (
   }
 };
 
-export const getRecipeByCategory = (nameCategories: string): any => {
+export const getRecipeByCategory = (nameCategories: string) => {
   return sendRequest(
-    `${API}${ALL_RECIPES}addRecipeInformation=true&number=9&type=${nameCategories}&${API_KEY}`
+    `${API}${ALL_RECIPES}addRecipeInformation=true&number=100&type=${nameCategories}&${API_KEY}`
   ).then((respons: { results: SelectedRecipe[] }) => respons);
 };
 
