@@ -24,7 +24,6 @@ const FilterBlock: React.FC<FilterBlockProps> = observer(({ dataForFilter }) => 
 		}
 	})
 	console.log("newArray", newArray);
-
 	// useEffect(() => {
 	// 	console.log("analyzedInstructions", analyzedInstructions);
 	// }, [dataForFilter])

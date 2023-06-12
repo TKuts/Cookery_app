@@ -1,0 +1,57 @@
+.recipe-card-skeleton {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+
+  &__wrapper {
+    width: 400px;
+    height: 432px;
+    background-color: rgb(217, 217, 217);
+    border-radius: 30px;
+    margin: 0 38px 15px 0;
+    padding: 24px;
+    justify-content: center;
+    align-items: start;
+    &:nth-child(3n) {
+      margin-right: 0;
+    }
+    &:nth-child(1n + 7) {
+      margin-bottom: 0;
+    }
+  }
+
+  &__img {
+    width: 352px;
+    height: 260px;
+    border-radius: 30px;
+    margin-bottom: 16px;
+    border-radius: 30px;
+    background: rgb(209, 209, 209);
+  }
+  &__title {
+    height: 1.45rem;
+    width: 80%;
+    margin-bottom: 1rem;
+    margin-bottom: 16px;
+    border-radius: 30px;
+    background: rgb(209, 209, 209);
+  }
+  &__text {
+    height: 0.75rem;
+    width: 25%;
+    margin-bottom: 1rem;
+    margin-bottom: 16px;
+    border-radius: 30px;
+    background: rgb(209, 209, 209);
+  }
+}
+
+@keyframes pulse {
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}

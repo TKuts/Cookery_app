@@ -1,9 +1,9 @@
-import React, { useEffect, ReactNode } from "react";
+import React, { useEffect, ReactNode, useState } from "react";
 
 import { observer } from "mobx-react-lite";
 import { store } from "../../application/storage/BusinessStore";
 import { SelectedRecipe } from "../../domain/recipe-details";
-
+import SkeletonRecipeCard from "../SkeletonRecipeCard/SkeletonRecipeCard"
 import "./RecipeCard.scss";
 import { Link } from "react-router-dom"
 
@@ -14,9 +14,15 @@ interface PropsRecipeCard {
 
 const RecipeCard: React.FC<PropsRecipeCard> = observer(({ informationForCard, children }) => {
 
+
+	const [lenghtCard, setLenghtCard] = useState(0)
+
 	useEffect(() => {
+		setLenghtCard(informationForCard.length)
 		store.getPageName("Recipes")
-	}, [])
+	}, [informationForCard])
+
+
 
 	const useMobx = (id: number) => {
 		store.getRecipeId(id);
@@ -32,11 +38,11 @@ const RecipeCard: React.FC<PropsRecipeCard> = observer(({ informationForCard, ch
 		return newString;
 	};
 
-	return (
+	const renderComponent = (
 		<section className="recipe-card">
 			{
 				informationForCard.map((recipe) => (
-					<div className="recipe-card__wrapper">
+					<div className="recipe-card__wrapper ">
 						<Link to={`/selectedRecipe/${recipe.id}`} className="flashcard link" key={recipe.id}
 							onClick={() => { { useMobx(recipe.id) } }
 							}>
@@ -61,6 +67,15 @@ const RecipeCard: React.FC<PropsRecipeCard> = observer(({ informationForCard, ch
 				))
 			}
 		</section>
+	)
+
+
+	return (
+		<>
+			{
+				lenghtCard ? renderComponent : <SkeletonRecipeCard lengthRender={9} />
+			}
+		</>
 	)
 })
 

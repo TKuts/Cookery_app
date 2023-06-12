@@ -2,8 +2,8 @@
   display: flex;
   flex-wrap: wrap;
   margin-bottom: 20px;
+
   &__wrapper {
-    position: relative;
     margin: 0 38px 15px 0;
     &:nth-child(3n) {
       margin-right: 0;
@@ -32,14 +32,6 @@
     width: 352px;
     height: 260px;
     background: linear-gradient(90deg, #e9e8e8 0%, #faf9f9 40px, #e9e8e8 80px);
-    background-size: 300%;
-    background-position: 100% 0;
-    animation: move-gradient 1.9s infinite;
-  }
-  @keyframes move-gradient {
-    to {
-      background-position: -100% 0;
-    }
   }
 
   &__title {
