@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./Pagination.scss";
 
 import { observer } from "mobx-react-lite";
+import SkeletonPagination from "../Skeleton/SkeletonPagination/SkeletonPagination"
 
 interface PropsPagination {
 	totalPosts: number,
@@ -56,6 +57,7 @@ const Pagination: React.FC<PropsPagination> = observer(({ totalPosts, postsPerPa
 
 	const renderPagination = pageNumbers(pages.length, 6, currentPage).map((page, index) => {
 		return (
+			totalPosts &&
 			<button
 				className={currentPage === page ? "pagination__btn focus" : "pagination__btn"}
 				type="button" key={index}
@@ -65,9 +67,7 @@ const Pagination: React.FC<PropsPagination> = observer(({ totalPosts, postsPerPa
 		)
 	})
 
-
-
-	return (
+	const renderComponent = (
 		<section className="pagination">
 			<button className="pagination__btn" type="button" onClick={() => setCurrentPage(1)}>
 				<i className="bi bi-chevron-double-left"></i>
@@ -83,6 +83,17 @@ const Pagination: React.FC<PropsPagination> = observer(({ totalPosts, postsPerPa
 				<i className="bi bi-chevron-double-right"></i>
 			</button>
 		</section>
+	);
+
+	return (
+		<>
+			{
+				totalPosts ? renderComponent : <SkeletonPagination />
+
+			}
+
+		</>
+
 	)
 })
 

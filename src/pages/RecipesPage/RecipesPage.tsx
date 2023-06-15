@@ -18,17 +18,17 @@ import { store } from "../../application/storage/BusinessStore";
 
 const RecipesPage: React.FC = observer(() => {
 
-	const { recipeId } = store;
+
 	const [allRecipes, setAllRecipes] = useState<SelectedRecipe[]>([])
 	const [currentPage, setCurrentPage] = useState<number>(1)
 	const [postsPerPage, setPostsPerPage] = useState<number>(6)
 	const { category } = useParams()
 
-
 	const lastPostIndex = currentPage * postsPerPage;
 	const firstPostIndex = lastPostIndex - postsPerPage;
 
 	const currentPost = allRecipes.slice(firstPostIndex, lastPostIndex);
+
 
 
 	useEffect(() => {
@@ -54,7 +54,7 @@ const RecipesPage: React.FC = observer(() => {
 	return (
 		<section className="detailed__wrapper">
 			<FilterBlock dataForFilter={allRecipes} />
-			<RecipeCard informationForCard={currentPost} />
+			<RecipeCard informationForCard={currentPost} sizeSkeleton={category} />
 			<Pagination totalPosts={allRecipes.length} postsPerPage={postsPerPage} setCurrentPage={setCurrentPage} currentPage={currentPage} />
 		</section>
 	);

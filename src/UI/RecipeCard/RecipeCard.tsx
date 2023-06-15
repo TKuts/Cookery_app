@@ -3,21 +3,26 @@ import React, { useEffect, ReactNode, useState } from "react";
 import { observer } from "mobx-react-lite";
 import { store } from "../../application/storage/BusinessStore";
 import { SelectedRecipe } from "../../domain/recipe-details";
-import SkeletonRecipeCard from "../SkeletonRecipeCard/SkeletonRecipeCard"
+import SkeletonRecipeCard from "../Skeleton/SkeletonRecipeCard/SkeletonRecipeCard"
 import "./RecipeCard.scss";
 import { Link } from "react-router-dom"
 
 interface PropsRecipeCard {
 	informationForCard: SelectedRecipe[];
+	sizeSkeleton: string | undefined;
 	children?: ReactNode;
 }
 
-const RecipeCard: React.FC<PropsRecipeCard> = observer(({ informationForCard, children }) => {
+const RecipeCard: React.FC<PropsRecipeCard> = observer(({ informationForCard, children, sizeSkeleton }) => {
 
+	let sizeForSkeleton: number | undefined;
+
+	sizeSkeleton === undefined ? sizeForSkeleton = 9 : sizeForSkeleton = 6;
 
 	const [lenghtCard, setLenghtCard] = useState(0)
 
 	useEffect(() => {
+
 		setLenghtCard(informationForCard.length)
 		store.getPageName("Recipes")
 	}, [informationForCard])
@@ -42,14 +47,10 @@ const RecipeCard: React.FC<PropsRecipeCard> = observer(({ informationForCard, ch
 		<section className="recipe-card">
 			{
 				informationForCard.map((recipe) => (
-					<div className="recipe-card__wrapper ">
+					<div className="recipe-card__wrapper">
 						<Link to={`/selectedRecipe/${recipe.id}`} className="flashcard link" key={recipe.id}
-							onClick={() => { { useMobx(recipe.id) } }
-							}>
-							<img className="flashcard__img" src={recipe.image} alt={`img-recceps ${recipe.id}`}
-
-							/>
-
+							onClick={() => { { useMobx(recipe.id) } }}>
+							<img className="flashcard__img" src={recipe.image} alt={`img-recceps ${recipe.id}`} />
 							<h1 className="flashcard__title">{recipe.title}</h1>
 							<div className="flashcard__information">
 								<div className="flashcard__information-time">
@@ -69,11 +70,10 @@ const RecipeCard: React.FC<PropsRecipeCard> = observer(({ informationForCard, ch
 		</section>
 	)
 
-
 	return (
 		<>
 			{
-				lenghtCard ? renderComponent : <SkeletonRecipeCard lengthRender={9} />
+				lenghtCard ? renderComponent : <SkeletonRecipeCard lengthRender={sizeForSkeleton} />
 			}
 		</>
 	)

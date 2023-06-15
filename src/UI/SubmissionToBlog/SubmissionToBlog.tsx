@@ -19,6 +19,7 @@ const SubmissionToBlog: React.FC = observer(() => {
 			</div>
 		</section>
 	)
+
 })
 
 export default SubmissionToBlog;
