@@ -6,6 +6,7 @@ import "./RecipesPage.scss";
 import Pagination from "../../UI/Pagination/Pagination";
 import RecipeCard from "../../UI/RecipeCard/RecipeCard";
 import FilterBlock from "../../UI/FilterBlock/FilterBlock"
+import SearchBar from "../../UI/SearchBar/SearchBar";
 import { getRecipeByCategory } from "../../adaptters/sendAllRequest";
 
 import { getAllRecipes } from "../../adaptters/sendAllRequest";
@@ -53,6 +54,7 @@ const RecipesPage: React.FC = observer(() => {
 
 	return (
 		<section className="detailed__wrapper">
+			{/* <SearchBar dataForFilter={allRecipes} /> */}
 			<FilterBlock dataForFilter={allRecipes} />
 			<RecipeCard informationForCard={currentPost} sizeSkeleton={category} />
 			<Pagination totalPosts={allRecipes.length} postsPerPage={postsPerPage} setCurrentPage={setCurrentPage} currentPage={currentPage} />

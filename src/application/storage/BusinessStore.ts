@@ -7,6 +7,7 @@ interface Store {
   recipeCategori: string;
   filteredRecipe: FilreredRecipe;
   pageName: string;
+	dataForFilter: string[];
   getRecipeId: (id: number) => void;
   getRecipeCategory: (nameCategori: string) => void;
   getFilteredRecipe: (object: FilreredRecipe) => void;
@@ -41,6 +42,7 @@ export const store: Store = makeAutoObservable({
     },
   },
   pageName: "",
+	dataForFilter: [],
 
   getRecipeId: action(function (this: Store, id: number) {
     this.recipeId = id;
@@ -54,5 +56,8 @@ export const store: Store = makeAutoObservable({
   }),
   getPageName: action(function (this: Store, pageName: string) {
     this.pageName = pageName;
+  }),
+	getDataForFilter: action(function (this: Store, dataForFilter: string[]) {
+    this.dataForFilter = dataForFilter;
   }),
 });

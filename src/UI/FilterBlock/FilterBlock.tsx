@@ -1,44 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import "./FilterBlock.scss";
 
 import { observer } from "mobx-react-lite";
+import SearchBar from "../SearchBar/SearchBar";
+import SearchResultList from "../SearchResultList/SearchResultList";
+// import { store } from "../../application/storage/BusinessStore";
 import { FilreredRecipe } from "../../domain/recipe-details";
+
 
 interface FilterBlockProps {
 	dataForFilter: FilreredRecipe[];
 }
 
-const FilterBlock: React.FC<FilterBlockProps> = observer(
-	({ dataForFilter }) => {
-		const nameIngredients: string[] = [];
+const FilterBlock: React.FC<FilterBlockProps> = observer(({ dataForFilter }) => {
 
-		// const analyzedInstruction = dataForFilter.forEach(allRecipes => allRecipes.analyzedInstructions.forEach(steps => steps.steps.forEach(ingredients => ingredients.ingredients.forEach(name => nameIngredients.push(name.name)))))
+	const [result, setResult] = useState<string[]>([])
 
-		const analyzedInstruction = dataForFilter.forEach((allRecipes) =>
-			allRecipes.analyzedInstructions.forEach((steps) =>
-				steps.steps.forEach((arrIngredients) =>
-					arrIngredients.ingredients.forEach((names) =>
-						nameIngredients.push(names.name)
-					)
-				)
-			)
-		);
-
-		console.log("nameIngredients", nameIngredients);
-
-		const newArray: string[] = [];
-		nameIngredients.forEach((name) => {
-			if (!newArray.includes(name)) {
-				newArray.push(name);
-			}
-		});
-		console.log("newArray", newArray);
-		// useEffect(() => {
-		// 	console.log("analyzedInstructions", analyzedInstructions);
-		// }, [dataForFilter])
-
-		return <></>;
-	}
+	return (
+		<section>
+			<SearchBar dataForFilter={dataForFilter} setResult={setResult} />
+			<SearchResultList results={result} />
+		</section>)
+}
 );
 
 export default FilterBlock;
