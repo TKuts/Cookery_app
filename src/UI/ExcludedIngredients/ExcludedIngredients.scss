@@ -1,0 +1,16 @@
+.excluded__ingredients {
+  display: flex;
+	flex-wrap:wrap;
+  &-title {
+    height: 100%;
+    font-size: 1.25rem;
+    margin-right: 10px;
+		line-height: 22px;
+    letter-spacing: -0.02em;
+    color: #00000099;
+    cursor: pointer;
+    &:last-child {
+      margin-right: 0px;
+    }
+  }
+}

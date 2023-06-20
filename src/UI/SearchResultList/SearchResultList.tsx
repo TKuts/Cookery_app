@@ -6,13 +6,17 @@ import { FilreredRecipe } from "../../domain/recipe-details";
 import { values } from "mobx";
 
 interface SearchResultListProps {
-	results: string[]
+	results: string[],
+	excludedIngredients: () => void,
 }
 
-const SearchResultList: React.FC<SearchResultListProps> = observer(({ results }) => {
+const SearchResultList: React.FC<SearchResultListProps> = observer(({ results, excludedIngredients }) => {
+
+
 
 	const renderResult = results.map((result, index) => {
-		return <div className="result-list__item" key={index}>{result}</div>
+		return <div className="result-list__item" key={index} onClick={() => excludedIngredients(result)
+		}>{result}</div>
 	})
 
 	return (

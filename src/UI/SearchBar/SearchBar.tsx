@@ -19,9 +19,7 @@ const SearchBar: React.FC<SearchBarProps> = observer(({ dataForFilter, setResult
 		allRecipes.analyzedInstructions.forEach((steps) =>
 			steps.steps.forEach((arrIngredients) =>
 				arrIngredients.ingredients.forEach((names) => {
-			
-						nameIngredients.push(names.name)
-				
+					nameIngredients.push(names.name)
 				}
 				)
 			)

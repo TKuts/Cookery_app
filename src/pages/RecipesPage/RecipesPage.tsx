@@ -53,8 +53,7 @@ const RecipesPage: React.FC = observer(() => {
 	}, [category])
 
 	return (
-		<section className="detailed__wrapper">
-			{/* <SearchBar dataForFilter={allRecipes} /> */}
+		<section className="recipe__page">
 			<FilterBlock dataForFilter={allRecipes} />
 			<RecipeCard informationForCard={currentPost} sizeSkeleton={category} />
 			<Pagination totalPosts={allRecipes.length} postsPerPage={postsPerPage} setCurrentPage={setCurrentPage} currentPage={currentPage} />
