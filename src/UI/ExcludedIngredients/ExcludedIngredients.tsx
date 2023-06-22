@@ -14,8 +14,6 @@ const ExcludedIngredients: React.FC<ExcludedIngredientsProps> = observer(({ sele
 	)
 
 
-
-
 	return (
 		<section className="excluded__ingredients">
 			{renderExcludedIngredients}

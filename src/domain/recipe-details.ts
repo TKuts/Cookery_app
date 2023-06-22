@@ -59,7 +59,7 @@ export interface Instructions {
   step: string;
   ingredients: {
     id?: number;
-    name?: string;
+    name: string;
     localizedName?: string;
     image?: string;
   }[];

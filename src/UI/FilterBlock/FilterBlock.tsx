@@ -15,11 +15,15 @@ interface FilterBlockProps {
 
 const FilterBlock: React.FC<FilterBlockProps> = observer(({ dataForFilter }) => {
 
-	const [result, setResult] = useState<string[]>([])
-	const [selectedIngredient, setSelectedIngredient] = useState<string[]>([])
+	const [searchList, setSearchList] = useState<string[]>([])
+
+	const [selectedIngredient, setSelectedIngredient] = useState<string[]>([]);
+
+	const stateSearchList = (value: string[]) => {
+		setSearchList(value)
+	}
 
 	const excludedIngredients = (ingredients: string) => {
-
 		const verification = selectedIngredient.find(excludedIngredient => excludedIngredient === ingredients)
 
 		if (ingredients !== "" && !verification) {
@@ -30,11 +34,11 @@ const FilterBlock: React.FC<FilterBlockProps> = observer(({ dataForFilter }) => 
 	return (
 		<section>
 			<div className="main__elements">
-				<SearchBar dataForFilter={dataForFilter} setResult={setResult} />
+				<SearchBar dataForFilter={dataForFilter} stateSearchList={stateSearchList} />
 				<ExcludedIngredients selectedIngredient={selectedIngredient} />
 			</div>
 
-			<SearchResultList results={result} excludedIngredients={excludedIngredients} />
+			<SearchResultList searchList={searchList} excludedIngredients={excludedIngredients} />
 		</section>)
 }
 );

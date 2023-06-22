@@ -4,12 +4,13 @@ import "./SearchBar.scss";
 import { observer } from "mobx-react-lite";
 import { FilreredRecipe } from "../../domain/recipe-details";
 import { values } from "mobx";
+
 interface SearchBarProps {
 	dataForFilter: FilreredRecipe[];
-	setResult: string[]
+	stateSearchList: (value: string[]) => void
 }
 
-const SearchBar: React.FC<SearchBarProps> = observer(({ dataForFilter, setResult }) => {
+const SearchBar: React.FC<SearchBarProps> = observer(({ dataForFilter, stateSearchList }) => {
 
 	const [input, setInput] = useState<string>("")
 
@@ -40,7 +41,7 @@ const SearchBar: React.FC<SearchBarProps> = observer(({ dataForFilter, setResult
 			return value &&
 				recipe.toLowerCase().indexOf(value.toLowerCase()) !== -1
 		})
-		setResult(result)
+		stateSearchList(result)
 	}
 
 	const handlChange = (value: string) => {
