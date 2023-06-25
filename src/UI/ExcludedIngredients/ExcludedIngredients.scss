@@ -1,6 +1,11 @@
 .excluded__ingredients {
   display: flex;
 	flex-wrap:wrap;
+	position: absolute;
+	right: 385px;
+	top: 25px;
+	width: 726px;
+	z-index: 99;
   &-title {
     height: 100%;
     font-size: 1.25rem;

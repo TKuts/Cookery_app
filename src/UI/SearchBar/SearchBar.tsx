@@ -51,6 +51,7 @@ const SearchBar: React.FC<SearchBarProps> = observer(({ dataForFilter, stateSear
 
 	return (
 		<section className="input-wraper">
+			<i className="bi bi-search input-wraper__icon"></i>
 			<input type="text" placeholder="Type to search..."
 				value={input}
 				onChange={(e) => handlChange(e.target.value)} />

@@ -10,7 +10,7 @@ import HomePage from "./pages/HomePage/HomePage"
 import SelectedRecipePage from "./pages/SelectedRecipePage/SelectedRecipePage";
 import ErrorPage from "./pages/ErrorPage/ErrorPage"
 
-import Gallary from "./UI/Gallary/Gallary";
+// import Gallary from "./UI/Gallary/Gallary";
 
 import RecipesPage from "./pages/RecipesPage/RecipesPage";
 import Footer from "./UI/Footer/Footer";

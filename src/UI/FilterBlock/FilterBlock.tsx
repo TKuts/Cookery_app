@@ -31,11 +31,16 @@ const FilterBlock: React.FC<FilterBlockProps> = observer(({ dataForFilter }) => 
 		}
 	}
 
+	const removeIngredient = (value: string): void => {
+		setSelectedIngredient(selectedIngredient.filter(ingredient => ingredient !== value))
+		
+	}
+
 	return (
-		<section>
+		<section className="filter__block">
 			<div className="main__elements">
+				<ExcludedIngredients selectedIngredient={selectedIngredient} removeIngredient={removeIngredient}/>
 				<SearchBar dataForFilter={dataForFilter} stateSearchList={stateSearchList} />
-				<ExcludedIngredients selectedIngredient={selectedIngredient} />
 			</div>
 
 			<SearchResultList searchList={searchList} excludedIngredients={excludedIngredients} />
