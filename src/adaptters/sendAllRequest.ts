@@ -36,11 +36,13 @@ export const randomRecipe = (
   }
 };
 
-export const getRecipeByCategory = (nameCategories: string) => {
-  return sendRequest(
-    `${API}${ALL_RECIPES}addRecipeInformation=true&number=100&type=${nameCategories}&${API_KEY}`
-  ).then((respons: { results: SelectedRecipe[] }) => respons);
-};
+// export const getRecipeByCategory = (nameCategories: string) => {
+// 	console.log("nameCategories", nameCategories);
+
+//   return sendRequest(
+//     `${API}${ALL_RECIPES}${RECIPE_INFORMATION}&number=100&type=${nameCategories}&${API_KEY}`
+//   ).then((respons: { results: SelectedRecipe[] }) => respons);
+// };
 
 export const getFasterRecipes = () => {
   return sendRequest(
@@ -48,8 +50,11 @@ export const getFasterRecipes = () => {
   ).then((respons: { results: SelectedRecipe[] }) => respons);
 };
 
-export const getAllRecipes = () => {
+export const getAllRecipes = (
+  nameCategories?: string,
+  ingredients?: string
+) => {
   return sendRequest(
-    `https://api.spoonacular.com/recipes/complexSearch?&${RECIPE_INFORMATION}number=100&${API_KEY}`
+    `${API}${ALL_RECIPES}${RECIPE_INFORMATION}number=100&type=${nameCategories}&excludeIngredients=${ingredients}&${API_KEY}`
   ).then((respons: { results: SelectedRecipe[] }) => respons);
 };

@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./FilterBlock.scss";
 
 import { observer } from "mobx-react-lite";
+import { store } from "../../application/storage/BusinessStore";
 import SearchBar from "../SearchBar/SearchBar";
 import SearchResultList from "../SearchResultList/SearchResultList";
 import ExcludedIngredients from "../ExcludedIngredients/ExcludedIngredients";
@@ -16,8 +17,12 @@ interface FilterBlockProps {
 const FilterBlock: React.FC<FilterBlockProps> = observer(({ dataForFilter }) => {
 
 	const [searchList, setSearchList] = useState<string[]>([])
-
 	const [selectedIngredient, setSelectedIngredient] = useState<string[]>([]);
+
+	useEffect(() => {
+		store.getExcludeIngredients(selectedIngredient)
+	}, [selectedIngredient])
+
 
 	const stateSearchList = (value: string[]) => {
 		setSearchList(value)
@@ -33,13 +38,13 @@ const FilterBlock: React.FC<FilterBlockProps> = observer(({ dataForFilter }) => 
 
 	const removeIngredient = (value: string): void => {
 		setSelectedIngredient(selectedIngredient.filter(ingredient => ingredient !== value))
-		
+
 	}
 
 	return (
 		<section className="filter__block">
 			<div className="main__elements">
-				<ExcludedIngredients selectedIngredient={selectedIngredient} removeIngredient={removeIngredient}/>
+				<ExcludedIngredients selectedIngredient={selectedIngredient} removeIngredient={removeIngredient} />
 				<SearchBar dataForFilter={dataForFilter} stateSearchList={stateSearchList} />
 			</div>
 

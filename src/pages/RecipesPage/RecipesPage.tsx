@@ -7,7 +7,7 @@ import Pagination from "../../UI/Pagination/Pagination";
 import RecipeCard from "../../UI/RecipeCard/RecipeCard";
 import FilterBlock from "../../UI/FilterBlock/FilterBlock"
 import SearchBar from "../../UI/SearchBar/SearchBar";
-import { getRecipeByCategory } from "../../adaptters/sendAllRequest";
+// import { getRecipeByCategory } from "../../adaptters/sendAllRequest";
 
 import { getAllRecipes } from "../../adaptters/sendAllRequest";
 import { SelectedRecipe } from "../../domain/recipe-details";
@@ -33,9 +33,12 @@ const RecipesPage: React.FC = observer(() => {
 
 
 	useEffect(() => {
+
+		let excludeIngredients = store.excludeIngredients
+
 		switch (category) {
 			case "all":
-				getAllRecipes().then((respons) => setAllRecipes(respons.results))
+				getAllRecipes(category, excludeIngredients).then((respons) => setAllRecipes(respons.results))
 				store.getPageName(`${category} recipes`)
 				break;
 			case "breakfast":
@@ -44,13 +47,13 @@ const RecipesPage: React.FC = observer(() => {
 			case "salad":
 			case "appetizer":
 			case "dessert":
-				getRecipeByCategory(category).then((respons) => setAllRecipes(respons.results))
+				getAllRecipes(category, excludeIngredients).then((respons) => setAllRecipes(respons.results))
 				store.getPageName(category)
 				break;
 		}
 
 
-	}, [category])
+	}, [allRecipes])
 
 	return (
 		<section className="recipe__page">

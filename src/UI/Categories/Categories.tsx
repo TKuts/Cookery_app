@@ -3,7 +3,7 @@ import "./Categories.scss"
 
 import { Link } from "react-router-dom";
 
-import { getRecipeByCategory } from "../../adaptters/sendAllRequest"
+// import { getRecipeByCategory } from "../../adaptters/sendAllRequest"
 // import { SelectedRecipe } from "../../domain/recipe-details";
 import { observer } from "mobx-react-lite";
 import { store } from "../../application/storage/BusinessStore"

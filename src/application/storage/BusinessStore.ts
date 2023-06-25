@@ -8,10 +8,12 @@ interface Store {
   filteredRecipe: FilreredRecipe;
   pageName: string;
 	dataForFilter: string[];
+	excludeIngredients: string,
   getRecipeId: (id: number) => void;
   getRecipeCategory: (nameCategori: string) => void;
   getFilteredRecipe: (object: FilreredRecipe) => void;
   getPageName: (pageName: string) => void;
+	getExcludeIngredients: (excludeIngredients: string[]) => void;
 }
 
 export const store: Store = makeAutoObservable({
@@ -43,6 +45,7 @@ export const store: Store = makeAutoObservable({
   },
   pageName: "",
 	dataForFilter: [],
+	excludeIngredients: "",
 
   getRecipeId: action(function (this: Store, id: number) {
     this.recipeId = id;
@@ -59,5 +62,15 @@ export const store: Store = makeAutoObservable({
   }),
 	getDataForFilter: action(function (this: Store, dataForFilter: string[]) {
     this.dataForFilter = dataForFilter;
+  }),
+	getExcludeIngredients: action(function (this: Store, excludeIngredients: string[]) {		
+		
+		let ingredientString: string = "";
+
+		excludeIngredients.forEach((ingredient) => {
+			ingredientString = ingredientString + `${ingredient},`;
+		});
+
+    this.excludeIngredients = ingredientString;
   }),
 });
