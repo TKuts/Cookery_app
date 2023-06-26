@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./DragAndDrop.scss";
 
 import { observer } from "mobx-react-lite";
-
+import { action, makeAutoObservable, toJS } from "mobx";
+import { store } from "../../application/storage/BusinessStore";
 interface DragAndDropWidget {
 	name: string;
 	value: string;
@@ -13,6 +14,10 @@ const DragAndDrop: React.FC = observer(() => {
 
 	const [widgets, setWidgets] = useState<DragAndDropWidget[]>([]);
 	const [changeBtn, setChangeBtn] = useState(false)
+
+	useEffect(() => {
+		store.getIngredientsForShop(widgets)
+	}, [widgets])
 
 	const handleOnDrop = (e: React.DragEvent) => {
 		const widgetType = e.dataTransfer.getData("getData") as string;
@@ -28,6 +33,7 @@ const DragAndDrop: React.FC = observer(() => {
 
 		if (!widgetExist) {
 			setWidgets([...widgets, createObjectData])
+
 		};
 	};
 

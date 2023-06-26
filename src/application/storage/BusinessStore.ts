@@ -7,13 +7,15 @@ interface Store {
   recipeCategori: string;
   filteredRecipe: FilreredRecipe;
   pageName: string;
-	dataForFilter: string[];
-	excludeIngredients: string,
+  dataForFilter: string[];
+  excludeIngredients: string;
+  ingredientsForShop: {}[];
   getRecipeId: (id: number) => void;
   getRecipeCategory: (nameCategori: string) => void;
   getFilteredRecipe: (object: FilreredRecipe) => void;
   getPageName: (pageName: string) => void;
-	getExcludeIngredients: (excludeIngredients: string[]) => void;
+  getExcludeIngredients: (excludeIngredients: string[]) => void;
+  getIngredientsForShop: (ingredients: {}[]) => void;
 }
 
 export const store: Store = makeAutoObservable({
@@ -44,9 +46,9 @@ export const store: Store = makeAutoObservable({
     },
   },
   pageName: "",
-	dataForFilter: [],
-	excludeIngredients: "",
-
+  dataForFilter: [],
+  excludeIngredients: "",
+  ingredientsForShop: [],
   getRecipeId: action(function (this: Store, id: number) {
     this.recipeId = id;
   }),
@@ -60,17 +62,23 @@ export const store: Store = makeAutoObservable({
   getPageName: action(function (this: Store, pageName: string) {
     this.pageName = pageName;
   }),
-	getDataForFilter: action(function (this: Store, dataForFilter: string[]) {
+  getDataForFilter: action(function (this: Store, dataForFilter: string[]) {
     this.dataForFilter = dataForFilter;
   }),
-	getExcludeIngredients: action(function (this: Store, excludeIngredients: string[]) {		
-		
-		let ingredientString: string = "";
+  getExcludeIngredients: action(function (
+    this: Store,
+    excludeIngredients: string[]
+  ) {
+    let ingredientString: string = "";
 
-		excludeIngredients.forEach((ingredient) => {
-			ingredientString = ingredientString + `${ingredient},`;
-		});
+    excludeIngredients.forEach((ingredient) => {
+      ingredientString = ingredientString + `${ingredient},`;
+    });
 
     this.excludeIngredients = ingredientString;
+  }),
+
+  getIngredientsForShop: action(function (this: Store, ingredients: {}[]) {
+    this.ingredientsForShop = [...this.ingredientsForShop, ...ingredients];
   }),
 });

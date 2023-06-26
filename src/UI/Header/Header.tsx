@@ -23,7 +23,9 @@ const Header = () => {
 					</Link>
 
 					<li className="header__menu-point">Blog</li>
-					<li className="header__menu-point">About</li>
+					<Link to={"/refrigerator/"} className="link">
+						<li className="header__menu-point">About</li>
+					</Link>
 				</ul>
 			</nav>
 

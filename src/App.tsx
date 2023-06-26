@@ -8,6 +8,7 @@ import { store } from "./application/storage/BusinessStore"
 import Header from "./UI/Header/Header";
 import HomePage from "./pages/HomePage/HomePage"
 import SelectedRecipePage from "./pages/SelectedRecipePage/SelectedRecipePage";
+import RefrigeratorPage from "./pages/RefrigeratorPage/RefrigeratorPage";
 import ErrorPage from "./pages/ErrorPage/ErrorPage"
 
 // import Gallary from "./UI/Gallary/Gallary";
@@ -37,6 +38,7 @@ const App = observer(() => {
 				<Route path="/" element={<HomePage />} />
 				<Route path="/galary/:category" element={<RecipesPage />} />
 				<Route path="/selectedRecipe/:id" element={<SelectedRecipePage />} />
+				<Route path="/refrigerator/" element={<RefrigeratorPage />} />
 				<Route path="/*" element={<ErrorPage />} />
 			</Routes>
 			<Footer />

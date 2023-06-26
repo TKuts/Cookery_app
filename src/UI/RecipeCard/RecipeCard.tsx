@@ -47,7 +47,7 @@ const RecipeCard: React.FC<PropsRecipeCard> = observer(({ informationForCard, ch
 		<section className="recipe-card">
 			{
 				informationForCard.map((recipe) => (
-					<div className="recipe-card__wrapper">
+					<div className="recipe-card__wrapper" key={recipe.id}>
 						<Link to={`/selectedRecipe/${recipe.id}`} className="flashcard link" key={recipe.id}
 							onClick={() => { { useMobx(recipe.id) } }}>
 							<img className="flashcard__img" src={recipe.image} alt={`img-recceps ${recipe.id}`} />
