@@ -16,7 +16,7 @@ const RefrigeratorPage: React.FC = observer(() => {
 
 
 	useEffect(() => {
-		console.log("ingredientsForShop", toJS(store.ingredientsForShop));
+		// console.log("ingredientsForShop", toJS(store.ingredientsForShop));
 		// setIngredientsForShop([...ingredientsForShop, ...toJS(store.ingredientsForShop)])
 		// store.getIngredientsForShop(store.ingredientsForShop)
 	}, [])

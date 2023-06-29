@@ -16,7 +16,7 @@ const DragAndDrop: React.FC = observer(() => {
 	const [changeBtn, setChangeBtn] = useState(false)
 
 	useEffect(() => {
-		store.getIngredientsForShop(widgets)
+		// store.getIngredientsForShop(widgets)
 	}, [widgets])
 
 	const handleOnDrop = (e: React.DragEvent) => {

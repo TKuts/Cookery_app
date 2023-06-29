@@ -51,9 +51,7 @@ const RecipesPage: React.FC = observer(() => {
 				store.getPageName(category)
 				break;
 		}
-
-
-	}, [allRecipes])
+	}, [store.excludeIngredients])
 
 	return (
 		<section className="recipe__page">
