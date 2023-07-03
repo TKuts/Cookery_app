@@ -79,6 +79,6 @@ export const store: Store = makeAutoObservable({
   }),
 
   getIngredientsForShop: action(function (this: Store, ingredients: {}[]) {
-    this.ingredientsForShop = [...this.ingredientsForShop, ...ingredients];
+    this.ingredientsForShop = [...ingredients];	
   }),
 });

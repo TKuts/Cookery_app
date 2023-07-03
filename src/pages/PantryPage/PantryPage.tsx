@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import "./RefrigeratorPage.scss";
+import "./PantryPage.scss";
 
 // import { getRecipeByCategory } from "../../adaptters/sendAllRequest";
 
@@ -10,16 +10,24 @@ import { action, makeAutoObservable, toJS } from "mobx";
 import { store } from "../../application/storage/BusinessStore";
 
 
-const RefrigeratorPage: React.FC = observer(() => {
+const PantryPagePage: React.FC = observer(() => {
 
 	const [ingredientsForShop, setIngredientsForShop] = useState<{}[]>([])
 
 
 	useEffect(() => {
+		setIngredientsForShop([...toJS(store.ingredientsForShop)])
+		// console.log("store.ingredientsForShop", toJS(store.ingredientsForShop));
+		
+		// setIngredientsForShop(store.ingredientsForShop)
 		// console.log("ingredientsForShop", toJS(store.ingredientsForShop));
 		// setIngredientsForShop([...ingredientsForShop, ...toJS(store.ingredientsForShop)])
 		// store.getIngredientsForShop(store.ingredientsForShop)
+		console.log("ingredientsForShop", ingredientsForShop);
 	}, [])
+
+
+	
 
 	// setIngredientsForShop([...ingredientsForShop])
 	// console.log("ingredientsForShop", ingredientsForShop);
@@ -32,4 +40,4 @@ const RefrigeratorPage: React.FC = observer(() => {
 	);
 });
 
-export default RefrigeratorPage;
+export default PantryPagePage;

@@ -16,7 +16,9 @@ const DragAndDrop: React.FC = observer(() => {
 	const [changeBtn, setChangeBtn] = useState(false)
 
 	useEffect(() => {
-		// store.getIngredientsForShop(widgets)
+		store.getIngredientsForShop(widgets)
+
+
 	}, [widgets])
 
 	const handleOnDrop = (e: React.DragEvent) => {
@@ -33,7 +35,15 @@ const DragAndDrop: React.FC = observer(() => {
 
 		if (!widgetExist) {
 			setWidgets([...widgets, createObjectData])
+		} else {
+			widgets.forEach((widget, index) => {
+				if (widget.name === createObjectData.name) {
+					widget.value = (+widget.value + +createObjectData.value).toString();
+					widgets[index] = widget
+				}
+			})
 
+			setWidgets([...widgets])
 		};
 	};
 
