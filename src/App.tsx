@@ -8,7 +8,7 @@ import { store } from "./application/storage/BusinessStore"
 import Header from "./UI/Header/Header";
 import HomePage from "./pages/HomePage/HomePage"
 import SelectedRecipePage from "./pages/SelectedRecipePage/SelectedRecipePage";
-import PantryPage from "./pages/PantryPage/PantryPage";
+import PantryPage from "./UI/Pantry/Pantry";
 import ErrorPage from "./pages/ErrorPage/ErrorPage"
 
 // import Gallary from "./UI/Gallary/Gallary";

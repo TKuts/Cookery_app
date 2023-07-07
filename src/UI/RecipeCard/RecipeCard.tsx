@@ -9,7 +9,7 @@ import { Link } from "react-router-dom"
 
 interface PropsRecipeCard {
 	informationForCard: SelectedRecipe[];
-	sizeSkeleton: string | undefined;
+	sizeSkeleton?: string | undefined;
 	children?: ReactNode;
 }
 

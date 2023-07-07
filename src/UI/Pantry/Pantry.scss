@@ -1,0 +1,32 @@
+.pantry__wrapper {
+  top: 0;
+  left: 0;
+  position: fixed;
+  background: rgba(0, 0, 0, 0.37);
+  width: 100vw;
+  height: 100vh;
+
+  z-index: 5;
+  &.block {
+    display: none;
+  }
+}
+
+.pantry {
+  top: 10%;
+  left: 10%;
+  position: absolute;
+  border-radius: 30px;
+  min-width: 80vw;
+  min-height: 80vh;
+  z-index: 2;
+  background: #e7fafe;
+  &__angle {
+    position: absolute;
+    font-size: 35px;
+    top: 25px;
+    left: 35px;
+    cursor: pointer;
+    transform: rotate(80deg);
+  }
+}

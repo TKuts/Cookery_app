@@ -4,11 +4,14 @@ import "./RecipeIngredients.scss";
 import { store } from "../../../application/storage/BusinessStore";
 import DragAndDrop from "../../DragAndDrop/DragAndDrop";
 import OtherRecipe from "../../OtherRecipe/OtherRecipe";
-
+import { action, makeAutoObservable, toJS } from "mobx";
 
 const RecipeIngredients: React.FC = () => {
 
 	const { ingredients } = store.filteredRecipe.nutrition;
+
+// console.log("ingredients", toJS(ingredients));
+
 
 	const lengthIngredientBlock = Array.isArray(ingredients) ? ingredients.length : null;
 
@@ -18,11 +21,12 @@ const RecipeIngredients: React.FC = () => {
 
 	const renderIngredients = ingredients.map((elem, index) => (
 		<li
+			// id={`${elem.id}`}
 			key={index}
 			className="recipe__section-ingredient"
 			draggable
 			onDragStart={(event) =>
-				handleOnDrag(event, `${elem.name}, ${elem.amount}, ${elem.unit}`)}>
+				handleOnDrag(event, `${elem.name}, ${elem.amount}, ${elem.unit}, ${elem.id}`)}>
 			<p>{elem.name}</p>
 			<p>{elem.amount} {elem.unit}
 			</p>

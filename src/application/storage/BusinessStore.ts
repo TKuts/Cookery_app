@@ -1,6 +1,12 @@
 import { action, makeAutoObservable, toJS } from "mobx";
 
 import { FilreredRecipe } from "../../domain/recipe-details";
+interface DragAndDropWidget {
+  name: string;
+  value: string;
+  unit: string;
+	id: string;
+}
 
 interface Store {
   recipeId: number;
@@ -9,13 +15,23 @@ interface Store {
   pageName: string;
   dataForFilter: string[];
   excludeIngredients: string;
-  ingredientsForShop: {}[];
+  ingredientsForShop: DragAndDropWidget[];
   getRecipeId: (id: number) => void;
   getRecipeCategory: (nameCategori: string) => void;
   getFilteredRecipe: (object: FilreredRecipe) => void;
   getPageName: (pageName: string) => void;
   getExcludeIngredients: (excludeIngredients: string[]) => void;
-  getIngredientsForShop: (ingredients: {}[]) => void;
+  getIngredientsForShop: (ingredients: {
+    name: string;
+    value: string;
+    unit: string;
+		id: string;
+  }) => void;
+  // removeIngredientsForShop: (ingredients: {
+  //   name: string;
+  //   value: string;
+  //   unit: string;
+  // }) => void;
 }
 
 export const store: Store = makeAutoObservable({
@@ -78,7 +94,43 @@ export const store: Store = makeAutoObservable({
     this.excludeIngredients = ingredientString;
   }),
 
-  getIngredientsForShop: action(function (this: Store, ingredients: {}[]) {
-    this.ingredientsForShop = [...ingredients];	
+  getIngredientsForShop: action(function (
+    this: Store,
+    ingredients: { name: string; value: string; unit: string; id: string;}
+  ) {
+    const widgetExist = store.ingredientsForShop.find(
+      (widget) => widget.name === ingredients.name
+    );
+
+    if (!widgetExist) {
+      this.ingredientsForShop.push(ingredients);
+    } else {
+      store.ingredientsForShop.forEach((widget, index) => {
+        if (widget.name === ingredients.name) {
+          widget.value = (+widget.value + +ingredients.value).toString();
+          store.ingredientsForShop[index] = widget;
+        }
+      });
+    }
+		console.log("this.ingredientsForShop", toJS(this.ingredientsForShop))
   }),
+
+  // removeIngredientsForShop: action(function (
+  //   this: Store,
+  //   ingredients: DragAndDropWidget
+  // ) {
+  //   let remove = toJS(
+  //     this.ingredientsForShop.find(
+  //       (excludedWidget) => excludedWidget.name === ingredients.name
+  //     )
+  //   );
+
+  
+  // }),
+
+  // getIngredientsForShop: action(function (this: Store, ingredients: {}[]) {
+  //   this.ingredientsForShop = [...ingredients, ...this.ingredientsForShop];
+  // 	console.log("this.ingredientsForShop", toJS(this.ingredientsForShop));
+
+  // }),
 });

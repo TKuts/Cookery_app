@@ -4,6 +4,7 @@ import "./DragAndDrop.scss";
 import { observer } from "mobx-react-lite";
 import { action, makeAutoObservable, toJS } from "mobx";
 import { store } from "../../application/storage/BusinessStore";
+import Pantry from "../Pantry/Pantry";
 interface DragAndDropWidget {
 	name: string;
 	value: string;
@@ -12,51 +13,54 @@ interface DragAndDropWidget {
 
 const DragAndDrop: React.FC = observer(() => {
 
-	const [widgets, setWidgets] = useState<DragAndDropWidget[]>([]);
 	const [changeBtn, setChangeBtn] = useState(false)
-
-	useEffect(() => {
-		store.getIngredientsForShop(widgets)
-
-
-	}, [widgets])
+	const [showPantry, setSowPantry] = useState(false)
 
 	const handleOnDrop = (e: React.DragEvent) => {
 		const widgetType = e.dataTransfer.getData("getData") as string;
-		const createArray = widgetType.split(",");
+		console.log('widgetType', widgetType);
+
+		const createArray = widgetType.split(", ");
 
 		let createObjectData = {
 			name: createArray[0],
 			value: createArray[1],
 			unit: createArray[2],
+			id: createArray[3]
 		};
 
-		const widgetExist = widgets.find((widget) => widget.name === createObjectData.name);
 
-		if (!widgetExist) {
-			setWidgets([...widgets, createObjectData])
-		} else {
-			widgets.forEach((widget, index) => {
-				if (widget.name === createObjectData.name) {
-					widget.value = (+widget.value + +createObjectData.value).toString();
-					widgets[index] = widget
-				}
-			})
-
-			setWidgets([...widgets])
-		};
+		store.getIngredientsForShop(createObjectData)
 	};
+
+	// const removeWidgetsGlobal = (widget: DragAndDropWidget) => {
+	// 	let globalIngredientsForShop = store.ingredientsForShop
+	// 	const nedRemove = globalIngredientsForShop.find(excludedWidget => excludedWidget.name === widget.name)
+
+	// 	if (nedRemove) {
+	// 		store.removeIngredientsForShop(nedRemove)
+	// 	}
+
+	// }
 
 	const handleDragOver = (e: React.DragEvent) => {
 		e.preventDefault();
 	}
 
-	const renderWidgets = widgets.map((widget, index) => (
-		<div className="dropped-widget" key={index}>
+	const renderWidgets = store.ingredientsForShop.map((widget, index) => (
+		<div className="dropped-widget" key={index} onClick={() => { }
+		}>
 			<p className="dropped-widget_name">{widget.name}</p>
 			<p className="dropped-widget_metric">{+widget.value} {widget.unit}</p>
 		</div>
 	))
+
+	const changeState = () => {
+		document.body.style.overflow = showPantry ? "visible" : "hidden",
+			setSowPantry(!showPantry),
+			setChangeBtn(!changeBtn)
+	}
+
 
 	return (
 		<>
@@ -68,9 +72,19 @@ const DragAndDrop: React.FC = observer(() => {
 				onDrop={handleOnDrop}
 				onDragOver={handleDragOver}
 			>
-				<h3 className="shopping-list_title" onClick={() => { setChangeBtn(!changeBtn) }}>Shopping list</h3>
+				<h3
+					className="shopping-list__title"
+					onClick={() => { setChangeBtn(!changeBtn) }}
+				>Shopping list</h3>
+				<i
+					className="bi bi-arrows-angle-expand shopping-list__angle"
+					onClick={() => changeState()}
+				/>
 				{renderWidgets}
 			</section>
+
+			<Pantry showPantry={showPantry}
+				changeState={changeState} />
 		</>
 
 	)

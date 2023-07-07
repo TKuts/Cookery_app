@@ -14,14 +14,22 @@
   opacity: 1;
   cursor: pointer;
   visibility: visible;
-  &_title {
-    font-family: "Inter", sans-serif;
+
+  &__title {
     font-weight: 400;
     font-size: 25px;
     padding: 20px 0 20px 0;
     background-color: #efd17a;
     border-top-left-radius: 30px;
     border-top-right-radius: 30px;
+		user-select: none;
+  }
+  &__angle {
+    position: absolute;
+    font-size: 25px;
+    top: 20px;
+    left: 20px;
+    transform: rotate(80deg);
   }
 }
 .dropped-widget {
@@ -30,7 +38,6 @@
   justify-content: space-between;
   margin: 5px 10px 5px 10px;
   padding: 0 15px 3px 15px;
-
   border-bottom: 1px solid rgba(0, 0, 0, 0.6);
   &:last-child {
     margin-bottom: 15px;
@@ -38,7 +45,6 @@
 
   &_name {
     display: block;
-    font-family: "Inter", sans-serif;
     font-weight: 500;
     text-transform: capitalize;
     font-size: 18px;
@@ -48,7 +54,6 @@
   }
   &_metric {
     display: block;
-    font-family: "Inter", sans-serif;
     font-weight: 500;
     font-size: 18px;
     line-height: 22px;
@@ -72,7 +77,6 @@
   visibility: visible;
   align-items: center;
   justify-content: center;
-
   box-shadow: 0 0 0 0 #efd17a;
   animation: pulsing 2s infinite linear;
   & .list-icon {
