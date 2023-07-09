@@ -12,7 +12,7 @@ import {
   Ingredients,
   Nutrition,
   SelectedRecipe,
-  FyllRecipeFromApi,
+  
 } from "../domain/recipe-details";
 
 export const apiSelectedRecipe = (id: number) => {
@@ -55,4 +55,17 @@ export const getAllRecipes = (
   return sendRequest(
     `${API}${ALL_RECIPES}${RECIPE_INFORMATION}number=100&type=${nameCategories}&excludeIngredients=${ingredients}&${API_KEY}`
   ).then((respons: { results: SelectedRecipe[] }) => respons);
+};
+
+interface Ip {
+	originalName: string,
+	amount: number,
+	id: number,
+	estimatedCost: { value: number, unit: string },
+	image: string,
+}
+export const getIngredienInformation = (id: string, value: string) => {
+  return sendRequest(
+    `https://api.spoonacular.com/food/ingredients/${id}/information?amount=${value}&${API_KEY}`
+  ).then((respons: Ip) =>  respons);
 };

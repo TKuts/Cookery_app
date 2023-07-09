@@ -1,12 +1,7 @@
 import { action, makeAutoObservable, toJS } from "mobx";
 
-import { FilreredRecipe } from "../../domain/recipe-details";
-interface DragAndDropWidget {
-  name: string;
-  value: string;
-  unit: string;
-	id: string;
-}
+import { FilreredRecipe, ingredientForShop } from "../../domain/recipe-details";
+
 
 interface Store {
   recipeId: number;
@@ -15,18 +10,13 @@ interface Store {
   pageName: string;
   dataForFilter: string[];
   excludeIngredients: string;
-  ingredientsForShop: DragAndDropWidget[];
+  ingredientsForShop: ingredientForShop[];
   getRecipeId: (id: number) => void;
   getRecipeCategory: (nameCategori: string) => void;
   getFilteredRecipe: (object: FilreredRecipe) => void;
   getPageName: (pageName: string) => void;
   getExcludeIngredients: (excludeIngredients: string[]) => void;
-  getIngredientsForShop: (ingredients: {
-    name: string;
-    value: string;
-    unit: string;
-		id: string;
-  }) => void;
+  getIngredientsForShop: (ingredients: ingredientForShop) => void;
   // removeIngredientsForShop: (ingredients: {
   //   name: string;
   //   value: string;
@@ -96,8 +86,7 @@ export const store: Store = makeAutoObservable({
 
   getIngredientsForShop: action(function (
     this: Store,
-    ingredients: { name: string; value: string; unit: string; id: string;}
-  ) {
+    ingredients: ingredientForShop ) {
     const widgetExist = store.ingredientsForShop.find(
       (widget) => widget.name === ingredients.name
     );
@@ -112,7 +101,7 @@ export const store: Store = makeAutoObservable({
         }
       });
     }
-		console.log("this.ingredientsForShop", toJS(this.ingredientsForShop))
+    // console.log("this.ingredientsForShop", toJS(this.ingredientsForShop));
   }),
 
   // removeIngredientsForShop: action(function (
@@ -125,7 +114,6 @@ export const store: Store = makeAutoObservable({
   //     )
   //   );
 
-  
   // }),
 
   // getIngredientsForShop: action(function (this: Store, ingredients: {}[]) {

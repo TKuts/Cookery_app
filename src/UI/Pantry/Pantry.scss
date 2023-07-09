@@ -1,11 +1,10 @@
 .pantry__wrapper {
   top: 0;
   left: 0;
-  position: fixed;
   background: rgba(0, 0, 0, 0.37);
   width: 100vw;
   height: 100vh;
-
+	position: fixed;
   z-index: 5;
   &.block {
     display: none;
@@ -15,7 +14,7 @@
 .pantry {
   top: 10%;
   left: 10%;
-  position: absolute;
+  position: fixed;
   border-radius: 30px;
   min-width: 80vw;
   min-height: 80vh;

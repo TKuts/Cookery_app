@@ -64,7 +64,6 @@ export interface Instructions {
     image?: string;
   }[];
   equipment: {
-    id?: number;
     name?: string;
     localizedName?: string;
     image?: string;
@@ -73,4 +72,9 @@ export interface Instructions {
   unwrap?: boolean;
 }
 
-export interface FyllRecipeFromApi {}
+export interface ingredientForShop {
+  name: string;
+  value: string;
+  unit: string;
+  id: string;
+}

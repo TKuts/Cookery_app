@@ -5,11 +5,14 @@ import { observer } from "mobx-react-lite";
 import { action, makeAutoObservable, toJS } from "mobx";
 import { store } from "../../application/storage/BusinessStore";
 import Pantry from "../Pantry/Pantry";
-interface DragAndDropWidget {
-	name: string;
-	value: string;
-	unit: string;
-}
+import { ingredientForShop } from "../../domain/recipe-details";
+
+// interface DragAndDropWidget {
+// 	name: string;
+// 	value: string;
+// 	unit: string;
+// 	id: string
+// }
 
 const DragAndDrop: React.FC = observer(() => {
 
@@ -18,11 +21,10 @@ const DragAndDrop: React.FC = observer(() => {
 
 	const handleOnDrop = (e: React.DragEvent) => {
 		const widgetType = e.dataTransfer.getData("getData") as string;
-		console.log('widgetType', widgetType);
 
 		const createArray = widgetType.split(", ");
 
-		let createObjectData = {
+		let createObjectData: ingredientForShop = {
 			name: createArray[0],
 			value: createArray[1],
 			unit: createArray[2],
@@ -61,7 +63,6 @@ const DragAndDrop: React.FC = observer(() => {
 			setChangeBtn(!changeBtn)
 	}
 
-
 	return (
 		<>
 			<section className={changeBtn ? "cirkle active" : "cirkle"} onClick={() => { setChangeBtn(!changeBtn) }}>
@@ -83,8 +84,10 @@ const DragAndDrop: React.FC = observer(() => {
 				{renderWidgets}
 			</section>
 
-			<Pantry showPantry={showPantry}
-				changeState={changeState} />
+			{showPantry ? <Pantry 
+			// showPantry={showPantry}
+				changeState={changeState} /> : <></>}
+
 		</>
 
 	)
