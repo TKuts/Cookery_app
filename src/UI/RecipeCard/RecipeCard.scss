@@ -25,7 +25,6 @@
     drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
   border-radius: 30px;
   cursor: pointer;
-
   &__img {
     border-radius: 30px;
     margin-bottom: 16px;
@@ -33,7 +32,6 @@
     height: 260px;
     background: linear-gradient(90deg, #e9e8e8 0%, #faf9f9 40px, #e9e8e8 80px);
   }
-
   &__title {
     font-weight: 600;
     font-size: 24px;
@@ -85,12 +83,3 @@
     }
   }
 }
-
-// figure {
-//   background-color: #b5b3b3;
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center;
-//   justify-content: center;
-//   width: 200px;
-// }

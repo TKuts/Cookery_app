@@ -4,11 +4,8 @@ import { Nutrition } from "../../../domain/recipe-details";
 import "./RecipeNutrition.scss";
 
 const RecipeNutrition: React.FC = () => {
-
 	const { nutrients } = store.filteredRecipe.nutrition;
-
 	const nutritionFilter = ['Calories', 'Fat', 'Protein', 'Carbohydrates', 'Cholesterol'];
-
 	const nutritionWhatNeed: Nutrition[] = [];
 
 	nutrients.map((element: Nutrition) => {

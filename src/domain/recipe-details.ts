@@ -1,4 +1,3 @@
-import { Step } from "./recipes-information";
 export interface Ingredients {
   id: number;
   name: string;
@@ -72,9 +71,17 @@ export interface Instructions {
   unwrap?: boolean;
 }
 
-export interface ingredientForShop {
+export interface IngredientForShop {
   name: string;
   value: string;
   unit: string;
   id: string;
+}
+
+export interface PantryValue {
+	originalName: string,
+	amount: number,
+	id: number,
+	estimatedCost: { value: number, unit: string },
+	image: string,
 }

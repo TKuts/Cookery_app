@@ -1,10 +1,8 @@
-import React, { useRef, useEffect } from "react";
+import React, { useEffect, useRef } from "react";
+import { store } from "../../../application/storage/BusinessStore";
 import "./RecipeTitle.scss";
 
-import { store } from "../../../application/storage/BusinessStore";
-
 const RecipeTitle: React.FC = () => {
-
 	const { title, readyInMinutes, dishTypes } = store.filteredRecipe;
 
 	useEffect(() => {

@@ -1,24 +1,16 @@
+import { observer } from "mobx-react-lite";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import FilterBlock from "../../UI/FilterBlock/FilterBlock";
+import Pagination from "../../UI/Pagination/Pagination";
+import RecipeCard from "../../UI/RecipeCard/RecipeCard";
+import { getAllRecipes } from "../../adaptters/sendAllRequest";
+import { store } from "../../application/storage/BusinessStore";
+import { SelectedRecipe } from "../../domain/recipe-details";
 import "./RecipesPage.scss";
 
 
-import Pagination from "../../UI/Pagination/Pagination";
-import RecipeCard from "../../UI/RecipeCard/RecipeCard";
-import FilterBlock from "../../UI/FilterBlock/FilterBlock"
-import SearchBar from "../../UI/SearchBar/SearchBar";
-// import { getRecipeByCategory } from "../../adaptters/sendAllRequest";
-
-import { getAllRecipes } from "../../adaptters/sendAllRequest";
-import { SelectedRecipe } from "../../domain/recipe-details";
-
-import { observer } from "mobx-react-lite";
-
-import { store } from "../../application/storage/BusinessStore";
-
-
 const RecipesPage: React.FC = observer(() => {
-
 
 	const [allRecipes, setAllRecipes] = useState<SelectedRecipe[]>([])
 	const [currentPage, setCurrentPage] = useState<number>(1)
@@ -30,10 +22,7 @@ const RecipesPage: React.FC = observer(() => {
 
 	const currentPost = allRecipes.slice(firstPostIndex, lastPostIndex);
 
-
-
 	useEffect(() => {
-
 		let excludeIngredients = store.excludeIngredients
 
 		switch (category) {

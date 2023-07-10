@@ -1,28 +1,16 @@
-import React, { useState, useContext, useEffect } from "react";
-import "./Categories.scss"
-
+import React from "react";
 import { Link } from "react-router-dom";
-
-// import { getRecipeByCategory } from "../../adaptters/sendAllRequest"
-// import { SelectedRecipe } from "../../domain/recipe-details";
+import "./Categories.scss";
 import { observer } from "mobx-react-lite";
-import { store } from "../../application/storage/BusinessStore"
 
-// цей компонент можна зробити меншим
 
 const Categories: React.FC = observer(() => {
-
-	// const mobxSelectedCategori = (state: string) => {
-	// 	store.getRecipeCategory(state)
-	// } // треба для збереження категорії, яка вибрана
-
 	return (
 		<section className="component__categories">
 			<h2 className="component__categories-title">Categories</h2>
 			<ul className="categories">
 				<Link to={"/galary/breakfast"} className="categories__card">
-					<div // className="categories__card" 
-					>
+					<div>
 						<img className="categories__card-img" src="src/UI/Categories/img/breakfast.png" alt="breakfast" />
 						<h3 className="categories__card-title">breakfast</h3>
 					</div>

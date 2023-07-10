@@ -1,27 +1,16 @@
-import React, { useState, useEffect } from "react";
+import { observer } from "mobx-react-lite";
+import React, { useState } from "react";
+import { store } from "../../application/storage/BusinessStore";
+import { ingredientForShop } from "../../domain/recipe-details";
+import Pantry from "../Pantry/Pantry";
 import "./DragAndDrop.scss";
 
-import { observer } from "mobx-react-lite";
-import { action, makeAutoObservable, toJS } from "mobx";
-import { store } from "../../application/storage/BusinessStore";
-import Pantry from "../Pantry/Pantry";
-import { ingredientForShop } from "../../domain/recipe-details";
-
-// interface DragAndDropWidget {
-// 	name: string;
-// 	value: string;
-// 	unit: string;
-// 	id: string
-// }
-
 const DragAndDrop: React.FC = observer(() => {
-
 	const [changeBtn, setChangeBtn] = useState(false)
 	const [showPantry, setSowPantry] = useState(false)
 
 	const handleOnDrop = (e: React.DragEvent) => {
 		const widgetType = e.dataTransfer.getData("getData") as string;
-
 		const createArray = widgetType.split(", ");
 
 		let createObjectData: ingredientForShop = {
@@ -31,19 +20,8 @@ const DragAndDrop: React.FC = observer(() => {
 			id: createArray[3]
 		};
 
-
 		store.getIngredientsForShop(createObjectData)
 	};
-
-	// const removeWidgetsGlobal = (widget: DragAndDropWidget) => {
-	// 	let globalIngredientsForShop = store.ingredientsForShop
-	// 	const nedRemove = globalIngredientsForShop.find(excludedWidget => excludedWidget.name === widget.name)
-
-	// 	if (nedRemove) {
-	// 		store.removeIngredientsForShop(nedRemove)
-	// 	}
-
-	// }
 
 	const handleDragOver = (e: React.DragEvent) => {
 		e.preventDefault();
@@ -83,13 +61,10 @@ const DragAndDrop: React.FC = observer(() => {
 				/>
 				{renderWidgets}
 			</section>
-
-			{showPantry ? <Pantry 
-			// showPantry={showPantry}
+			{showPantry ? <Pantry
+				// showPantry={showPantry}
 				changeState={changeState} /> : <></>}
-
 		</>
-
 	)
 })
 

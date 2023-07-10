@@ -1,7 +1,5 @@
-import React from "react";
-
 import { observer } from "mobx-react-lite";
-
+import React from "react";
 import "./SkeletonRecipeCard.scss";
 
 interface PropsSkeletonRecipeCard {
@@ -9,8 +7,6 @@ interface PropsSkeletonRecipeCard {
 }
 
 const SkeletonRecipeCard: React.FC<PropsSkeletonRecipeCard> = observer(({ lengthRender }) => {
-
-
 	const skeleton = (
 		<section className="recipe-card-skeleton animate-pulse">
 			{
@@ -25,8 +21,6 @@ const SkeletonRecipeCard: React.FC<PropsSkeletonRecipeCard> = observer(({ length
 			}
 		</section>
 	)
-
-
 	return (skeleton)
 })
 

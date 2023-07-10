@@ -1,28 +1,7 @@
-import { action, makeAutoObservable, toJS } from "mobx";
+import { action, makeAutoObservable } from "mobx";
+import { FilreredRecipe, IngredientForShop } from "../../domain/recipe-details";
+import { Store } from "../../domain/store";
 
-import { FilreredRecipe, ingredientForShop } from "../../domain/recipe-details";
-
-
-interface Store {
-  recipeId: number;
-  recipeCategori: string;
-  filteredRecipe: FilreredRecipe;
-  pageName: string;
-  dataForFilter: string[];
-  excludeIngredients: string;
-  ingredientsForShop: ingredientForShop[];
-  getRecipeId: (id: number) => void;
-  getRecipeCategory: (nameCategori: string) => void;
-  getFilteredRecipe: (object: FilreredRecipe) => void;
-  getPageName: (pageName: string) => void;
-  getExcludeIngredients: (excludeIngredients: string[]) => void;
-  getIngredientsForShop: (ingredients: ingredientForShop) => void;
-  // removeIngredientsForShop: (ingredients: {
-  //   name: string;
-  //   value: string;
-  //   unit: string;
-  // }) => void;
-}
 
 export const store: Store = makeAutoObservable({
   recipeId: 0,
@@ -86,7 +65,8 @@ export const store: Store = makeAutoObservable({
 
   getIngredientsForShop: action(function (
     this: Store,
-    ingredients: ingredientForShop ) {
+    ingredients: IngredientForShop
+  ) {
     const widgetExist = store.ingredientsForShop.find(
       (widget) => widget.name === ingredients.name
     );
@@ -101,24 +81,5 @@ export const store: Store = makeAutoObservable({
         }
       });
     }
-    // console.log("this.ingredientsForShop", toJS(this.ingredientsForShop));
   }),
-
-  // removeIngredientsForShop: action(function (
-  //   this: Store,
-  //   ingredients: DragAndDropWidget
-  // ) {
-  //   let remove = toJS(
-  //     this.ingredientsForShop.find(
-  //       (excludedWidget) => excludedWidget.name === ingredients.name
-  //     )
-  //   );
-
-  // }),
-
-  // getIngredientsForShop: action(function (this: Store, ingredients: {}[]) {
-  //   this.ingredientsForShop = [...ingredients, ...this.ingredientsForShop];
-  // 	console.log("this.ingredientsForShop", toJS(this.ingredientsForShop));
-
-  // }),
 });

@@ -1,27 +1,19 @@
 import React from "react";
-import "./RecipeIngredients.scss";
-
 import { store } from "../../../application/storage/BusinessStore";
 import DragAndDrop from "../../DragAndDrop/DragAndDrop";
 import OtherRecipe from "../../OtherRecipe/OtherRecipe";
-import { action, makeAutoObservable, toJS } from "mobx";
+import "./RecipeIngredients.scss";
 
 const RecipeIngredients: React.FC = () => {
 
 	const { ingredients } = store.filteredRecipe.nutrition;
-
-// console.log("ingredients", toJS(ingredients));
-
-
 	const lengthIngredientBlock = Array.isArray(ingredients) ? ingredients.length : null;
-
 	const handleOnDrag = (event: React.DragEvent, widgetType: string) => {
 		event.dataTransfer.setData("getData", widgetType);
 	};
 
 	const renderIngredients = ingredients.map((elem, index) => (
 		<li
-			// id={`${elem.id}`}
 			key={index}
 			className="recipe__section-ingredient"
 			draggable

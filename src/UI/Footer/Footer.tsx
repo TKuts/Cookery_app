@@ -1,18 +1,14 @@
 import React, { useState, useEffect } from "react";
 import "./Footer.scss";
-
 import { observer } from "mobx-react-lite";
 
 const Footer: React.FC = observer(() => {
-
 	return (
 		<footer className="footer">
 			<section className="footer-up">
-
 				<ul className="footer-up__logo">
 					<li className="footer-up__logo-title">Foodieland<span className="footer-up__logo-point">.</span></li>
 				</ul>
-
 				<nav className="footer-up__menu">
 					<ul className="footer-up__menu-list">
 						<li className="footer-up__menu-point">Home</li>
@@ -22,7 +18,6 @@ const Footer: React.FC = observer(() => {
 					</ul>
 				</nav>
 			</section>
-
 			<section className="footer-down">
 				<h4 className="footer-down__title">© 2023 Project by <span className="footer-down__name">Anton Kuts</span></h4>
 				<ul className="footer-down__social">
@@ -44,9 +39,6 @@ const Footer: React.FC = observer(() => {
 				</ul>
 			</section>
 		</footer>
-
-
-
 	)
 })
 

@@ -1,9 +1,7 @@
-import React, { useState } from "react";
-import "./SearchBar.scss";
-
 import { observer } from "mobx-react-lite";
+import React, { useState } from "react";
 import { FilreredRecipe } from "../../domain/recipe-details";
-import { values } from "mobx";
+import "./SearchBar.scss";
 
 interface SearchBarProps {
 	dataForFilter: FilreredRecipe[];
@@ -11,11 +9,8 @@ interface SearchBarProps {
 }
 
 const SearchBar: React.FC<SearchBarProps> = observer(({ dataForFilter, stateSearchList }) => {
-
 	const [input, setInput] = useState<string>("")
-
 	const nameIngredients: string[] = [];
-
 	const analyzedInstruction = dataForFilter.forEach((allRecipes) =>
 		allRecipes.analyzedInstructions.forEach((steps) =>
 			steps.steps.forEach((arrIngredients) =>
@@ -26,8 +21,6 @@ const SearchBar: React.FC<SearchBarProps> = observer(({ dataForFilter, stateSear
 			)
 		)
 	);
-
-
 
 	const newArray: string[] = [];
 	nameIngredients.forEach((name) => {
@@ -56,7 +49,6 @@ const SearchBar: React.FC<SearchBarProps> = observer(({ dataForFilter, stateSear
 				value={input}
 				onChange={(e) => handlChange(e.target.value)} />
 		</section>
-
 	)
 })
 

@@ -8,12 +8,7 @@ const TAGS = import.meta.env.VITE_REACT_RANDOM_TAGS;
 const RECIPE_INFORMATION = import.meta.env.VITE_REACT_RECIPE_INFORMATION;
 
 import sendRequest from "../adaptters/sendRequest";
-import {
-  Ingredients,
-  Nutrition,
-  SelectedRecipe,
-  
-} from "../domain/recipe-details";
+import { SelectedRecipe } from "../domain/recipe-details";
 
 export const apiSelectedRecipe = (id: number) => {
   return sendRequest(
@@ -36,12 +31,6 @@ export const randomRecipe = (
   }
 };
 
-// export const getRecipeByCategory = (nameCategories: string) => {
-//   return sendRequest(
-//     `${API}${ALL_RECIPES}${RECIPE_INFORMATION}&number=100&type=${nameCategories}&${API_KEY}`
-//   ).then((respons: { results: SelectedRecipe[] }) => respons);
-// };
-
 export const getFasterRecipes = () => {
   return sendRequest(
     `${API}${ALL_RECIPES}maxReadyTime=10&${RECIPE_INFORMATION}&number=9&${API_KEY}`
@@ -58,14 +47,14 @@ export const getAllRecipes = (
 };
 
 interface Ip {
-	originalName: string,
-	amount: number,
-	id: number,
-	estimatedCost: { value: number, unit: string },
-	image: string,
+  originalName: string;
+  amount: number;
+  id: number;
+  estimatedCost: { value: number; unit: string };
+  image: string;
 }
 export const getIngredienInformation = (id: string, value: string) => {
   return sendRequest(
     `https://api.spoonacular.com/food/ingredients/${id}/information?amount=${value}&${API_KEY}`
-  ).then((respons: Ip) =>  respons);
+  ).then((respons: Ip) => respons);
 };

@@ -1,11 +1,10 @@
-import React, { useEffect, ReactNode, useState } from "react";
-
 import { observer } from "mobx-react-lite";
+import React, { ReactNode, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { store } from "../../application/storage/BusinessStore";
 import { SelectedRecipe } from "../../domain/recipe-details";
-import SkeletonRecipeCard from "../Skeleton/SkeletonRecipeCard/SkeletonRecipeCard"
+import SkeletonRecipeCard from "../Skeleton/SkeletonRecipeCard/SkeletonRecipeCard";
 import "./RecipeCard.scss";
-import { Link } from "react-router-dom"
 
 interface PropsRecipeCard {
 	informationForCard: SelectedRecipe[];
@@ -16,18 +15,13 @@ interface PropsRecipeCard {
 const RecipeCard: React.FC<PropsRecipeCard> = observer(({ informationForCard, children, sizeSkeleton }) => {
 
 	let sizeForSkeleton: number | undefined;
-
 	sizeSkeleton === undefined ? sizeForSkeleton = 9 : sizeForSkeleton = 6;
-
 	const [lenghtCard, setLenghtCard] = useState(0)
 
 	useEffect(() => {
-
 		setLenghtCard(informationForCard.length)
 		store.getPageName("Recipes")
 	}, [informationForCard])
-
-
 
 	const useMobx = (id: number) => {
 		store.getRecipeId(id);

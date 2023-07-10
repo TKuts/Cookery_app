@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from "react";
-import "./RecipeInstructions.scss";
-
 import { store } from "../../../application/storage/BusinessStore";
 import { AnalyzedInstructions, Instructions } from "../../../domain/recipe-details";
+import "./RecipeInstructions.scss";
 
 const RecipeInstructions: React.FC = () => {
 
 	const [recipeInstructions, setRecipeInstructions] = useState<Instructions[]>([]);
 	const [renderPage, setRenderPage] = useState(false)
-
 	const { analyzedInstructions } = store.filteredRecipe
 
 	useEffect(() => {

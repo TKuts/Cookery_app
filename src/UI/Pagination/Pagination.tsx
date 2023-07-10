@@ -1,8 +1,7 @@
-import React, { useState } from "react";
-import "./Pagination.scss";
-
 import { observer } from "mobx-react-lite";
-import SkeletonPagination from "../Skeleton/SkeletonPagination/SkeletonPagination"
+import React from "react";
+import SkeletonPagination from "../Skeleton/SkeletonPagination/SkeletonPagination";
+import "./Pagination.scss";
 
 interface PropsPagination {
 	totalPosts: number,
@@ -32,7 +31,6 @@ const Pagination: React.FC<PropsPagination> = observer(({ totalPosts, postsPerPa
 		let from = to - max;
 
 		return Array.from({ length: max }, (_, i) => (i + 1) + from);
-
 	}
 
 	let buttonOneStep = (side: string): number => {
@@ -87,13 +85,8 @@ const Pagination: React.FC<PropsPagination> = observer(({ totalPosts, postsPerPa
 
 	return (
 		<>
-			{
-				totalPosts ? renderComponent : <SkeletonPagination />
-
-			}
-
+			{totalPosts ? renderComponent : <SkeletonPagination />}
 		</>
-
 	)
 })
 

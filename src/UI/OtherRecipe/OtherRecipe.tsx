@@ -1,11 +1,9 @@
-import React, { useEffect, useState } from "react";
-import "./OtherRecipe.scss";
-
-
 import { observer } from "mobx-react-lite";
+import React, { useEffect, useState } from "react";
 import { randomRecipe } from "../../adaptters/sendAllRequest";
 import { store } from "../../application/storage/BusinessStore";
 import { SelectedRecipe } from "../../domain/recipe-details";
+import "./OtherRecipe.scss";
 
 interface PropsOtherRecipe {
 	lengthIngredientBlock: number | null;
@@ -15,7 +13,6 @@ const OtherRecipe: React.FC<PropsOtherRecipe> = observer(({ lengthIngredientBloc
 
 	const { recipeCategori } = store;
 	const [randomRecipes, setRandomRecipes] = useState<SelectedRecipe[]>([])
-
 	const lengthForRender = typeof lengthIngredientBlock === "number" ? Math.floor(lengthIngredientBlock / 3) : 1
 
 	useEffect(() => {
@@ -36,15 +33,12 @@ const OtherRecipe: React.FC<PropsOtherRecipe> = observer(({ lengthIngredientBloc
 			</div>
 		</div>
 	))
-
-
 	return (
 		<section className="other__recipe">
 			<h3 className="other__recipe-title">Other Recipe</h3>
 			{renderRandomRecipes}
 		</section>
 	)
-
 })
 
 export default OtherRecipe;

@@ -1,35 +1,18 @@
+import { observer } from "mobx-react-lite";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { getIngredienInformation } from "../../adaptters/sendAllRequest";
+import { store } from "../../application/storage/BusinessStore";
+import { PantryValue } from "../../domain/recipe-details"
 import "./Pantry.scss";
 
-import { getIngredienInformation } from "../../adaptters/sendAllRequest";
-import { ingredientForShop } from "../../domain/recipe-details";
-
-import { observer } from "mobx-react-lite";
-import { action, makeAutoObservable, toJS } from "mobx";
-import { store } from "../../application/storage/BusinessStore";
-
 interface PantryProps {
-
 	changeState: () => void
 }
 
-interface Ip {
-	originalName: string,
-	amount: number,
-	id: number,
-	estimatedCost: { value: number, unit: string },
-	image: string,
-}
 
-const Pantry: React.FC<PantryProps> = observer(({
+const Pantry: React.FC<PantryProps> = observer(({ changeState }) => {
 
-	changeState }) => {
-
-	const [ingredientsForShop, setIngredientsForShop] = useState<ingredientForShop[]>([])
-	const [detailOngredient, setDetailOngredient] = useState<Ip[]>([])
-
-
+	const [detailOngredient, setDetailOngredient] = useState<PantryValue[]>([])
 
 	useEffect(() => {
 		store.ingredientsForShop.forEach(imgredient => {
@@ -40,15 +23,26 @@ const Pantry: React.FC<PantryProps> = observer(({
 		})
 	}, [])
 
-console.log("detailOngredient", detailOngredient);
+	const totalPrice = (array: PantryValue[]) => {
+		let price = 0
+		array.forEach(ingredient => price += ingredient.estimatedCost.value)
+		return price.toFixed(2)
+	}
 
 	const renderCardIngredient = (
-		<div>
+		<div className="ingredients__wrapper">
 			{
 				detailOngredient.map(ingredient => (
-					<div key={ingredient.id}>
-						{/* <img src={ingredient.image} alt="" /> */}
-						<h1>{ingredient.originalName}</h1>
+					<div className="ingredient__card" key={ingredient.id}>
+						<img src="../src/UI/Pantry/img/plug.jpg" alt="plug" className="ingredient__card-img" />
+						<h1 className="ingredient__card-title">{ingredient.originalName}</h1>
+						<div className="">
+							<p className="ingredient__card-quantity">quantity {ingredient.amount} </p>
+						</div>
+						<div className="ingredient__card-price">
+							<h3 className="ingredient__card-price-cost">Price in shop:</h3>
+							<p className="ingredient__card-price-cost">{ingredient.estimatedCost.value} $</p>
+						</div>
 					</div>
 				))
 			}
@@ -56,15 +50,14 @@ console.log("detailOngredient", detailOngredient);
 	)
 
 	return (
-		<section
-			className={"pantry__wrapper"}
-		>
+		<section className={"pantry__wrapper"}>
 			<div className="pantry">
-				<i className="bi bi-arrows-angle-contract pantry__angle" onClick={() => changeState()}></i>
-
+				<div className="header__line">
+					<i className="bi bi-arrows-angle-contract header__line-angle" onClick={() => changeState()}></i>
+					<p className="header__line-price">Total price: {totalPrice(detailOngredient) ? totalPrice(detailOngredient) : 0} $</p>
+				</div>
 				{renderCardIngredient}
 			</div>
-			
 		</section>
 	);
 });

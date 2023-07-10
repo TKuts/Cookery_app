@@ -1,14 +1,12 @@
 import React, { ReactNode } from "react";
+import { store } from "../../../application/storage/BusinessStore";
 import "./RecipeSummary.scss";
 
-import { store } from "../../../application/storage/BusinessStore";
-
-interface RecipeSummary {
+interface PropsRecipeSummary {
 	children: ReactNode;
 }
 
-const RecipeSummary: React.FC<RecipeSummary> = ({ children }) => {
-
+const RecipeSummary: React.FC<PropsRecipeSummary> = ({ children }) => {
 	const { summary, title, image } = store.filteredRecipe;
 	const createMarkup = (summary: string) => {
 		return { __html: summary };
