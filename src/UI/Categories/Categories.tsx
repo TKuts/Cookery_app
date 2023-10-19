@@ -17,19 +17,19 @@ const Categories: React.FC = observer(() => {
 				</Link>
 				<Link to={"/galary/main course"} className="categories__card">
 					<div>
-						<img className="categories__card-img" src="src/UI/Categories/img/main course.png" alt="main course" />
+						<img className="categories__card-img" src="../../img/main course.png" alt="main course" />
 						<h3 className="categories__card-title">main course</h3>
 					</div>
 				</Link>
 				<Link to={"/galary/soup"} className="categories__card">
 					<div>
-						<img className="categories__card-img" src="src/UI/Categories/img/soup.png" alt="soup" />
+						<img className="categories__card-img" src="../../soup.png" alt="soup" />
 						<h3 className="categories__card-title">soup</h3>
 					</div>
 				</Link>
 				<Link to={"/galary/salad"} className="categories__card">
 					<div>
-						<img className="categories__card-img" src="src/UI/Categories/img/salad.png" alt="salad" />
+						<img className="categories__card-img" src="salad.png" alt="salad" />
 						<h3 className="categories__card-title">salad</h3>
 					</div>
 				</Link>
