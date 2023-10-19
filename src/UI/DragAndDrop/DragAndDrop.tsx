@@ -1,7 +1,7 @@
 import { observer } from "mobx-react-lite";
 import React, { useState } from "react";
 import { store } from "../../application/storage/BusinessStore";
-import { ingredientForShop } from "../../domain/recipe-details";
+import { IngredientForShop } from "../../domain/recipe-details";
 import Pantry from "../Pantry/Pantry";
 import "./DragAndDrop.scss";
 
@@ -13,7 +13,7 @@ const DragAndDrop: React.FC = observer(() => {
 		const widgetType = e.dataTransfer.getData("getData") as string;
 		const createArray = widgetType.split(", ");
 
-		let createObjectData: ingredientForShop = {
+		let createObjectData: IngredientForShop = {
 			name: createArray[0],
 			value: createArray[1],
 			unit: createArray[2],
