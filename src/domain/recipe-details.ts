@@ -66,6 +66,7 @@ export interface Instructions {
     name?: string;
     localizedName?: string;
     image?: string;
+    id?: number;
   }[];
   checked?: boolean;
   unwrap?: boolean;
@@ -79,9 +80,9 @@ export interface IngredientForShop {
 }
 
 export interface PantryValue {
-	originalName: string,
-	amount: number,
-	id: number,
-	estimatedCost: { value: number, unit: string },
-	image: string,
+  originalName: string;
+  amount: number;
+  id: number;
+  estimatedCost: { value: number; unit: string };
+  image: string;
 }
