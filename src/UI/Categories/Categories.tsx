@@ -35,7 +35,7 @@ const Categories: React.FC = observer(() => {
 				</Link>
 				<Link to={"/galary/appetizer"} className="categories__card">
 					<div>
-						<img className="categories__card-img" src="src/UI/Categories/img/appetizer.png" alt="appetizer" />
+						<img className="categories__card-img" src="@img/appetizer.png" alt="appetizer" />
 						<h3 className="categories__card-title">appetizer</h3>
 					</div>
 				</Link>
