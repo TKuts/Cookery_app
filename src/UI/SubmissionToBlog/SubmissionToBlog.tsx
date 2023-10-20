@@ -11,7 +11,7 @@ const SubmissionToBlog: React.FC = observer(() => {
 				<button className="left__block-btn">Learn More</button>
 			</div>
 			<div className="right__block">
-				<img src="src/UI/SubmissionToBlog/img/cooker.png" alt="cooker" />
+				<img src="./images/SubmissionToBlog/cooker.png" alt="cooker" />
 			</div>
 		</section>
 	)
